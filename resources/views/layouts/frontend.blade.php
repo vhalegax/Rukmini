@@ -11,12 +11,13 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('front-wisnu/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
     @yield('css')
 
     <title>@yield('title')</title>
+
   </head>
   <body>
       <header>
@@ -28,7 +29,7 @@
                     </button>
                   
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+                    
                         <ul class="navbar-nav mr-auto">
                           <li class="nav-item">
                             <a class="nav-link" href="{{route('home')}}">HOME</a>
@@ -47,32 +48,38 @@
                         <ul class="navbar-nav navbar-right">
                             @if(Auth::guard('pembeli')->user())
                               <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" 
-                              aria-haspopup="true" aria-expanded="false" href="{{route('pembeli.index')}}">
-                              PROFILE</a>
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{route('pembeli.index')}}">Profile Pembeli</a>
-                              <a class="dropdown-item" href="{{route('alamat.index',['status'=>'daftar'])}}">Daftar Alamat</a>
-                              <a class="dropdown-item" href="{{route('cart.index')}}">Belanjaan</a>
-                              <a class="dropdown-item" href="{{route('checkout.index')}}">Pembayaran</a>
-                              <a class="dropdown-item" href="#">Wishlist</a>
-                              <a class="dropdown-item" href="#">History Pembelian</a>
-                              <a class="dropdown-item" href="{{ route('pembeli.logout') }}" 
-                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                              <form id="logout-form" action="{{ route('pembeli.logout') }}" method="POST" style="display: none;">
-                              {{ csrf_field() }}</form></li>
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" 
+                                aria-haspopup="true" aria-expanded="false" href="{{route('pembeli.index')}}">
+                                PROFILE</a>
 
-                              @elseif(\Auth::user())
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{route('pembeli.index')}}">Profile Pembeli</a>
+                                  <a class="dropdown-item" href="{{route('alamat.index',['status'=>'daftar'])}}">Daftar Alamat</a>
+                                  <a class="dropdown-item" href="{{route('cart.index')}}">Belanjaan</a>
+                                  <a class="dropdown-item" href="{{route('checkout.index')}}">Pembayaran</a>
+                                  <a class="dropdown-item" href="#">Wishlist</a>
+                                  <a class="dropdown-item" href="#">History Pembelian</a>
+                                  <a class="dropdown-item" href="{{ route('pembeli.logout') }}" 
+                                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                              
+                                  <form id="logout-form" action="{{ route('pembeli.logout') }}" method="POST" style="display: none;">
+                                  {{ csrf_field() }}
+                                  </form>
+                                </div>
+                              </li>
+
+                            @elseif(\Auth::user())
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" 
                                 aria-haspopup="true" aria-expanded="false" href="{{route('karyawan.home')}}">
                                 {{Auth::user()->name}}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('karyawan.home')}}">Profile</a>
-                                <form action="{{route('logout')}}" method="POST">
-                                @csrf
-                                <button class="dropdown-item">Logout</button>
-                                </form>
+                                  <a class="dropdown-item" href="{{route('karyawan.home')}}">Profile</a>
+                                  <form action="{{route('logout')}}" method="POST">
+                                    @csrf
+                                    <button class="dropdown-item">Logout</button>
+                                  </form>
+                                </div>
                               </li>
 
                               @else
@@ -88,7 +95,7 @@
                               </li>
                               @endif
                         </ul>
-
+                        
                     </div>
                 </div>
               </nav>
