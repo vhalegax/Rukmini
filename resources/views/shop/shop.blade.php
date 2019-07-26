@@ -34,6 +34,7 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="">
+                            
                             <div class="row justify-content-between">
                                 <div class="col-12 col-md-12 col-lg-12 mb-3">
                                     <b><span>{{$bajus->total()}}</span> Produk Di Temukan</b>

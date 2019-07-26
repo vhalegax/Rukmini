@@ -1,39 +1,43 @@
 @extends('layouts.frontend')
+
 @section('title') {{$baju->nama_baju}} @endsection
+
 @section('css')
-<link rel="stylesheet" href="{{asset('frontend/css/suggest-item.css')}}">
+  <link rel="stylesheet" href="{{asset('frontend/css/suggest-item.css')}}">
 @endsection
+
 @section('content')
 
-    <div class="breadcumb_area bg-img" style="background-image:  url({{asset('frontend/img/breadcumb.jpg')}});">
-            <div class="container">
-                    <div class="col-12">
-                        <div class="text-center center">
-                        <h2>{{$baju->nama_baju}}</h2>
+  <div class="breadcumb_area bg-img" style="background-image:  url({{asset('frontend/img/breadcumb.jpg')}});">
+      <div class="container">
+          <div class="col-12">
+              <div class="text-center center">
+              <h2>{{$baju->nama_baju}}</h2>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <section class="detail-produk" style="margin-top:20px;">
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-12 col-md-7 col-lg-8 ">
+                        <div class="image-gallery">
+                            <div id="big">
+                                <img src="{{asset('storage/' . $baju->gambar1)}}" alt="">
+                            </div>
+                            
+                            <div id="sub">
+                                <img src="{{asset('storage/' . $baju->gambar1)}}" alt="">
+                                <img src="{{asset('storage/' . $baju->gambar2)}}" alt="">
+                                <img src="{{asset('storage/' . $baju->gambar3)}}" alt="">
+                                <img src="{{asset('storage/' . $baju->gambar4)}}" alt="">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-    <section class="detail-produk" style="margin-top:20px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-7 col-lg-8 ">
-                          <div class="image-gallery">
-                              <div id="big">
-                                  <img src="{{asset('storage/' . $baju->gambar1)}}" alt="">
-                              </div>
-                              <div id="sub">
-                                  <img src="{{asset('storage/' . $baju->gambar1)}}" alt="">
-                                  <img src="{{asset('storage/' . $baju->gambar2)}}" alt="">
-                                  <img src="{{asset('storage/' . $baju->gambar3)}}" alt="">
-                                  <img src="{{asset('storage/' . $baju->gambar4)}}" alt="">
-                              </div>
-                          </div>
-                      </div>
-                      
-                    <div class="col-sm-12 col-md-5 col-lg-4">
-                        <div class="detail-produk">
+                    
+                  <div class="col-sm-12 col-md-5 col-lg-4">
+                      <div class="detail-produk">
                         @foreach($baju->kategori as $kategoribaju)
                           <span>{{$kategoribaju->name}}</span>
                         @endforeach
@@ -80,28 +84,28 @@
                                           <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ukuran</a>
                                       </li>
                                   </ul>
+
                                   <div class="tab-content mt-3 mb-5" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                         {{$baju->deskripsi}}
                                     </div>
+
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <img src="{{asset('frontend/img/size.png')}}" alt="" height="100%" width="100%">
                                     </div>
                                   </div>
                             </div>
-                        </div>
+                      </div>
                   </div>
-                </div>
-            </div>
-        </section>
-
-      
-                                  
-        <div class="top-content mt-5 mb-5">
-            <div class="container">
-                <div class="hr-sect"><h3>PRODUK SERUPA</h3></div>
-                <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
-                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+              </div>
+          </div>
+      </section>
+                        
+      <div class="top-content mt-5 mb-5">
+          <div class="container">
+              <div class="hr-sect"><h3>PRODUK SERUPA</h3></div>
+              <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
+                  <div class="carousel-inner row w-100 mx-auto" role="listbox">
                     @php $a=0; @endphp
                       @while($a<=4)
                         @foreach($kategoris as $kategori)
@@ -132,81 +136,84 @@
                             @endforeach
                           @endforeach
                       @endwhile
+                  </div>
 
-                    </div>
-                    <a class="carousel-control-prev prev" href="#carousel-example" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next next" href="#carousel-example" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                  <a class="carousel-control-prev prev" href="#carousel-example" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                  </a>
+
+                  <a class="carousel-control-next next" href="#carousel-example" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                  </a>
+              </div>
+          </div>
+      </div>
+
+      <div class="modal fade" id="modalhabis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title" id="exampleModalLongTitle">Maaf Barang Habis</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-        </div>
-
-    <div class="modal fade" id="modalhabis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <p class="modal-title" id="exampleModalLongTitle">Maaf Barang Habis</p>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">OK</button>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">OK</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="modal fade" id="modalpilih" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <p class="modal-title" id="exampleModalLongTitle">Silahkan Pilih Barang Dahulu</p>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">OK</button>
+      <div class="modal fade" id="modalpilih" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title" id="exampleModalLongTitle">Silahkan Pilih Barang Dahulu</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">OK</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 @endsection
 
 @section('script')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="{{ asset('js/detailshop.js') }}"></script>
-<script>
-$('#carousel-example').on('slide.bs.carousel', function (e) {
-    /*
-        CC 2.0 License Iatek LLC 2018 - Attribution required
-    */
-    var $e = $(e.relatedTarget);
-    var idx = $e.index();
-    var itemsPerSlide = 5;
-    var totalItems = $('.carousel-item').length;
- 
-    if (idx >= totalItems-(itemsPerSlide-1)) {
-        var it = itemsPerSlide - (totalItems - idx);
-        for (var i=0; i<it; i++) {
-            // append slides to end
-            if (e.direction=="left") {
-                $('.carousel-item').eq(i).appendTo('.carousel-inner');
-            }
-            else {
-                $('.carousel-item').eq(0).appendTo('.carousel-inner');
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+  <script src="{{ asset('js/detailshop.js') }}"></script>
+
+  <script>
+    $('#carousel-example').on('slide.bs.carousel', function (e) {
+        /*
+            CC 2.0 License Iatek LLC 2018 - Attribution required
+        */
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+        var itemsPerSlide = 5;
+        var totalItems = $('.carousel-item').length;
+    
+        if (idx >= totalItems-(itemsPerSlide-1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i=0; i<it; i++) {
+                // append slides to end
+                if (e.direction=="left") {
+                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                }
             }
         }
-    }
-});
-</script>
-
+    });
+  </script>
 @endsection
