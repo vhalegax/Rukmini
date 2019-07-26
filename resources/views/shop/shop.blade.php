@@ -1,4 +1,5 @@
 @extends('layouts.frontend')
+
 @section('title') 
     @if(Request::get('status') == 'diskon' ? 'active' : '')
         Semua Barang Diskon
@@ -8,6 +9,7 @@
         {{$nama_kategori->name}}
     @endif
 @endsection
+
 @section('content')
 
         <div class="breadcumb_area bg-img" style="background-image:  url({{asset('frontend/img/breadcumb.jpg')}});">
@@ -27,7 +29,7 @@
         </div>
 
 
-        <section class="shop-index" style="margin-top:80px; margin-bottom:140px;">
+        <section class="shop-index" style="margin-top:20px; margin-bottom:20px;">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
@@ -86,7 +88,7 @@
                                                     @endif
                                                 </div>
 
-                                                <h6 class="margin-left mt-3"><b><a href="#">{{$baju->nama_baju}} </a></b></h6>
+                                                <h6 class="margin-left mt-3 title"><b><a href="#">{{$baju->nama_baju}} </a></b></h6>
                                                 <hr style="margin-left:15px; margin-right:15px;">
 
                                                 <div class="mt-2 price">
@@ -104,7 +106,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="mx-auto mt-5">
+                                <div class="mx-auto mt-3">
                                     <ul class="pagination">
                                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                                         <li class="page-item"><a class="page-link" href="#">1</a></li>
