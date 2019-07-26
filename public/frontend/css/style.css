@@ -35,15 +35,10 @@ nav {
     color: #808080;
 }
 
-.nav-item {
+.navutama {
     font-size: 15px;
     font-weight: bold;
 }
-
-.nav-link {
-    color: white;
-}
-
 
 .bingkai {
     margin-top: 70px;
@@ -131,15 +126,20 @@ footer hr {
     padding-top: 285px;
 }
 
+li>.active {
+    font-weight: bold;
+}
+
+
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
     .bingkai {
-        padding-top: 30px;
-        padding-right: 5px;
-        padding-left: 5px;
-        margin-left: 5px;
-        margin-right: 5px;
+        padding-top: 20px;
+        padding-right: 1px;
+        padding-left: 1px;
+        margin-left: 0.5px;
+        margin-right: 0.5px;
         margin-top: 20px;
     }
 
@@ -174,7 +174,7 @@ footer hr {
     }
 
     .pembeli>li {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .error {
@@ -299,16 +299,6 @@ footer hr {
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {}
-
-
-
-
-
-
-
-
-
-
 
 /* Librari Tampilan Shop  */
 .product-grid4,

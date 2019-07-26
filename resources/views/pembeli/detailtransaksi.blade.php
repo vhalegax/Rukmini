@@ -17,7 +17,7 @@
 
             <div class="row mb-3 mt-5">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <ul class="nav nav-tabs pembeli">
+                     <ul class="nav pembeli nav-tabs justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('pembeli.index')}}">Profile</a>
                         </li>

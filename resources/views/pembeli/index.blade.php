@@ -2,7 +2,7 @@
 @section('title') Belanjaan @endsection
 @section('content')
 
-<div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
+    <div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
         <div class="container">
                 <div class="col-12">
                     <div class="text-center center">
@@ -17,7 +17,7 @@
 
             <div class="row mb-3 mt-5">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <ul class="nav nav-tabs pembeli">
+                    <ul class="nav pembeli nav-tabs justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('pembeli.index')}}">Profile</a>
                         </li>
@@ -44,7 +44,7 @@
                 <div class="col-12 col-md-12">
                 
                     <div class="mb-3">
-                        <h6>Data Diri Pembeli</h6>
+                        <h5>Profile Pembeli</h5>
                         <hr>
                     </div>
 

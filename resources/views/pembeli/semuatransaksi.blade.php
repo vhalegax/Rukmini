@@ -15,9 +15,9 @@
     <section class="mt-5">
         <div class="container">
 
-            <div class="row mb-3 mt-5">
+            <div class="row mt-5">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <ul class="nav nav-tabs pembeli">
+                    <ul class="nav pembeli nav-tabs justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('pembeli.index')}}">Profile</a>
                         </li>
@@ -25,7 +25,7 @@
                             <a class="nav-link " href="{{route('alamat.index',['status'=>'daftar'])}}">Alamat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{route('cart.index')}}">Belanjaan</a>
+                            <a class="nav-link " href="{{route('cart.index')}}">Keranjang</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('checkout.index')}}">Pembayaran</a>
@@ -44,7 +44,7 @@
                 <div class="col-12 col-md-12">
                 
                     <div class="">
-                        <h6>Silahkan Lakukan Pembayaran</h6>
+                        <h5>Silahkan Lakukan Pembayaran</h5>
                         <hr>
                     </div>
 
@@ -94,7 +94,7 @@
                             </form>
                        
                         @elseif($orders->status === 'Pengiriman')
-                            <p class="card-text">Barang Sedang Di Kirim</p>
+                            <p class="card-text">Pembelian Dalam Proses Pengiriman</p>
                             <form method="POST" enctype="multipart/form-data" action="{{route('checkout.update', ['id' => $orders->id])}}">
                                     @csrf
                                         <input type="hidden"  value="PUT"  name="_method">
@@ -105,8 +105,8 @@
                             </form>
                        
                         @else
-                            <p class="card-text">Pembelian Berhasil Silahkan Lakukan Pembayaran</p>
-                            <p class="card-text">* Batal Otomatis Dalam 2 Hari</p>
+                            <p class="card-text">Pembelian Berhasil, Silahkan Lakukan Pembayaran</p>
+                            <p class="card-text">*Batal Otomatis Dalam 2 Hari</p>
                             <form  class="d-inline"
                                 action="{{route('checkout.destroy', ['id' => $orders->id])}}" method="POST"
                                 onsubmit="return confirm('Batalkan Pesanan?')">
