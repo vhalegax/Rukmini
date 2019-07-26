@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.frontend')
 @section('title') Rukmini @endsection
 @section('content')
 <section>

@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.frontend')
 @section('title') Detail Pembelian @endsection
 @section('content')
 

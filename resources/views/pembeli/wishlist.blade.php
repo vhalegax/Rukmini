@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.frontend')
 @section('title') Wishlist @endsection
 @section('content')
 

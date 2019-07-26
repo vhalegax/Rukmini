@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.frontend')
 @section('title') 
     @if(Request::get('status') == 'diskon' ? 'active' : '')
         Semua Barang Diskon

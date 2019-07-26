@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.frontend')
 @section('title') {{$baju->nama_baju}} @endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('front-wisnu/css/suggest-item.css')}}">

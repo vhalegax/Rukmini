@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.frontend')
 @section('meta')
 <meta name="csrf-token" content="{{csrf_token()}}">
 @endsection
