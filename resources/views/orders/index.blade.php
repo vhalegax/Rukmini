@@ -28,7 +28,19 @@
             <div class="card-body">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active" href="">Order</a>
+                        <a class="nav-link active" href="">Semua</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Menunggu Pembayaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Menunggu Konfirmasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Proses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Di Kirim</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Selesai</a>
@@ -41,7 +53,7 @@
                             <tr>
                             <th><b>Invoice</b></th>
                             <th><b>Total</b></th>
-                            <th><b>DiBayar</b></th>
+                            <th><b>Dibayar</b></th>
                             <th><b>Status</b></th>
                             <th><b>Tanggal</b></th>
                             <th><b>Actions</b></th>

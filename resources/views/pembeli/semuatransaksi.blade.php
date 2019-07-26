@@ -63,47 +63,62 @@
                     
                     <?php foreach($order as $orders) :?>
                     @if($orders->status !== 'Selesai')
-                    <div class="card">
+                    <div class="card pembayaran">
                         <h5 class="card-header">#{{$orders->invoice_number}}</h5>
                         <div class="card-body">
-                        <h6 class="card-title"><b>Tanggal Pesan : </b> {{date('d M Y H:i:s',strtotime($orders->created_at))}} </h6><h6 class="card-title"></h6>
-                        <h6 class="card-title"><b>Total Belanja : </b> Rp <?php echo number_format(($orders->total)-($orders->potongankupon), 2, ",", "."); ?> </h6><h6 class="card-title"></h6>
-                        <h6 class="card-title"><b>Status Pesaan : </b> {{$orders->status}} </h6><h6 class="card-title"></h6>
+                        <p class="card-title"><b>Tanggal Pesan : </b> {{date('d M Y ',strtotime($orders->created_at))}}</p> 
+                        <p class="card-title"><b>Total Belanja : </b> Rp <?php echo number_format(($orders->total)-($orders->potongankupon), 2, ",", "."); ?> </p>
+                        <p class="card-title"><b>Status : </b>{{$orders->status}} </p>
                         
                         @if($orders->status === 'Menunggu Konfirmasi')
-                            <p class="card-text">Pembayaran Berhasil Silahkan , Menunggu Konfirmasi</p>
-                            <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('pembeli.konfirmasi',['id'=>$orders->id])}}">Ubah</a></button>
+                            <p >Pembayaran Berhasil Dilakukan, Menunggu Konfirmasi</p>
+                            <form  class="d-inline"
+                                action="{{route('checkout.destroy', ['id' => $orders->id])}}" method="POST"
+                                onsubmit="return confirm('Batalkan Pesanan?')">
+                                @csrf 
+                                <input  type="hidden"  value="DELETE"  name="_method">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('pembeli.konfirmasi',['id'=>$orders->id])}}">Ubah</a></button>
+                                <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
+                                <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
+                            </form>
+                       
                         @elseif($orders->status === 'Proses')
-                            <p class="card-text">Pembayaran Berhasil Dikonfirmasi , Menunggu Pengiriman</p>
+                            <p class="card-text">Pembayaran Berhasil Dikonfirmasi, Menunggu Pengiriman</p>
                             <form method="POST" enctype="multipart/form-data" action="{{route('checkout.update', ['id' => $orders->id])}}">
                                     @csrf
                                         <input type="hidden"  value="PUT"  name="_method">
                                         <input type="hidden"  value="Selesai"  name="selesai">
-                                        <button type="submit" class="btn btn-outline-secondary btn-sm mb-1" value="save">  Barang Di Terima </button>
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm" value="save">Selesai</button>
+                                        <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
+                                        <button class="btn btn-outline-secondary btn-sm" >Komplain</button>
                             </form>
+                       
                         @elseif($orders->status === 'Pengiriman')
                             <p class="card-text">Barang Sedang Di Kirim</p>
                             <form method="POST" enctype="multipart/form-data" action="{{route('checkout.update', ['id' => $orders->id])}}">
                                     @csrf
                                         <input type="hidden"  value="PUT"  name="_method">
                                         <input type="hidden"  value="Selesai"  name="selesai">
-                                        <button type="submit" class="btn btn-outline-secondary btn-sm mb-1">  Barang Di Terima </button>
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm" value="save">Selesai</button>
+                                        <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
+                                        <button class="btn btn-outline-secondary btn-sm" >Komplain</button>
                             </form>
+                       
                         @else
                             <p class="card-text">Pembelian Berhasil Silahkan Lakukan Pembayaran</p>
                             <p class="card-text">* Batal Otomatis Dalam 2 Hari</p>
-                            <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('pembeli.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
+                            <form  class="d-inline"
+                                action="{{route('checkout.destroy', ['id' => $orders->id])}}" method="POST"
+                                onsubmit="return confirm('Batalkan Pesanan?')">
+                                @csrf 
+                                <input  type="hidden"  value="DELETE"  name="_method">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('pembeli.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
+                                <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
+                                <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
+                            </form>
                         @endif
                             
-                            <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
-                            <form  class="d-inline"
-                            action="{{route('checkout.destroy', ['id' => $orders->id])}}"
-                            method="POST"
-                            onsubmit="return confirm('Batalkan Pesanan?')">
-                            @csrf 
-                            <input  type="hidden"  value="DELETE"  name="_method">
-                            <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
-                            </form>
+                           
                         </div>
                     </div>
                     <br>

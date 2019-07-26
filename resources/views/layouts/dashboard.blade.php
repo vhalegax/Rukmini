@@ -359,7 +359,7 @@
   <script src="{{asset('dashboard/js/demo/datatables-demo.js')}}"></script>
 
 <script type="text/javascript">
-    document.getElementById("sidebarToggle").click();
+    // document.getElementById("sidebarToggle").click();
 </script>
 
   @yield('footer-scripts')
