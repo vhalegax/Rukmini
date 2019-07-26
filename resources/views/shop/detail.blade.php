@@ -1,11 +1,11 @@
 @extends('layouts.frontend')
 @section('title') {{$baju->nama_baju}} @endsection
 @section('css')
-<link rel="stylesheet" href="{{asset('front-wisnu/css/suggest-item.css')}}">
+<link rel="stylesheet" href="{{asset('frontend/css/suggest-item.css')}}">
 @endsection
 @section('content')
 
-    <div class="breadcumb_area bg-img" style="background-image:  url({{asset('front-wisnu/img/breadcumb.jpg')}});">
+    <div class="breadcumb_area bg-img" style="background-image:  url({{asset('frontend/img/breadcumb.jpg')}});">
             <div class="container">
                     <div class="col-12">
                         <div class="text-center center">
@@ -85,7 +85,7 @@
                                         {{$baju->deskripsi}}
                                     </div>
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                        <img src="{{asset('front-wisnu/img/size.png')}}" alt="" height="100%" width="100%">
+                                        <img src="{{asset('frontend/img/size.png')}}" alt="" height="100%" width="100%">
                                     </div>
                                   </div>
                             </div>

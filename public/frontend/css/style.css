@@ -124,6 +124,13 @@ footer hr {
     padding: 0;
 }
 
+/* Error Page */
+
+.error {
+    height: 685px;
+    padding-top: 285px;
+}
+
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
@@ -169,6 +176,12 @@ footer hr {
     .pembeli>li {
         font-size: 10px;
     }
+
+    .error {
+        height: 465px;
+        padding-top: 160px;
+    }
+
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -268,6 +281,12 @@ footer hr {
         margin-right: 5px;
         margin-top: 50px;
     }
+
+    .error {
+        height: 750px;
+        padding-top: 315px;
+    }
+
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -275,6 +294,15 @@ footer hr {
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {}
+
+
+
+
+
+
+
+
+
 
 
 /* Librari Tampilan Shop  */

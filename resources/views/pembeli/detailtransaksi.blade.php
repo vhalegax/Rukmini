@@ -2,7 +2,7 @@
 @section('title') Detail Pembelian @endsection
 @section('content')
 
-<div class="breadcumb_area bg-img" style="background-image: url({{asset('front-wisnu/img/breadcumb.jpg')}});">
+<div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
         <div class="container">
                 <div class="col-12">
                     <div class="text-center center">
