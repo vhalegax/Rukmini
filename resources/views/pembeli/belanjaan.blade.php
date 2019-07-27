@@ -25,10 +25,10 @@
                             <a class="nav-link" href="{{route('pembeli.index')}}">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{route('alamat.index',['status'=>'daftar'])}}">Alamat</a>
+                            <a class="nav-link" href="{{route('alamat.index',['status'=>'daftar'])}}" >Alamat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{route('cart.index')}}">Belanjaan</a>
+                            <a class="nav-link active" href="{{route('cart.index')}}"  >Belanjaan</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="{{route('checkout.index')}}">Pembayaran</a>
@@ -204,7 +204,7 @@
                                     
                                     <div class="text-right">
                                         <br>
-                                        <label for=""><b>SubTotal : &nbsp <b id="barangtampil">Rp {{Cart::total(0)}}</b> </b></label><br>
+                                        <label for=""><b>Subtotal : &nbsp <b id="barangtampil">Rp {{Cart::total(0)}}</b> </b></label><br>
                                         <label for=""><b>Kupon : &nbsp </b><b id="kupontampil">0</b></label><br>
                                         <label for=""><b>Ongkir : &nbsp </b><b id="ongkirtampil">0</b></label><br>
                                         <label for=""><b>Total :  &nbsp </b><b id="totaltampil">0</b></label><br><br>

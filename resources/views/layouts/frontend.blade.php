@@ -25,7 +25,7 @@
       <header>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top navutama">
                 <div class="container">
-                  <a class="navbar-brand" href="{{route('home')}}">RUKMINI</a>
+                  <a class="navbar-brand" href="{{route('home')}}">Rukmini</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
@@ -34,16 +34,16 @@
                     
                         <ul class="navbar-nav mr-auto">
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('home')}}">HOME</a>
+                            <a class="nav-link" href="{{route('home')}}">Home</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('tampil')}}">SHOP</a>
+                            <a class="nav-link" href="{{route('tampil')}}">Shop</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">FIT GUIDE</a>
+                            <a class="nav-link" href="#">Ukuran</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="#">CONTACT US</a>
+                            <a class="nav-link" href="#">Kontak</a>
                           </li>
                         </ul>
 
@@ -52,7 +52,7 @@
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" 
                                 aria-haspopup="true" aria-expanded="false" href="{{route('pembeli.index')}}">
-                                PROFILE</a>
+                                Profile</a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href="{{route('pembeli.index')}}">Profile Pembeli</a>
@@ -86,7 +86,7 @@
 
                               @else
                               <li class="nav-item">
-                                <a class="nav-link" href="{{route('pembeli.login')}}">LOGIN</a>
+                                <a class="nav-link" href="{{route('pembeli.login')}}">Login</a>
                               </li>
                               @endif     
 
