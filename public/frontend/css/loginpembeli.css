@@ -1,0 +1,103 @@
+a {
+    color: #4e73df;
+    text-decoration: none;
+    background-color: transparent
+}
+
+a:hover {
+    color: #224abe;
+    text-decoration: underline
+}
+
+.bg-login-image {
+    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+    background-position: center;
+    background-size: cover
+}
+
+.bg-register-image {
+    background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);
+    background-position: center;
+    background-size: cover
+}
+
+.bg-password-image {
+    background: url(https://source.unsplash.com/oWTW-jNGl9I/600x800);
+    background-position: center;
+    background-size: cover
+}
+
+.border-0 {
+    border: 0 !important
+}
+
+.shadow-lg {
+    -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important
+}
+
+
+.btn-google {
+    color: #fff;
+    background-color: #ea4335;
+    border-color: #fff
+}
+
+.btn-google:hover {
+    color: #fff;
+    background-color: #e12717;
+    border-color: #e6e6e6
+}
+
+.btn-google.focus,
+.btn-google:focus {
+    -webkit-box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5);
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5)
+}
+
+.btn-google.disabled,
+.btn-google:disabled {
+    color: #fff;
+    background-color: #ea4335;
+    border-color: #fff
+}
+
+.btn-facebook {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #fff
+}
+
+.btn-facebook:hover {
+    color: #fff;
+    background-color: #30497c;
+    border-color: #e6e6e6
+}
+
+.btn-facebook.focus,
+.btn-facebook:focus {
+    -webkit-box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5);
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5)
+}
+
+.btn-facebook.disabled,
+.btn-facebook:disabled {
+    color: #fff;
+    background-color: #3b5998;
+    border-color: #fff
+}
+
+.btn-facebook:not(:disabled):not(.disabled).active,
+.btn-facebook:not(:disabled):not(.disabled):active,
+.show>.btn-facebook.dropdown-toggle {
+    color: #fff;
+    background-color: #2d4373;
+    border-color: #dfdfdf
+}
+
+.btn-facebook:not(:disabled):not(.disabled).active:focus,
+.btn-facebook:not(:disabled):not(.disabled):active:focus,
+.show>.btn-facebook.dropdown-toggle:focus {
+    -webkit-box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5);
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .5)
+}

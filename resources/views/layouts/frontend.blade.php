@@ -8,13 +8,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="{{asset('dashboard/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/tampilbelanjaan.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/nama.css')}}">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Library -->
 
     @yield('css')
 
@@ -111,19 +117,19 @@
               <div class="row">
 
                 <div class="col-sm-4 col-md-4 mb-3">
-                  <h6>RUKMINI</h6>
+                  <h6>Rukmini</h6>
                 </div>
 
                 <div class="col-sm-4 col-md-4 mb-3">
-                    <h6>SHOP</h6>
-                    <h6 class="mt-3">CONTACT</h6>
-                    <h6 class="mt-3">ALAMAT</h6>
+                    <h6>Belanja</h6>
+                    <h6 class="mt-3">Kontak</h6>
+                    <h6 class="mt-3">Alamat</h6>
                 </div>
 
                 <div class="col-sm-4 col-md-4 mb-3">  
-                  <h6>CARA BELANJA</h6>
-                  <h6 class="mt-3">CARA TUKAR</h6>
-                  <h6 class="mt-3">FAQ</h6>
+                  <h6>Cara Belanja</h6>
+                  <h6 class="mt-3">Cara Tukar</h6>
+                  <h6 class="mt-3">Pertanyaan</h6>
                 </div>
 
               </div>
@@ -134,9 +140,9 @@
                   <div class="col-6">
                       <div class="single_widget_area text-left">
                           <div class="footer_social_area">
-                              <i class="fa fa-facebook-official mr-3" style="font-size:24px"></i>
-                              <i class="fa fa-instagram mr-3 " style="font-size:24px"></i>
-                              <i class="fa fa-twitter" style="font-size:24px"></i>
+                              <i class="fab fa-facebook-square mr-3" style="font-size:24px"></i>
+                              <i class="fab fa-instagram mr-3 " style="font-size:24px"></i>
+                              <i class="fab fa-twitter" style="font-size:24px"></i>
                           </div>
                       </div>
                   </div>

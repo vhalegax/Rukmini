@@ -3,10 +3,7 @@
 @section('title') Login Pembeli @endsection
 
 @section('css')
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="{{asset('dashboard/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-  <link href="{{asset('dashboard/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('frontend/css/loginpembeli.css')}}">
 @endsection
 
 @section('content')
@@ -48,9 +45,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
+                                            <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                                <label class="custom-control-label text-sm" for="customCheck">Remember Me</label>
                                             </div>
                                         </div>
 
