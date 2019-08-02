@@ -46,10 +46,23 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+        Transaksi
+      </div>
+
       <li class="nav-item">
-        <a class="nav-link" href="{{route('tampil')}}">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Home Shop</span></a>
+        <a class="nav-link collapsed" href="#">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi Offline</span>
+        </a>
+      </li>
+       <li class="nav-item {{Request::path() == 'karyawan/orders' ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{route('orders.index')}}">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Transaksi Online</span>
+        </a>
       </li>
 
       <!-- Divider -->
@@ -96,19 +109,6 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{route('bajus.index')}}">Daftar Baju</a>
             <a class="collapse-item" href="{{route('bajus.create')}}">Tambah Baju</a>
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item {{Request::path() == 'karyawan/orders' ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#order" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Order</span>
-        </a>
-        <div id="order" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('orders.index')}}">Daftar Order</a>
-            <a class="collapse-item" href="{{route('orders.create')}}">Tambah Order</a>
           </div>
         </div>
       </li>
