@@ -103,7 +103,7 @@
                         
       <div class="top-content mt-5 mb-5">
           <div class="container">
-              <div class="hr-sect"><h3>PRODUK SERUPA</h3></div>
+              <div class="hr-sect"><h3>Produk Serupa</h3></div>
               <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
                   <div class="carousel-inner row w-100 mx-auto" role="listbox">
                     @php $a=0; @endphp

@@ -226,15 +226,12 @@
                                         <h5 class="modal-title">Daftar Alamat</h5>
                                     </div>
                                     <div class="modal-body">
-                                        
                                         @foreach($alamat->Alamat as $alamats)
-                                       
                                         <div class="card">
                                             <div class="card-body">
                                             @if(empty($alamat))
                                               <h3>Belum Ada Alamat</h3>
                                             @else
-                                           
                                             <input type="hidden" id="a{{$alamats->id}}dnama" value="{{$alamats->nama}}">
                                             <input type="hidden" id="a{{$alamats->id}}dtelp" value="{{$alamats->telp}}">
                                             <input type="hidden" id="a{{$alamats->id}}djalan" value="{{$alamats->jalan}}">
@@ -244,7 +241,6 @@
                                             <input type="hidden" id="a{{$alamats->id}}dprov" value="{{$alamats->Provinsi->name}}">
                                             <input type="hidden" id="a{{$alamats->id}}dkode" value="{{$alamats->kode_pos}}">
                                             <input type="hidden" id="a{{$alamats->id}}did" value="{{$alamats->id}}">
-
                                             <small><H6 class="card-text">{{$alamats->nama}}</h6></small>
                                             <small><p class="card-text">{{$alamats->telp}}</p></small>
                                             <small><p class="card-text">{{$alamats->jalan}}</p></small>
@@ -252,15 +248,11 @@
                                             <br>
                                             <button type="button" onClick="alamat(this.id)" class="btn btn-outline-secondary btn-sm" id="a{{$alamats->id}}" data-dismiss="modal">Pilih</button>
                                             </div>
-
                                             @endif
                                         </div>
                                         <br>
-                                        
-
                                         @endforeach
                                         <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Batal</button>
-
                                     </div>
                                 </div>
                             </div>

@@ -20,6 +20,8 @@ Route::resource('karyawan/orders', 'OrderController');
 
 Route::resource('karyawan/kupon', 'KuponController');
 
+Route::resource('karyawan/kasir','KasirController');
+
 Route::get('/','ShopController@home')->name('home');
 Route::get('/shop','ShopController@tampilsemua')->name('tampil');
 Route::get('/shop/{id}/detail','ShopController@detail')->name('shop.detail');

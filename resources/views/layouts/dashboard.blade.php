@@ -29,7 +29,6 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gray-800 sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
@@ -37,10 +36,8 @@
         <div class="sidebar-brand-text mx-3">Wisnu</div>
       </a>
 
-      <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
       <li class="nav-item {{Request::path() == 'karyawan/home' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('karyawan.home')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -48,16 +45,18 @@
       </li>
 
       <hr class="sidebar-divider">
+
       <div class="sidebar-heading">
         Transaksi
       </div>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+      <li class="nav-item {{Request::path() == 'karyawan/kasir' ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{route('kasir.index')}}">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Transaksi Offline</span>
+          <span>Kasir</span>
         </a>
       </li>
+
        <li class="nav-item {{Request::path() == 'karyawan/orders' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{route('orders.index')}}">
           <i class="fas fa-fw fa-cog"></i>
@@ -65,15 +64,12 @@
         </a>
       </li>
 
-      <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
       <div class="sidebar-heading">
         Manage Data
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{Request::path() == 'karyawan/users' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#karyawan" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
@@ -126,11 +122,8 @@
         </div>
       </li>
 
-
-      <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
       <div class="sidebar-heading">
         Report
       </div>
