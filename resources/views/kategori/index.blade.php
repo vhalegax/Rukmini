@@ -17,21 +17,29 @@
             </div>
     </div>
     @endif 
-            
-            <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <div class="input-group-append">
-                    <a href="{{route('kategori.create')}}" class="btn btn-primary btn-sm">Tambah Kategori</a>
-                </div>
-            </div>
-            <div class="card-body">
-                <nav class="nav nav-pills">
-                    <a class="nav-link active" href="{{route('kategori.index')}}">Terpakai</a>
+
+    <div class="card shadow mb-2">
+        <div class="p-2">
+             <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link " href="{{route('kategori.index')}}">Terpakai</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="{{route('kategori.trash')}}">Trash</a>
-                </nav>
-                <hr class="border-bottom-primary">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                </li>
+            </ul>
+        </div>
+    </div>
+            
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="input-group-append">
+                <a href="{{route('kategori.create')}}" class="btn btn-primary">Tambah Kategori</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                         <th><b>Name</b></th>
@@ -64,12 +72,8 @@
                         </tr>
                         @endforeach
                     </tbody>
-                        <tfoot>
-                        <tr>
-                        </tr>
-                    </tfoot>
-                    </table>
-                </div>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

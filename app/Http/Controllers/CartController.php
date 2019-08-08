@@ -81,9 +81,8 @@ class CartController extends Controller
 
     public function city($id)
     {
-    $city = City::where("id_province","=",$id)
-                    ->pluck("name","id");
-    return json_encode($city);
+        $city = City::where("id_province","=",$id)->pluck("name","id");
+        return json_encode($city);
     }
 
     public function cekongkir2($v1,$v2,$v3,$v4)

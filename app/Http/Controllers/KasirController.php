@@ -7,24 +7,23 @@ use Illuminate\Http\Request;
 class KasirController extends Controller
 {
     public function index()
-    {
-        $bajus = \App\Baju::paginate(10);
-        return view('kasir.index',['bajus' => $bajus]);
+    {       
+        return view('kasir.index',['bajus' => $data]);
     }
 
     public function create()
     {
-        //
+        $bajus = \App\Baju::paginate(10);
+        return view('kasir.create',['bajus' => $bajus]);
     }
 
     public function store(Request $request)
     {
-        //
     }
 
     public function show($id)
     {
-        //
+        return $id;
     }
 
     public function edit($id)

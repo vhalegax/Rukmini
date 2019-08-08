@@ -8,19 +8,19 @@
                 
 @if(session('info'))
     <div class="row">
-            <div class="col-md-12">
+        <div class="col-md-12">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{session('info')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+                {{session('info')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            </div>
+        </div>
     </div>
     @endif 
-            
+
     <div class="card shadow mb-2">
-        <div class="card-body">
+        <div class="p-2">
             <ul class="nav nav-pills">
                 <li class="nav-item">
                     <a class="nav-link active" href="">Semua</a>
@@ -41,7 +41,6 @@
                     <a class="nav-link" href="">Selesai</a>
                 </li>
             </ul>
-            <hr class="border-bottom-primary">
         </div>
     </div>
 

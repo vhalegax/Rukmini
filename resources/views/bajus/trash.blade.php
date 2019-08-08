@@ -18,32 +18,36 @@
             </div>
     </div>
     @endif 
+
+    <div class="card shadow mb-2">
+        <div class="p-2">
+             <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link {{Request::get('status') == NULL && Request::path() == 'karyawan/bajus' ? 'active' : ''}}" href="{{route('bajus.index')}}">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{Request::get('status') == 'diskon' ? 'active' : ''}}" href="{{route('bajus.index',['status' => 'diskon'])}}">Diskon</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Out Stock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{Request::path() == 'karyawan/bajus/trash' ? 'active' : ''}}" href="{{route('bajus.trash')}}">Trash</a>
+                </li>
+            </ul>
+        </div>
+    </div>
             
-            <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <div class="input-group-append">
-                    <a href="{{route('bajus.create')}}" class="btn btn-primary">Tambah Baju</a>
-                </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="input-group-append">
+                <a href="{{route('bajus.create')}}" class="btn btn-primary">Tambah Baju</a>
             </div>
-            <div class="card-body">
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link {{Request::get('status') == NULL && Request::path() == 'karyawan/bajus' ? 'active' : ''}}" href="{{route('bajus.index')}}">All</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{Request::get('status') == 'diskon' ? 'active' : ''}}" href="{{route('bajus.index',['status' => 'diskon'])}}">Diskon</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Out Stock</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{route('bajus.trash')}}">Trash</a>
-                    </li>
-                </ul>
-                <hr class="border-bottom-primary">
+        </div>
+        <div class="card-body">
             <div class="table-responsive">
                 <table  class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+                    <thead>
                         <tr>
                         <th><b>Name</b></th>
                         <th><b>Harga</b></th>
@@ -77,31 +81,19 @@
                                 <td>{{$jumlahs->jumlah}}</td>
                             @endforeach
                         <td>
-                        <a href="{{route('bajus.restore', ['id' => $baju->id])}}" class="btn btn-info btn-sm mt-1" onclick="return confirm('Restore Baju?')"> Restore </a>
-
-                        <form  class="d-inline"
-                        action="{{route('bajus.delete-permanent', ['id' => $baju->id])}}"
-                        method="POST"
-                        onsubmit="return confirm('Delete Baju Permanent?')">
-
-                        @csrf 
-
-                        <input  type="hidden"  value="DELETE"  name="_method">
-                        <input  type="submit"  class="btn btn-danger btn-sm mt-1"   value="DELETE">
-                        
-                        </form>
-
+                            <a href="{{route('bajus.restore', ['id' => $baju->id])}}" class="btn btn-info btn-sm mt-1" onclick="return confirm('Restore Baju?')"> Restore </a>
+                            <form  class="d-inline"
+                            action="{{route('bajus.delete-permanent', ['id' => $baju->id])}}"
+                            method="POST"
+                            onsubmit="return confirm('Delete Baju Permanent?')">
+                            @csrf 
+                            <input  type="hidden"  value="DELETE"  name="_method">
+                            <input  type="submit"  class="btn btn-danger btn-sm mt-1"   value="DELETE">
+                            </form>
                         </td>
                         </tr>
                         @endforeach 
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan=12>
-                            {{$bajus->appends(Request::all())->links()}}        
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

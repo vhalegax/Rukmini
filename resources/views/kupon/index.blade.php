@@ -22,7 +22,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="input-group-append">
-            <a href="{{route('kupon.create')}}" class="btn btn-primary btn-sm">Tambah Kupon</a>
+            <a href="{{route('kupon.create')}}" class="btn btn-primary">Tambah Kupon</a>
         </div>
     </div>
     <div class="card-body">

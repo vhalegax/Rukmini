@@ -7,9 +7,7 @@
 @section("content")      
 
     <div class="card shadow mb-4">
-            <div class="card-header py-3">
-            </div>
-            <div class="card-body">
+        <div class="card-body">
             <form enctype="multipart/form-data"  action="{{route('kupon.store')}}"  method="POST">
             @csrf
             <div>
@@ -47,8 +45,8 @@
                 <input type="number" name="jumlah" class="form-control">
             </div><br>
 
-            <input type="submit" class="btn btn-primary" value="Save">
+                <input type="submit" class="btn btn-primary" value="Save">
             </form> 
-            </div>
+        </div>
     </div>
 @endsection

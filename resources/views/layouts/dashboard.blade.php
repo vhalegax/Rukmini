@@ -50,8 +50,8 @@
         Transaksi
       </div>
 
-      <li class="nav-item {{Request::path() == 'karyawan/kasir' ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="{{route('kasir.index')}}">
+      <li class="nav-item {{Request::path() == 'karyawan/kasir/create' ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{route('kasir.create')}}">
           <i class="fas fa-fw fa-cog"></i>
           <span>Kasir</span>
         </a>
@@ -118,6 +118,19 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{route('kupon.index')}}">Daftar Kupon</a>
             <a class="collapse-item" href="{{route('kupon.create')}}">Tambah Kupon</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item {{Request::path() == 'karyawan/bank' ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bank" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Manage No Rekening</span>
+        </a>
+        <div id="bank" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('kupon.index')}}">Daftar No Rekening</a>
+            <a class="collapse-item" href="{{route('kupon.create')}}">Tambah No Rekening</a>
           </div>
         </div>
       </li>

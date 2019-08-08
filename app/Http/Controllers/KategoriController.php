@@ -10,7 +10,6 @@ class KategoriController extends Controller
     public function __construct(){
         $this->middleware(function($request, $next)
         {
-
             if(Gate::allows('manage-kategori')) return $next($request);
                 abort(403, 'Anda tidak memiliki cukup hak akses');
         });
