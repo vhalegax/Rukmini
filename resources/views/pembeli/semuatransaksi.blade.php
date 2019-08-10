@@ -1,5 +1,10 @@
 @extends('layouts.frontend')
 @section('title') Belanjaan @endsection
+
+@section('css')
+  <link rel="stylesheet" href="{{asset('frontend/css/suggest-item.css')}}">
+@endsection
+
 @section('content')
 
 <div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
@@ -15,38 +20,27 @@
     <section class="mt-5">
         <div class="container">
 
-            <div class="row mt-5">
-                <div class="col-12 col-md-12 col-lg-12">
-                    <ul class="nav pembeli nav-tabs justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('pembeli.index')}}">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('alamat.index',['status'=>'daftar'])}}">Alamat</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('cart.index')}}">Keranjang</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{route('checkout.index')}}">Pembayaran</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('pembeli.wishlist')}}">Wishlist</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('pembeli.history')}}">History</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="profile-pembeli2">
+                <a  href="{{route('pembeli.index')}}">Profile</a>
+                <a  href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
+                <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
+                <a class="active" href="{{route('checkout.index')}}">Pembayaran</a>
+                <a href="{{route('pembeli.wishlist')}}">Wishlist</a>
+                <a href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
             </div>
 
             <div class="row border bingkai">
                 <div class="col-12 col-md-12">
-                
-                    <div class="">
-                        <h5>Silahkan Lakukan Pembayaran</h5>
-                        <hr>
+
+                    <div class="menu-pembayaran mb-1">
+                        <a class="active" href="">Semua</a>
+                        <a href="#home">Belum Dibayar</a>
+                        <a href="#news">Menunggu Konfirmasi</a>
+                        <a href="#contact">Sedang Diproses</a>
+                        <a href="#about">Pengiriman</a>
                     </div>
+
+                    <hr>
 
                     @if(session('status'))
                     <div class="row">

@@ -14,9 +14,7 @@
     transition: all .3s ease 0s
 }
 
-.product-grid4:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2)
-}
+.product-grid4:hover {}
 
 .product-grid4 .product-image4 a {
     display: block
@@ -29,7 +27,6 @@
 
 .product-grid4 .pic-1 {
     opacity: 1;
-    transition: all .5s ease-out 0s
 }
 
 .product-grid4:hover .pic-1 {
@@ -41,7 +38,6 @@
     top: 0;
     left: 0;
     opacity: 0;
-    transition: all .5s ease-out 0s
 }
 
 .product-grid4:hover .pic-2 {
@@ -51,7 +47,7 @@
 .product-grid4 .product-discount-label,
 .product-grid4 .product-new-label {
     color: #fff;
-    background-color: #16a085;
+    background-color: rgb(48, 48, 48);
     font-size: 13px;
     font-weight: 800;
     text-transform: uppercase;
@@ -121,23 +117,24 @@
 }
 
 .product-grid4 .title {
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: bold;
     text-transform: capitalize;
     margin: 0 0 7px;
     transition: all .3s ease 0s;
 }
 
 .product-grid4 .title a {
-    color: #222
+    color: grey
 }
 
 .product-grid4 .title a:hover {
-    color: #16a085
+    color: black;
+    text-decoration: none;
 }
 
 .product-grid4 .price {
-    color: brown;
+    color: black;
     font-size: 17px;
     font-weight: 700;
     margin: 0 2px 15px 0;
@@ -161,7 +158,7 @@
     .product-grid4 .product-discount-label,
     .product-grid4 .product-new-label {
         color: #fff;
-        background-color: #16a085;
+        background-color: grey;
         font-size: 8px;
         font-weight: 800;
         text-transform: uppercase;

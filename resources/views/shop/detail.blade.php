@@ -8,17 +8,18 @@
 
 @section('content')
 
-  <div class="breadcumb_area bg-img" style="background-image:  url({{asset('frontend/img/breadcumb.jpg')}});">
-      <div class="container">
-          <div class="col-12">
-              <div class="text-center center">
-              <h2>{{$baju->nama_baju}}</h2>
-              </div>
-          </div>
-      </div>
+  <div class="container" style="margin-top:85px;">
+    <div class="row">
+        <ul class="breadcrumb2">
+          <li><a href="{{route('home')}}">Home</a></li>
+          <li><a href="{{route('tampil')}}">Shop</a></li>
+          <li><a  class="breacrumb-active">{{$baju->nama_baju}}</a></li>
+        </ul>
+    </div>
   </div>
+  
 
-  <section class="detail-produk" style="margin-top:20px;">
+  <section class="detail-produk-full">
           <div class="container">
               <div class="row">
                   <div class="col-sm-12 col-md-7 col-lg-8 ">
@@ -41,13 +42,13 @@
                         @foreach($baju->kategori as $kategoribaju)
                           <span>{{$kategoribaju->name}}</span>
                         @endforeach
-                              <h2>{{$baju->nama_baju}} </h2>
+                              <h1><b>{{$baju->nama_baju}} </b></h1>
                               <div class="price mb-4">
                                 @if($baju->diskon>0)  
-                                <b>{{"Rp " . number_format(($baju->harga-$baju->diskon),0,',','.')}}</b>
-                                    <del>{{"Rp " . number_format($baju->harga,0,',','.')}}</del>
+                                <b style="color: black">{{"Rp " . number_format(($baju->harga-$baju->diskon),0,',','.')}}</b>
+                                    <del style="color: grey">{{"Rp " . number_format($baju->harga,0,',','.')}}</del>
                                 @else
-                                    <b>{{"Rp " . number_format($baju->harga,0,',','.')}}</b>
+                                    <b style="color: black">{{"Rp " . number_format($baju->harga,0,',','.')}}</b>
                                 @endif
                               </div>
 
@@ -73,7 +74,7 @@
                                   <input type="hidden" value="{{$baju->id}}" name="id">
                                   <input type="hidden" value="{{$baju->nama_baju}}" name="nama">
                                   <input type="hidden" value="{{$baju->harga-$baju->diskon}}" name="harga">
-                                  <button type="submit" value='submit' id="beli" name="addtocart" class="btn btn-outline-secondary btn-block mb-4">Tambah Ke Keranjang</button>
+                                  <button type="submit" value='submit' id="beli" name="addtocart" class="btn btn-dark btn-block mb-4">Tambah Ke Keranjang</button>
                               </form>
 
                                   <ul class="nav nav-tabs">
@@ -161,7 +162,7 @@
               </button>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">OK</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal">OK</button>
             </div>
           </div>
         </div>
@@ -177,7 +178,7 @@
               </button>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">OK</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal">OK</button>
             </div>
           </div>
         </div>

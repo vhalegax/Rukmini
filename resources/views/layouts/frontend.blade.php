@@ -29,7 +29,7 @@
   </head>
   <body>
       <header>
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top navutama">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top navutama pt-0 pb-0">
                 <div class="container">
                   <a class="navbar-brand" href="{{route('home')}}">Rukmini</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,10 +40,10 @@
                     
                         <ul class="navbar-nav mr-auto">
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('home')}}">Home</a>
+                            <a class="nav-link {{Request::path() == '/' ? 'nav-active' : ''}}" href="{{route('home')}}">Home</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" href="{{route('tampil')}}">Shop</a>
+                            <a class="nav-link {{Request::path() == 'shop' ? 'nav-active' : ''}}" href="{{route('tampil')}}">Shop</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="#">Ukuran</a>
@@ -92,14 +92,14 @@
 
                               @else
                               <li class="nav-item">
-                                <a class="nav-link" href="{{route('pembeli.login')}}">Login</a>
+                                <a class="nav-link {{Request::path() == 'pembeli/login' ? 'nav-active' : ''}}" href="{{route('pembeli.login')}}">Login</a>
                               </li>
                               @endif     
 
                               @if(Auth::user())
                               @else
                               <li class="nav-item">
-                                  <a class="nav-link" href="{{route('cart.index')}}"><i class="fa fa-shopping-cart" style="font-size:20px"></i> <span>{{ Cart::count() }}</span></a>
+                                  <a class="nav-link {{Request::path() == 'cart' ? 'nav-active' : ''}}" href="{{route('cart.index')}}"><i class="fa fa-shopping-cart" style="font-size:20px;"></i> <span>{{ Cart::count() }}</span></a>
                               </li>
                               @endif
                         </ul>

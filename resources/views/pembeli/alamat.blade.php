@@ -15,29 +15,13 @@
     <section class="mt-5">
         <div class="container">
 
-            <div class="row mb-3 mt-5">
-                <div class="col-12 col-md-12 col-lg-12">
-                    <ul class="nav pembeli nav-tabs justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('pembeli.index')}}">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{route('alamat.index',['status'=>'daftar'])}}">Alamat</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('cart.index')}}">Belanjaan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('checkout.index')}}">Pembayaran</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('pembeli.wishlist')}}">Wishlist</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('pembeli.history')}}">History</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="profile-pembeli2">
+                <a  href="{{route('pembeli.index')}}">Profile</a>
+                <a   class="active" href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
+                <a   href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
+                <a  href="{{route('checkout.index')}}">Pembayaran</a>
+                <a  href="{{route('pembeli.wishlist')}}">Wishlist</a>
+                <a href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
             </div>
 
             <div class="row border bingkai">

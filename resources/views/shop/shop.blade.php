@@ -12,35 +12,28 @@
 
 @section('content')
 
-        <div class="breadcumb_area bg-img" style="background-image:  url({{asset('frontend/img/breadcumb.jpg')}});">
-            <div class="container">
-                <div class="col-12">
-                    <div class="text-center center">
-                    @if(Request::get('status') == 'diskon' ? 'active' : '')
-                        <h2>Semua Barang Diskon</h2>
-                    @elseif($nama_kategori == 'All Product')
-                        <h2>Semua Produk</h2>
-                    @else
-                        <h2>{{$nama_kategori->name}}</h2>
-                    @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         <section class="shop-index" style="margin-top:20px; margin-bottom:20px;">
+            
+            <div class="container" style="margin-top:85px;">
+                    @if(Request::get('status') == 'diskon' ? 'active' : '')
+                        <h5><b>Semua Barang Diskon</b></h5>
+                    @elseif($nama_kategori == 'All Product')
+                        <h5><b>Semua Produk</b></h5>
+                    @else
+                        <h5><b>{{$nama_kategori->name}}</b></h5>
+                    @endif
+                    <hr>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="">
-                            
                             <div class="row justify-content-between">
-                                <div class="col-12 col-md-12 col-lg-12 mb-3">
-                                    <b><span>{{$bajus->total()}}</span> Produk Di Temukan</b>
+                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                                    <p>Menampilkan <b>{{$bajus->total()}}</b> Produk (<b>{{$bajus->total()}}</b> dari <b>{{$jumlahbaju}}</b>)</p>
                                 </div>
 
-                                <div class="col-12 col-md-6 col-lg-6 mt-1">
+                                <div class="col-sm-6 col-6 col-md-3 col-lg-3">
                                     <select class="form-control" onchange="location = this.value;">
                                         <option selected value="{{route('tampil')}}">Semua Produk</option>
                                         <option {{Request::get('status') == 'diskon' ? 'selected' : ''}} value="{{route('tampil',['status' => 'diskon'])}}">Diskon</option>
@@ -51,7 +44,7 @@
                                     <input type="submit" class="d-none" value="">
                                 </div>
 
-                                <div class="col-12 col-md-6 col-lg-6 mt-1">
+                                <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                                     <form action="#" method="get">
                                         <select name="select" id="sortByselect" class="form-control">
                                             <option selected>Sort By : </option>
@@ -69,7 +62,7 @@
                                 @foreach($bajus as $baju)
                                     <div class="col-6 col-lg-3 col-md-6 col-sm-6 mb-3">
                                         <a href="{{route('shop.detail', ['id' => $baju->id])}}">
-                                            <div class="product-grid4 border">
+                                            <div class="product-grid4">
                                                 <div class="product-image4">
                                                     <img class="pic-1" src="{{asset('storage/' . $baju->gambar1)}}">
                                                     <img class="pic-2" src="{{asset('storage/' . $baju->gambar2)}}">
@@ -89,10 +82,8 @@
                                                     @endif
                                                 </div>
 
-                                                <h6 class="margin-left mt-3 title"><b><a href="#">{{$baju->nama_baju}} </a></b></h6>
-                                                <hr style="margin-left:15px; margin-right:15px;">
-
-                                                <div class="mt-2 price">
+                                                <p class="text-left mt-3 title"><a href="{{route('shop.detail', ['id' => $baju->id])}}">{{$baju->nama_baju}} </a></p>
+                                                <div class="text-left mt-2 price">
                                                     @if($baju->diskon>0)
                                                             {{"Rp " . number_format(($baju->harga-$baju->diskon),0,',','.')}}
                                                         <span>{{"Rp " . number_format($baju->harga,0,',','.')}}</span>

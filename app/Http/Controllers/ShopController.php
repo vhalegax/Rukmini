@@ -30,8 +30,9 @@ class ShopController extends Controller
                 $bajus = \App\Baju::paginate(9);
             }
             
+            $jumlahbaju = \App\Baju::count();
             $kategori = \App\Kategori::all();
-            return view('shop.shop',['bajus' => $bajus],['kategori' => $kategori])->with(['nama_kategori' => $nama_kategori]);
+            return view('shop.shop',['bajus' => $bajus],['kategori' => $kategori])->with(['nama_kategori' => $nama_kategori])->with(['jumlahbaju' => $jumlahbaju]);
     }
 
     public function detail($id)
