@@ -73,11 +73,4 @@ class PembeliController extends Controller
         $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','LIKE','Selesai')->paginate(10)->sortByDesc('id');;
         return view('pembeli.historytransaksi',['order' => $order]);
     }
-
-    public function konfirmasipembayaran($id)
-    {
-        $order = \App\Tr_penjualan::findOrFail($id);
-        return view('pembeli.konfirmasi',['orders' => $order]);
-    }
- 
 }

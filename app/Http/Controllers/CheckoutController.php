@@ -179,8 +179,16 @@ class CheckoutController extends Controller
 
     public function destroy(Request $request,$id)
     {   
-        $baju = \App\Tr_penjualan::findOrFail($id);
-        $baju->delete();
+        $order = \App\Tr_penjualan::findOrFail($id);
+        $order->delete();
         return redirect()->route('checkout.index');
     }
+
+    public function konfirmasipembayaran($id)
+    {
+        $order = \App\Tr_penjualan::findOrFail($id);
+        $bank = \App\Bank::all();
+        return view('pembeli.konfirmasi',['orders' => $order])->with(['bank'=>$bank]);
+    }
+ 
 }

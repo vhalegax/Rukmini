@@ -129,8 +129,8 @@
         </a>
         <div id="bank" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('kupon.index')}}">Daftar No Rekening</a>
-            <a class="collapse-item" href="{{route('kupon.create')}}">Tambah No Rekening</a>
+            <a class="collapse-item" href="{{route('bank.index')}}">Daftar No Rekening</a>
+            <a class="collapse-item" href="{{route('bank.create')}}">Tambah No Rekening</a>
           </div>
         </div>
       </li>

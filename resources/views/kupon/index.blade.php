@@ -53,13 +53,13 @@
                         <td>{{$kupon->masa_berlaku}}</td>
                         <td>{{$kupon->jumlah}}</td>
                         <td>
-                        <form  class="d-inline" action="{{route('kupon.destroy', ['id' => $kupon->id])}}" 
-                        method="POST" onsubmit="return confirm('Hapus Kupon?')">
-                        @csrf 
-                        <input type="hidden"  value="DELETE"  name="_method">
-                        <a href="{{route('kupon.edit', ['id' => $kupon->id])}}" class="btn btn-info btn-sm mt-1"> Edit </a>
-                        <input  type="submit"  class="btn btn-danger btn-sm mt-1"  value="Hapus">
-                        </form>
+                            <form  class="d-inline" action="{{route('kupon.destroy', ['id' => $kupon->id])}}" 
+                            method="POST" onsubmit="return confirm('Hapus Kupon?')">
+                            @csrf 
+                            <input type="hidden"  value="DELETE"  name="_method">
+                            <a href="{{route('kupon.edit', ['id' => $kupon->id])}}" class="btn btn-info btn-sm mt-1"> Edit </a>
+                            <input  type="submit"  class="btn btn-danger btn-sm mt-1"  value="Hapus">
+                            </form>
                         </td>
                     </tr>
                     @endforeach

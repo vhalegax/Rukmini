@@ -21,28 +21,19 @@
             <hr>
             <h5><b>Metode Pembayaran</b></h5>
             <br>
-            <div class="row">
-                <div class="col-6  text-right">
-                    <img class="img-fluid" src="https://ci5.googleusercontent.com/proxy/qaunn2r6MqCAk9mKpG8dEow_hehkor7g5TrabZzqZxfZNiLiCW_pJjNLp2S3pIOamo_Z44nItx_j3elKx9hi-Y4mWcVGTzEljdI=s0-d-e1-ft#https://static.domainesia.com/assets/images/mandiri.png">
+            @foreach($bank as $banks)
+                <div class="row">
+                    <div class="col-6  text-right">
+                        <img class="img-fluid" src="{{asset('storage/' . $banks->img)}}" style="height:90px; width:220px;">
+                    </div>
+                    <div class="col-6 text-left">
+                        <h6><b>{{$banks->nama_bank}}</b></h5>
+                        <h6>{{$banks->NoRek}}</h5>
+                        <h6>a/n {{$banks->AtasNama}}</h5>
+                    </div>
                 </div>
-                <div class="col-6 text-left">
-                    <h6><b>Bank Mandiri</b></h5>
-                    <h6>1370012937096</h5>
-                    <h6>a/n Stephanus Wisnu</h5>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-6  text-right">
-                    <img class="img-fluid" src="https://ci6.googleusercontent.com/proxy/vT32UKmlOWGQQ5bpjUudb910AVUpiS78tEPvEO9Hoa_xlET8_SoMNNGTlQmWx-zn1dbplTBJTS30pywswype0uH7F_qpMw=s0-d-e1-ft#https://static.domainesia.com/assets/images/bca.png">
-                </div>
-                <div class="col-6 text-left">
-                    <h6><b>Bank BCA</b></h5>
-                    <h6>1370012937096</h5>
-                    <h6>a/n Stephanus Wisnu</h5>
-                </div>
-            </div>
-            <br>
+                <br>
+            @endforeach
             <hr>
         </div>
         <div class="col-12 col-md-12">
@@ -53,12 +44,6 @@
                     <label class="control-label">Invoice Number</label>
                     <div>
                         <input readonly type="text" class="form-control input-lg" value="{{$orders->invoice_number}}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Email</label>
-                    <div>
-                        <input type="text" class="form-control input-lg" name="email" value="{{$orders->email}}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -83,9 +68,9 @@
                     <label class="control-label">Bank Tujuan</label>
                     <div>
                         <select name="bank" id="" class="form-control input-lg">
-                            <option value="Mandiri">Mandiri</option>
-                            <option value="BCA">BCA</option>
-                            <option value="BRI">BRI</option>
+                        @foreach($bank as $bank1)
+                            <option value="{{$bank1->nama_bank}}">{{$bank1->nama_bank}}</option>
+                         @endforeach
                         </select>
                     </div>
                 </div>

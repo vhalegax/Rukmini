@@ -71,7 +71,7 @@
                                 onsubmit="return confirm('Batalkan Pesanan?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('pembeli.konfirmasi',['id'=>$orders->id])}}">Ubah</a></button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Ubah</a></button>
                                 <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
                                 <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
                             </form>
@@ -106,7 +106,7 @@
                                 onsubmit="return confirm('Batalkan Pesanan?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('pembeli.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
                                 <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
                                 <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
                             </form>

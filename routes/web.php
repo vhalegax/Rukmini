@@ -20,6 +20,8 @@ Route::resource('karyawan/orders', 'OrderController');
 
 Route::resource('karyawan/kupon', 'KuponController');
 
+Route::resource('karyawan/bank','BankController');
+
 Route::resource('karyawan/kasir','KasirController');
 
 Route::get('/','ShopController@home')->name('home');
@@ -29,17 +31,18 @@ Route::get('/shop/{id}/detail','ShopController@detail')->name('shop.detail');
 Route::get('/shop/{id}/wishlist','WishlistController@wishlist')->name('shop.wishlist');
 Route::get('/shop/{id}/hapuswishlist','WishlistController@hapuswishlist')->name('shop.hapuswishlist');
 
-
-Route::get('/pembeli/konfirmasi/{id}','PembeliController@konfirmasipembayaran')->name('pembeli.konfirmasi');
 Route::post('/pembeli/login', 'Auth\PembeliLoginController@login')->name('pembeli.login.post');
 Route::post('/pembeli/logout','Auth\PembeliLoginController@logout')->name('pembeli.logout');
 Route::get('/pembeli/login','Auth\PembeliLoginController@showLoginForm')->name('pembeli.login');
+
 Route::get('/pembeli/alamat','PembeliController@alamat')->name('pembeli.alamat');
 Route::get('/pembeli/wishlist','PembeliController@wishlist')->name('pembeli.wishlist');
 Route::get('/pembeli/history','PembeliController@history')->name('pembeli.history');
 
 Route::resource('/pembeli','PembeliController');
 Route::resource('/pembeli/alamat','AlamatController');
+
+Route::get('/pembeli/konfirmasi/{id}','CheckoutController@konfirmasipembayaran')->name('checkout.konfirmasi');
 Route::resource('checkout','CheckoutController');
 
 Route::get('/cart/tambahbelanjaan/{id}','CartController@tambahbelanjaan');

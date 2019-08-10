@@ -33,23 +33,23 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-            $name = $request->get('name');
+        $name = $request->get('name');
+        
+        $kategori_baru = new \App\Kategori;
+        $kategori_baru->name = $name;
+
+        if($request->file('image'))
+        {
+            $gambar_kategori = $request->file('image')->store('gambar_kategori', 'public');
             
-            $kategori_baru = new \App\Kategori;
-            $kategori_baru->name = $name;
+            $kategori_baru->image = $gambar_kategori;
+        }
 
-            if($request->file('image'))
-            {
-                $gambar_kategori = $request->file('image')->store('gambar_kategori', 'public');
-                
-                $kategori_baru->image = $gambar_kategori;
-            }
+        $kategori_baru->created_by = \Auth::user()->id;
+        $kategori_baru->slug = str_slug($name, '-');
+        $kategori_baru->save();
 
-            $kategori_baru->created_by = \Auth::user()->id;
-            $kategori_baru->slug = str_slug($name, '-');
-            $kategori_baru->save();
-
-            return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Buat');
+        return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Buat');
     }
 
     public function show($id)
@@ -59,8 +59,8 @@ class KategoriController extends Controller
 
     public function edit($id)
     {
-            $category_to_edit = \App\Kategori::findOrFail($id);
-            return view('kategori.edit', ['kategori' => $category_to_edit]);
+        $category_to_edit = \App\Kategori::findOrFail($id);
+        return view('kategori.edit', ['kategori' => $category_to_edit]);
     }
 
     public function update(Request $request, $id)
