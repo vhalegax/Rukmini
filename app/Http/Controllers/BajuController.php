@@ -240,22 +240,28 @@ class BajuController extends Controller
         }
         else 
         {
-            return redirect()->route('bajus.trash')->with('status', 'Book is not in trash');
+            return redirect()->route('bajus.trash')->with('status', 'Baju is not in trash');
         }
     }
 
     public function deletePermanent($id)
     {
         $baju = \App\Baju::withTrashed()->findOrFail($id);
+        $tr_penjualan = \App\Detail_tr_penjualan::where('baju_id','=',$id)->get();
         if(!$baju->trashed())
         {
             return redirect()->route('bajus.trash')->with('status', 'Baju is not in trash!')->with('status_type', 'alert');
-        } 
+        }
+        elseif(!$tr_penjualan->isEmpty())
+        {
+            return redirect()->route('bajus.trash')->with('status','Baju Yang Pernah Dibeli Pembeli, Tidak Dapat Di Hapus Permanen');
+        }
         else 
         {
             $baju->jumlah()->forceDelete();
             $baju->forceDelete();
-            return redirect()->route('bajus.trash')->with('status', 'Baju permanently deleted!');
+            return redirect()->route('bajus.index')->with('status', 'Baju permanently deleted!');
         }
     }
+
 }

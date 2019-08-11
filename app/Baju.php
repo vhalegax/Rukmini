@@ -23,4 +23,10 @@ class Baju extends Model
     {
         return $this->hasMany('App\Detail_tr_penjualan');
     }
+
+    public function rating()
+    {
+        return $this->hasMany('App\Rating','baju_id','id');
+    }
+
 }

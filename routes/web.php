@@ -52,6 +52,9 @@ Route::get('/cart/cekongkir2/{v1}/{v2}/{v3}/{v4}','CartController@cekongkir2');
 Route::get('/cart/cekkupon/{kupon}/{subtotal}','CartController@cekkupon');
 Route::resource('cart','CartController');
 
+Route::get('/rating/tambahrating/{userid}/{komentar}/{rating}/{bajuid}','RatingController@tambahrating');
+Route::resource('rating','RatingController');
+
 Route::get('/getcity','CartController@getcity');
 Route::get('/getprovince','CartController@getprovince');
 

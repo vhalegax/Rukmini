@@ -90,8 +90,17 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         $category = \App\Kategori::findOrFail($id);
-        $category->delete();
-        return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Pindahkan Ketempat Sampah');
+        $kategori_digunakan = \App\Kategori_Baju::where('kategori_id','=',$id)->get();
+        
+        if(!$kategori_digunakan->isEmpty())
+        {
+            return redirect()->route('kategori.index')->with('status','Kategori Yang Sedang Di Gunakan Oleh Baju, Tidak Dapat Dipindahkan Ke Tempat Sampah');
+        }
+        else
+        {   
+            $category->delete();
+            return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Pindahkan Ketempat Sampah');
+        }
     }
 
     public function trash()
@@ -110,24 +119,25 @@ class KategoriController extends Controller
         } 
         else 
         {
-            return redirect()->route('kategori.index')->with('status', 'Category is not in trash');
+            return redirect()->route('kategori.index')->with('status', 'Kategori Tidak Berada Ditempat Sampah');
         }
         
-        return redirect()->route('kategori.index')->with('status', 'Category successfully restored');
+        return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Dikembalikan');
     }
 
     public function deletePermanent($id)
     {
         $category = \App\Kategori::withTrashed()->findOrFail($id);
+        $kategori_digunakan = \App\Kategori::find($id);
 
         if(!$category->trashed())
         {
-            return redirect()->route('kategori.index')->with('status', 'Can not delete permanent active category');
-        } 
+            return redirect()->route('kategori.trash')->with('status', 'Tidak Dapat Menghapus Kategori Yang Digunakan');
+        }
         else 
         {
             $category->forceDelete();
-            return redirect()->route('kategori.index')->with('status', 'Category permanently deleted');
+            return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Dihapus Permanen');
         }
     }
 
