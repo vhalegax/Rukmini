@@ -18,19 +18,14 @@
     </div>
     @endif 
 
-    <div class="card shadow mb-2">
-        <div class="p-2">
-             <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link " href="{{route('kategori.index')}}">Terpakai</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{route('kategori.trash')}}">Trash</a>
-                </li>
-            </ul>
+    <div class="card shadow mb-2 ">
+        <div class="submenu">
+            <a class="nav-link {{Request::path() == 'karyawan/kategori' ? 'aktif' : ''}}" href="{{route('kategori.index')}}">Terpakai</a>
+            <a class="nav-link {{Request::path() == 'karyawan/kategori/trash' ? 'aktif' : ''}}" href="{{route('kategori.trash')}}">Tempat Sampah</a>
         </div>
     </div>
-            
+
+    
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">

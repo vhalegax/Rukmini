@@ -19,22 +19,12 @@
     </div>
     @endif 
 
-    <div class="card shadow mb-2">
-        <div class="p-2">
-             <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link {{Request::get('status') == NULL && Request::path() == 'karyawan/bajus' ? 'active' : ''}}" href="{{route('bajus.index')}}">All</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{Request::get('status') == 'diskon' ? 'active' : ''}}" href="{{route('bajus.index',['status' => 'diskon'])}}">Diskon</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Out Stock</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{Request::path() == 'karyawan/bajus/trash' ? 'active' : ''}}" href="{{route('bajus.trash')}}">Trash</a>
-                </li>
-            </ul>
+    <div class="card shadow mb-2 ">
+        <div class="submenu">
+            <a class="nav-link {{Request::get('status') == NULL && Request::path() == 'karyawan/bajus' ? 'aktif' : ''}}" href="{{route('bajus.index')}}">All</a>
+            <a class="nav-link {{Request::get('status') == 'diskon' ? 'aktif' : ''}}" href="{{route('bajus.index',['status' => 'diskon'])}}">Diskon</a>
+            <a class="nav-link" href="#">Out Stock</a>
+            <a class="nav-link {{Request::path() == 'karyawan/bajus/trash' ? 'aktif' : ''}}" href="{{route('bajus.trash')}}">Trash</a>
         </div>
     </div>
             

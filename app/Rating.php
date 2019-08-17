@@ -10,6 +10,6 @@ class Rating extends Model
 
     public function nama_pembeli()
     {
-        return $this->belongsTo('App\Pembeli','baju_id','id');
+        return $this->belongsTo('App\Pembeli','pembeli_id','id');
     }
 }

@@ -21,11 +21,11 @@ class BajuController extends Controller
         $status = $request->get('status');
         if(isset($status) && $status != NULL)
         {
-        $bajus = \App\Baju::where('diskon','>',0)->paginate(10);
+        $bajus = \App\Baju::where('diskon','>',0)->paginate(30);
         }
         else
         {
-        $bajus = \App\Baju::paginate(10);
+        $bajus = \App\Baju::paginate(30);
         }
         return view('bajus.index',['bajus' => $bajus]);
     }

@@ -66,7 +66,7 @@
                                                 <div class="product-image4">
                                                     <img class="pic-1" src="{{asset('storage/' . $baju->gambar1)}}">
                                                     <img class="pic-2" src="{{asset('storage/' . $baju->gambar2)}}">
-                                                    <span class="product-new-label">New</span>
+                                                    <!-- <span class="product-new-label">New</span> -->
 
                                                     @if($baju->diskon>0)
                                                     <span class="product-discount-label">SALE</span>

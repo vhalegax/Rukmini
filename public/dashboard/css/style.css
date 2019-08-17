@@ -1,0 +1,30 @@
+div.submenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid #DEE2E6;
+    background-color: transparent;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.submenu a {
+    display: inline-block;
+    color: #4e73df;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.submenu a:hover {
+    color: #4e73df;
+    padding: 14px 16px;
+    border-bottom: #4e73df solid 4px;
+}
+
+div.submenu .aktif {
+    color: #4e73df;
+    font-weight: bold;
+    padding: 14px 16px;
+    border-bottom: #4e73df solid 4px;
+}

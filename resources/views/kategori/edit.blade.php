@@ -13,19 +13,20 @@
           @csrf 
           <input type="hidden"value="PUT"  name="_method">
           
-          <label>Nama Kategori</label> <br>
-          <input  type="text" class="form-control" value="{{$kategori->name}}" name="name">
-          <br><br>
+          <label>Nama Kategori : </label> <br>
+          <input  type="text" class="form-control col-4" value="{{$kategori->name}}" name="name" required>
+          <br>
 
+
+          <label>Gambar : </label><br>
           @if($kategori->image)
-          <span>Gambar Kategori</span><br>
-          <img src="{{asset('storage/'. $kategori->image)}}" width="120px">
+          <img src="{{asset('storage/'. $kategori->image)}}" width="300px">
           <br><br>
           @endif
 
-          <input type="file"class="form-control" name="image">
-          <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
-          <br><br>
+          <input type="file" name="image"><br>
+          <small class="text-muted mt-1">Kosongkan jika tidak ingin mengubah gambar</small>
+          <br><br><br>
           
           <input type="submit" class="btn btn-primary" value="Update">
 

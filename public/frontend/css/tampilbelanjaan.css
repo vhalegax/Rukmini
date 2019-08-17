@@ -48,12 +48,12 @@
 .product-grid4 .product-new-label {
     color: #fff;
     background-color: rgb(48, 48, 48);
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 800;
     text-transform: uppercase;
-    line-height: 50px;
-    height: 50px;
-    width: 50px;
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
     position: absolute;
     left: 10px;
     top: 15px;

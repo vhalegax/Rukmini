@@ -15,7 +15,7 @@ class ShopController extends Controller
            $group = $request->get('status');
            if(isset($group) && $group === 'diskon')
             {
-                $bajus = \App\Baju::where('diskon','>',0)->paginate(9);
+                $bajus = \App\Baju::where('diskon','>',0)->paginate(25);
             }
             elseif(isset($group) && $group !== 'diskon')
             {  
@@ -23,11 +23,11 @@ class ShopController extends Controller
 
                 $bajus = \App\Baju::whereHas('kategori', function ($query) use($group) {
                     $query->where('kategori_id', '=', $group);
-                })->paginate(9);
+                })->paginate(25);
             }
             else
             {
-                $bajus = \App\Baju::paginate(9);
+                $bajus = \App\Baju::paginate(25);
             }
             
             $jumlahbaju = \App\Baju::count();
@@ -38,7 +38,7 @@ class ShopController extends Controller
     public function detail($id)
     {
         $baju = \App\Baju::findOrFail($id);
-        $kategori = \App\Kategori::paginate(10);
+        $kategori = \App\Kategori::paginate(20);
         return view('shop.detail', ['baju' => $baju],['kategoris'=>$kategori]);
     }
 
