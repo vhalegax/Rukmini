@@ -24,6 +24,12 @@ Route::resource('karyawan/bank','BankController');
 
 Route::resource('karyawan/kasir','KasirController');
 
+Route::get('karyawan/rating/rekomendasi','RatingController@rekomendasi')->name('rating.rekomendasi');
+Route::get('karyawan/rating/similarity','RatingController@similarity')->name('rating.similarity');
+Route::get('karyawan/rating/similarity2','RatingController@similarity2')->name('rating.similarity2');
+Route::get('karyawan/rating/rating','RatingController@rating')->name('rating.rating');
+Route::resource('karyawan/rating','RatingController');
+
 Route::get('/','ShopController@home')->name('home');
 Route::get('/shop','ShopController@tampilsemua')->name('tampil');
 Route::get('/shop/{id}/detail','ShopController@detail')->name('shop.detail');
@@ -57,6 +63,9 @@ Route::resource('rating','RatingController');
 
 Route::get('/getcity','CartController@getcity');
 Route::get('/getprovince','CartController@getprovince');
+
+
+// --------------------------------------------------------------------------------------------------------------------- //
 
 Route::get('/storagelink',function()
 {

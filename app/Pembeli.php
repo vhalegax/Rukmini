@@ -27,4 +27,14 @@ class Pembeli extends Authenticatable
     {
         return $this->hasMany('App\Wishlist','pembelis_id','id');
     }
+
+    public function Rating()
+    {
+        return $this->hasMany('App\Rating','pembeli_id','id');
+    }
+
+    public function Rating2()
+    {
+        return $this->belongsToMany('App\Rating','rating','pembeli_id','baju_id');
+    }
 }

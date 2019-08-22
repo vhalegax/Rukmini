@@ -16,11 +16,11 @@
         <div class="container">
 
             <div class="profile-pembeli2">
-                <a  href="{{route('pembeli.index')}}">Profile</a>
-                <a   class="active" href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
-                <a   href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
-                <a  href="{{route('checkout.index')}}">Pembayaran</a>
-                <a  href="{{route('pembeli.wishlist')}}">Wishlist</a>
+                <a href="{{route('pembeli.index')}}">Profile</a>
+                <a href="{{route('alamat.index',['status'=>'daftar'])}}" class="active">Daftar Alamat</a>
+                <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
+                <a href="{{route('checkout.index')}}">Pembayaran</a>
+                <a href="{{route('pembeli.wishlist')}}">Wishlist</a>
                 <a href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
             </div>
 

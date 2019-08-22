@@ -76,4 +76,5 @@ class KuponController extends Controller
         $kupon->delete();
         return redirect()->route('kupon.index')->with('status', 'Kupon Berhasil Dihapus');
     }
+
 }
