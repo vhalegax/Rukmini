@@ -19,28 +19,14 @@
     </div>
     @endif 
 
-    <div class="card shadow mb-2">
-        <div class="p-2">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="">Semua</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Menunggu Pembayaran</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Menunggu Konfirmasi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Proses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Di Kirim</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">Selesai</a>
-                </li>
-            </ul>
+    <div class="card shadow mb-2 ">
+        <div class="submenu">
+            <a class="nav-link aktif" href="" >Semua</a>
+            <a class="nav-link" href="">Menunggu Pembayaran</a>
+            <a class="nav-link" href="">Menunggu Konfirmasi</a>
+            <a class="nav-link" href="">Proses</a>
+            <a class="nav-link" href="">Dikirim</a>
+            <a class="nav-link" href="">Selesai</a>
         </div>
     </div>
 
@@ -73,12 +59,12 @@
                             <td>{{$order->created_at}}</td>
                             <td>
                                 <a class="btn btn-info text-white btn-sm" href="{{route('orders.show' ,['id'=> $order->id])}}">Detail</i></a>
-                                <!-- <form  class="d-inline"
+                                <form  class="d-inline"
                                 action="{{route('checkout.destroy', ['id' => $order->id , 'user' =>'admin'])}}" method="POST" onsubmit="return confirm('Hapus Pesanan ini?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
                                 <input  type="submit"  class="btn btn-outline-danger btn-sm" value="Hapus Pesanan">
-                                </form> -->
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -93,16 +79,3 @@
     </div>
     
 @endsection
-
-                  <!-- <td>@if($order->status=='Menunggu Pembayaran')
-                                <span class="badge badge-secondary">{{$order->status}}</span>
-                            @elseif($order->status=='Menunggu Konfirmasi')
-                                <span class="badge badge-info">{{$order->status}}</span>
-                            @elseif($order->status=='Proses')
-                                <span class="badge badge-warning">{{$order->status}}</span>
-                            @elseif($order->status=='Pengiriman')
-                                <span class="badge badge-primary">{{$order->status}}</span>
-                            @elseif($order->status=='Selesai')
-                                <span class="badge badge-success">{{$order->status}}</span>
-                            @endif
-                        </td> -->

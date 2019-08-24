@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Daftar Kategori @endsection 
+@section("title") Daftar Nomor Rekening @endsection 
 
-@section('pageTitle') Daftar Kategori @endsection
+@section('pageTitle') Daftar Nomor Rekening @endsection
 
 @section("content")          
     @if(session('status'))
@@ -21,7 +21,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">
-                <a href="{{route('bank.create')}}" class="btn btn-primary">Tambah No Rekening Baru</a>
+                <a href="{{route('bank.create')}}" class="btn btn-primary">Tambah Nomor Rekening</a>
             </div>
         </div>
         <div class="card-body">

@@ -37,9 +37,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                        <th><b>Name</b></th>
-                        <th><b>Image</b></th>
-                        <th><b>Actions</b></th>
+                        <th><b>Nama</b></th>
+                        <th><b>Gambar</b></th>
+                        <th><b>Aksi</b></th>
                         </tr>
                     </thead>
                     <tbody>

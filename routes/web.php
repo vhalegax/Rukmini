@@ -24,9 +24,13 @@ Route::resource('karyawan/bank','BankController');
 
 Route::resource('karyawan/kasir','KasirController');
 
+Route::get('dashboard/spkpembeli/rekomendasi/{id}','SPKPembeliController@rekomendasi')->name('spkpembeli.rekomendasi');
+Route::get('dashboard/spkpembeli/similarity/{id}','SPKPembeliController@similarity')->name('spkpembeli.similarity');
+Route::resource('dashboard/spkpembeli','SPKPembeliController');
+
 Route::get('karyawan/rating/rekomendasi','RatingController@rekomendasi')->name('rating.rekomendasi');
 Route::get('karyawan/rating/similarity','RatingController@similarity')->name('rating.similarity');
-Route::get('karyawan/rating/similarity2','RatingController@similarity2')->name('rating.similarity2');
+Route::get('karyawan/rating/similarity2/{id}','RatingController@similarity2')->name('rating.similarity2');
 Route::get('karyawan/rating/rating','RatingController@rating')->name('rating.rating');
 Route::resource('karyawan/rating','RatingController');
 

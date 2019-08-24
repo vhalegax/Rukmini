@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Daftar Kupon @endsection 
+@section("title") Data Pembeli @endsection 
 
-@section('pageTitle') Daftar Kupon @endsection
+@section('pageTitle') Data Pembeli @endsection
 
 @section("content")            
     
@@ -18,35 +18,34 @@
         </div>
 </div>
 @endif 
-
-
-<div class="card shadow mb-2 ">
-    <div class="submenu">
-        <a class="nav-link {{Request::path() == 'karyawan/rating/rating' ? 'aktif' : ''}}" href="{{route('rating.rating')}}">Avg Rating</a>
-        <a class="nav-link {{Request::path() == 'karyawan/rating/similarity' ? 'aktif' : ''}}" href="{{route('rating.similarity')}}">Similarity</a>
-        <a class="nav-link" href="#">Rekomendasi</a>
-    </div>
-</div>
-
         
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="input-group-append">
-            <h4>Avg Rating Dari Pembeli</h4>
         </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <th>Id Pembeli</th>
-                    <th>Avg Rating</th>
+                    <th>Id</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Terakhir Online</th>
+                    <th>AVG Rating</th>
+                    <th>Aksi</th>
                 </thead>
                 <tbody>
-                        @foreach ($rating as $pembeli => $ratings)
+                        @foreach ($pembeli as $pembeli)
                             <tr>
-                            <th>{{$pembeli}}</th>
-                            <th>{{$ratings->avg('rating')}}</th>
+                            <th>{{$pembeli->id}}</th>
+                            <th>{{$pembeli->nama_lengkap}}</th>
+                            <th>{{$pembeli->email}}</th>
+                            <th>{{$pembeli->last_online}}</th>
+                            <th>{{$pembeli->Rating->avg('rating')}}</th>
+                            <th><a href="{{route('spkpembeli.similarity', ['id' => $pembeli->id])}}" class="btn btn-primary btn-sm">Similarity</a>
+                                <a href="{{route('spkpembeli.rekomendasi', ['id' => $pembeli->id])}}" class="btn btn-primary btn-sm">Rekomendasi</a>
+                            </th>
                             </tr>
                         @endforeach
                 </tbody>

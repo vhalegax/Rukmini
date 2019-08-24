@@ -24,7 +24,6 @@
     <div class="submenu">
         <a class="nav-link {{Request::path() == 'karyawan/rating/rating' ? 'aktif' : ''}}" href="{{route('rating.rating')}}">Avg Rating</a>
         <a class="nav-link {{Request::path() == 'karyawan/rating/similarity' ? 'aktif' : ''}}" href="{{route('rating.similarity')}}">Similarity</a>
-        <a class="nav-link {{Request::path() == 'karyawan/rating/similarity2' ? 'aktif' : ''}}" href="{{route('rating.similarity2')}}">Similarity2</a>
         <a class="nav-link" href="#">Rekomendasi</a>
     </div>
 </div>
@@ -45,13 +44,15 @@
                     <th>Similarity</th>
                 </thead>
                 <tbody>
-                    @foreach($temp as $temp)
-                    <tr>
-                        <th>{{$temp->id_1}}</th>
-                        <th>{{$temp->id_2}}</th>
-                        <th>{{$temp->similarity}}</th>
-                    </tr>
-                    @endforeach
+
+                    @for($i = 0; $i < count($data); $i++) 
+                        <tr>
+                            <th>{{$data[$i]['0']}}</th>
+                            <th>{{$data[$i]['1']}}</th>
+                            <th>{{$data[$i]['2']}}</th>
+                        </tr>
+                    @endfor
+
                 </tbody>
                 <tfoot>
                     <tr>

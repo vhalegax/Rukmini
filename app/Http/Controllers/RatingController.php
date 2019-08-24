@@ -71,13 +71,12 @@ class RatingController extends Controller
         return view('rating.similarity', ['pembeli'=>$pembeli])->with(['baju_i'=>$baju_i])->with(['baju_j'=>$baju_j]);
     }
 
-    public function similarity2()
+    public function similarity2($id)
     {    
-        $pembeli1 = \App\Pembeli::all();
+        $person_1 = \App\Pembeli::findOrFail($id);
         $pembeli2 = \App\Pembeli::all();
+        $data = array();
 
-        foreach($pembeli1 as $person_1)
-        {
             foreach($pembeli2 as $person_2)
             {   
                 $sum = 0;
@@ -100,21 +99,15 @@ class RatingController extends Controller
                     
                     if($i==$j)
                     {   
-                        $temp = new \App\Temp;
-                        $temp->id_1=$person_1->nama_lengkap;
-                        $temp->id_2=$person_2->nama_lengkap;
-                        $temp->similarity=1/(1+sqrt($sum));
-                        $temp->save();
+                        $similarity=1/(1+sqrt($sum));
+                        $data[] = array($person_1->nama_lengkap,$person_2->nama_lengkap,$similarity);
                     }
                 }
             }
-        }
 
         $temp = \App\Temp::all();
-
-        
-
-        return view('rating.similarity2', ['temp'=>$temp])->with(['pembeli2'=>$pembeli2]);
+        // return dd($data);
+        return view('rating.similarity2', ['temp'=>$temp])->with(['pembeli2'=>$pembeli2])->with(['data'=>$data]);
     }
 
     public function jumlahsama($person1,$person2)

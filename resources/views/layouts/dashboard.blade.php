@@ -31,10 +31,7 @@
     <ul class="navbar-nav bg-gray-800 sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Wisnu</div>
+        <div class="sidebar-brand-text mx-3"><h3>Rukmini</h3></div>
       </a>
 
       <hr class="sidebar-divider my-0">
@@ -51,17 +48,17 @@
         Transaksi
       </div>
 
-      <li class="nav-item {{Request::path() == 'karyawan/kasir/create' ? 'active' : ''}}">
+      <!-- <li class="nav-item {{Request::path() == 'karyawan/kasir/create' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{route('kasir.create')}}">
           <i class="fas fa-fw fa-cog"></i>
           <span>Kasir</span>
         </a>
-      </li>
+      </li> -->
 
        <li class="nav-item {{Request::path() == 'karyawan/orders' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{route('orders.index')}}">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Transaksi Online</span>
+          <span>Transaksi</span>
         </a>
       </li>
 
@@ -87,12 +84,12 @@
       <li class="nav-item {{Request::path() == 'karyawan/kategori' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kategori_baju" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Kategori Baju</span>
+          <span>Kategori Pakaian</span>
         </a>
         <div id="kategori_baju" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('kategori.index')}}">Daftar Kategori Baju</a>
-            <a class="collapse-item" href="{{route('kategori.create')}}">Tambah Kategori Baju</a>
+            <a class="collapse-item" href="{{route('kategori.index')}}">Daftar Kategori</a>
+            <a class="collapse-item" href="{{route('kategori.create')}}">Tambah Kategori</a>
           </div>
         </div>
       </li>
@@ -100,12 +97,12 @@
       <li class="nav-item {{Request::path() == 'karyawan/bajus' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#baju" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Baju</span>
+          <span>Pakaian</span>
         </a>
         <div id="baju" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('bajus.index')}}">Daftar Baju</a>
-            <a class="collapse-item" href="{{route('bajus.create')}}">Tambah Baju</a>
+            <a class="collapse-item" href="{{route('bajus.index')}}">Daftar Pakaian</a>
+            <a class="collapse-item" href="{{route('bajus.create')}}">Tambah Pakaian</a>
           </div>
         </div>
       </li>
@@ -113,7 +110,7 @@
       <li class="nav-item {{Request::path() == 'karyawan/kupon' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kupon" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Kupon</span>
+          <span>Kupon</span>
         </a>
         <div id="kupon" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -126,7 +123,7 @@
       <li class="nav-item {{Request::path() == 'karyawan/bank' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bank" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage No Rekening</span>
+          <span>No Rekening</span>
         </a>
         <div id="bank" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -154,6 +151,13 @@
             <a class="collapse-item" href="cards.html">Cards</a>
           </div>
         </div>
+      </li>
+
+        <li class="nav-item {{Request::path() == 'dashboard/spkpembeli' ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{route('spkpembeli.index')}}">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Lihat Daftar Pembeli</span>
+        </a>
       </li>
 
 

@@ -1,9 +1,9 @@
 @extends("layouts.dashboard")
 
 
-@section("title") Daftar Baju @endsection 
+@section("title") Daftar Pakaian @endsection 
 
-@section('pageTitle') Daftar Baju @endsection
+@section('pageTitle') Daftar Pakaian @endsection
 
 @section("content")            
                 
@@ -25,14 +25,14 @@
             <a class="nav-link {{Request::get('status') == NULL && Request::path() == 'karyawan/bajus' ? 'aktif' : ''}}" href="{{route('bajus.index')}}">All</a>
             <a class="nav-link {{Request::get('status') == 'diskon' ? 'aktif' : ''}}" href="{{route('bajus.index',['status' => 'diskon'])}}">Diskon</a>
             <a class="nav-link" href="#">Out Stock</a>
-            <a class="nav-link {{Request::path() == 'bajus/trash' ? 'aktif' : ''}}" href="{{route('bajus.trash')}}">Trash</a>
+            <a class="nav-link {{Request::path() == 'bajus/trash' ? 'aktif' : ''}}" href="{{route('bajus.trash')}}">Tidak Dipakai</a>
         </div>
     </div>
             
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">
-                <a href="{{route('bajus.create')}}" class="btn btn-primary">Tambah Baju</a>
+                <a href="{{route('bajus.create')}}" class="btn btn-primary">Tambah Pakaian</a>
             </div>
         </div>
         <div class="card-body">

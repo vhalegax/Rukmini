@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Edit Kategori @endsection 
+@section("title") Ubah Kategori @endsection 
 
-@section('pageTitle') Edit Kategori @endsection
+@section('pageTitle') Ubah Kategori @endsection
 
 @section("content")            
                   
@@ -17,7 +17,6 @@
           <input  type="text" class="form-control col-4" value="{{$kategori->name}}" name="name" required>
           <br>
 
-
           <label>Gambar : </label><br>
           @if($kategori->image)
           <img src="{{asset('storage/'. $kategori->image)}}" width="300px">
@@ -27,9 +26,7 @@
           <input type="file" name="image"><br>
           <small class="text-muted mt-1">Kosongkan jika tidak ingin mengubah gambar</small>
           <br><br><br>
-          
-          <input type="submit" class="btn btn-primary" value="Update">
-
+          <input type="submit" class="btn btn-primary" value="Simpan">
         </form>
       </div>
     </div>

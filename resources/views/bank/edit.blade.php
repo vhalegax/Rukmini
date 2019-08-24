@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Edit No Rekening @endsection 
+@section("title") Ubah Nomor Rekening @endsection 
 
-@section('pageTitle') Edit No Rekening @endsection
+@section('pageTitle') Ubah Nomor Rekening @endsection
 
 @section("content")            
                   

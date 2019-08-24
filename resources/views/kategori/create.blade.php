@@ -16,7 +16,7 @@
         
         <label>Gambar : </label><br>
         <input  type="file" name="image"><br><br>
-        <input type="submit" class="btn btn-primary" value="Save">
+        <input type="submit" class="btn btn-primary" value="Tambah">
       </form> 
     </div>
   </div>

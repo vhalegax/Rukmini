@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Daftar Kupon @endsection 
+@section("title") Similarity @endsection 
 
-@section('pageTitle') Daftar Kupon @endsection
+@section('pageTitle') Similarity @endsection
 
 @section("content")            
     
@@ -20,35 +20,30 @@
 @endif 
 
 
-<div class="card shadow mb-2 ">
-    <div class="submenu">
-        <a class="nav-link {{Request::path() == 'karyawan/rating/rating' ? 'aktif' : ''}}" href="{{route('rating.rating')}}">Avg Rating</a>
-        <a class="nav-link {{Request::path() == 'karyawan/rating/similarity' ? 'aktif' : ''}}" href="{{route('rating.similarity')}}">Similarity</a>
-        <a class="nav-link" href="#">Rekomendasi</a>
-    </div>
-</div>
-
-        
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="input-group-append">
-            <h4>Avg Rating Dari Pembeli</h4>
+            <h5>Kesamaan Pembeli {{$id}} dengan Pembeli Lain</h5>
         </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <th>Id Pembeli</th>
-                    <th>Avg Rating</th>
+                    <th>ID Pembeli</th>
+                    <th>ID Pembeli Lain</th>
+                    <th>Similarity</th>
                 </thead>
                 <tbody>
-                        @foreach ($rating as $pembeli => $ratings)
-                            <tr>
-                            <th>{{$pembeli}}</th>
-                            <th>{{$ratings->avg('rating')}}</th>
-                            </tr>
-                        @endforeach
+
+                    @for($i = 0; $i < count($data); $i++) 
+                        <tr>
+                            <th>{{$data[$i]['0']}}</th>
+                            <th>{{$data[$i]['1']}}</th>
+                            <th>{{$data[$i]['2']}}</th>
+                        </tr>
+                    @endfor
+
                 </tbody>
                 <tfoot>
                     <tr>
@@ -61,7 +56,6 @@
 
 @endsection
 
-<!-- 
 
-   
- -->
+
+                        

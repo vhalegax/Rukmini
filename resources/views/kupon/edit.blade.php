@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Tambah Kupon @endsection 
+@section("title") Ubah Kupon @endsection 
 
-@section('pageTitle') Tambah Kupon @endsection
+@section('pageTitle') Ubah Kupon @endsection
 
 @section("content")            
                   
@@ -48,7 +48,7 @@
                     <input type="number" name="jumlah" class="form-control" value="{{$kupon->jumlah}}">
                 </div><br>
 
-                <input type="submit" class="btn btn-primary" value="Save">
+                <input type="submit" class="btn btn-primary" value="Simpan">
             </form> 
         </div>
     </div>
