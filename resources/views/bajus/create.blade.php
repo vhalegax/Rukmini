@@ -20,9 +20,9 @@ $('#categories').select2({
 </script>
 @endsection
 
-@section("title") Create Baju @endsection 
+@section("title") Tambah Pakaian @endsection 
 
-@section('pageTitle') Create Baju @endsection
+@section('pageTitle') Tambah Pakaian @endsection
 
 @section("content")       
     <div class="card shadow mb-4">
@@ -32,28 +32,28 @@ $('#categories').select2({
 
                 <div class="form-row">
                     <div class="col-12 mb-3">
-                        <label>Nama Baju : </label><br>
+                        <label>Nama Pakaian : </label><br>
                         <input type="text" class="form-control" id="nama_baju" name="nama_baju" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-12 mb-3">
-                        <label>Deskripsi Baju : </label><br>
+                        <label>Deskripsi Pakaian : </label><br>
                         <textarea  name="deskripsi"  id="deskripsi" name="deskripsi" class="form-control" required></textarea>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-12 mb-3">
-                        <label>Kategori Baju : </label><br>
+                        <label>Kategori Pakaian : </label><br>
                         <select  multiple="" name="categories[]" id="categories" class="form-control" required></select>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>Harga Baju : </label><br>
+                        <label>Harga Pakaian : </label><br>
                         <input type="number"  name="harga_baju"  id="harga_baju" class="form-control" required>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -64,7 +64,7 @@ $('#categories').select2({
 
                 <div class="form-row">
                     <div class="col-md-12">
-                        <label>Jumlah Baju : </label><br>
+                        <label>Jumlah Pakaian : </label><br>
                     </div>
                     <div class="col-md-3 mb-3">
                         <input type="number" class="form-control" id="xl" name="xl" placeholder="XL" >
@@ -99,7 +99,7 @@ $('#categories').select2({
                     </div>
                 </div>
 
-                <button class="btn btn-primary" type="submit" value="save">Tambah Baju</button>
+                <button class="btn btn-primary" type="submit" value="save">Tambah</button>
             </form>
         </div>
     </div>

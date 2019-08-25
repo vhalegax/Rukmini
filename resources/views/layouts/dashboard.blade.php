@@ -37,16 +37,10 @@
       <hr class="sidebar-divider my-0">
 
       <li class="nav-item {{Request::path() == 'karyawan/home' ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('karyawan.home')}}">
+        <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-
-      <hr class="sidebar-divider">
-
-      <div class="sidebar-heading">
-        Transaksi
-      </div>
 
       <!-- <li class="nav-item {{Request::path() == 'karyawan/kasir/create' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{route('kasir.create')}}">
@@ -62,16 +56,10 @@
         </a>
       </li>
 
-      <hr class="sidebar-divider">
-
-      <div class="sidebar-heading">
-        Manage Data
-      </div>
-
       <li class="nav-item {{Request::path() == 'karyawan/users' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#karyawan" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Manage Karyawan</span>
+          <span>Karyawan</span>
         </a>
         <div id="karyawan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -133,33 +121,19 @@
         </div>
       </li>
 
-      <hr class="sidebar-divider">
-
-      <div class="sidebar-heading">
-        Report
-      </div>
+      <li class="nav-item {{Request::path() == 'dashboard/spkpembeli' ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="{{route('spkpembeli.index')}}">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Daftar Pembeli</span>
+        </a>
+      </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#report" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#">
           <i class="fas fa-fw fa-cog"></i>
           <span>Report</span>
         </a>
-        <div id="report" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
       </li>
-
-        <li class="nav-item {{Request::path() == 'dashboard/spkpembeli' ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="{{route('spkpembeli.index')}}">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Lihat Daftar Pembeli</span>
-        </a>
-      </li>
-
 
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -281,11 +255,8 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                  <form action="{{route('logout')}}" method="POST">
-                  @csrf
                   <button class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout</button>
-                  </form>
                 </a>
               </div>
             </li>
@@ -332,15 +303,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Logout ?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Apakah Anda Ingin Logout ?</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+            <form action="{{route('logout')}}" method="POST">
+                @csrf
+                <button class="btn btn-primary" type="submit">Ya</button>
+            </form>
         </div>
       </div>
     </div>

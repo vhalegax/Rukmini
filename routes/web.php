@@ -2,27 +2,27 @@
 
 Auth::routes();
 
-Route::get('karyawan/home','UserController@home')->name('karyawan.home');
-Route::resource('karyawan/users','UserController');
+Route::get('dashboard/beranda','UserController@home')->name('dashboard');
+Route::resource('dashboard/users','UserController');
 
-Route::get('karyawan/kategori/{id}/restore', 'KategoriController@restore')->name('kategori.restore');
-Route::get('karyawan/kategori/trash', 'KategoriController@trash')->name('kategori.trash');
-Route::delete('karyawan/kategori/{id}/delete-permanent', 'KategoriController@deletePermanent')->name('kategori.delete-permanent');
-Route::get('karyawan/ajax/kategori/search', 'KategoriController@ajaxSearch');
-Route::resource('karyawan/kategori', 'KategoriController');
+Route::get('dashboard/kategori/{id}/restore', 'KategoriController@restore')->name('kategori.restore');
+Route::get('dashboard/kategori/trash', 'KategoriController@trash')->name('kategori.trash');
+Route::delete('dashboard/kategori/{id}/delete-permanent', 'KategoriController@deletePermanent')->name('kategori.delete-permanent');
+Route::get('dashboard/ajax/kategori/search', 'KategoriController@ajaxSearch');
+Route::resource('dashboard/kategori', 'KategoriController');
 
-Route::get('karyawan/bajus/{id}/restore', 'BajuController@restore')->name('bajus.restore');
-Route::get('karyawan/bajus/trash', 'BajuController@trash')->name('bajus.trash');
-Route::delete('karyawan/bajus/{id}/delete-permanent', 'BajuController@deletePermanent')->name('bajus.delete-permanent');
-Route::resource('karyawan/bajus', 'BajuController');
+Route::get('dashboard/bajus/{id}/restore', 'BajuController@restore')->name('bajus.restore');
+Route::get('dashboard/bajus/trash', 'BajuController@trash')->name('bajus.trash');
+Route::delete('dashboard/bajus/{id}/delete-permanent', 'BajuController@deletePermanent')->name('bajus.delete-permanent');
+Route::resource('dashboard/bajus', 'BajuController');
 
-Route::resource('karyawan/orders', 'OrderController');
+Route::resource('dashboard/orders', 'OrderController');
 
-Route::resource('karyawan/kupon', 'KuponController');
+Route::resource('dashboard/kupon', 'KuponController');
 
-Route::resource('karyawan/bank','BankController');
+Route::resource('dashboard/bank','BankController');
 
-Route::resource('karyawan/kasir','KasirController');
+Route::resource('dashboard/kasir','KasirController');
 
 Route::get('dashboard/spkpembeli/rekomendasi/{id}','SPKPembeliController@rekomendasi')->name('spkpembeli.rekomendasi');
 Route::get('dashboard/spkpembeli/similarity/{id}','SPKPembeliController@similarity')->name('spkpembeli.similarity');

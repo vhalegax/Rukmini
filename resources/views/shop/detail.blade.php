@@ -21,7 +21,7 @@
     </div>
   </div>
   
-
+ 
   <section class="detail-produk-full">
       <div class="container">
           <div class="row">
@@ -178,56 +178,92 @@
           </div>
       </div>
   </section>
-                        
-      <div class="top-content mt-5 mb-5">
-          <div class="container">
-              <div class="hr-sect"><h3>Produk Serupa</h3></div>
-              <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
-                  <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                    @php $a=0; @endphp
-                      @while($a<=4)
-                        @foreach($kategoris as $kategori)
-                            @foreach($baju->kategori as $kategoribaju)
-                              @if($kategori->name == $kategoribaju->name)
-                                  @foreach($kategori->baju as $bajus)
-                                    @if($bajus->id != $baju->id)
-                                      @if($a==0)
-                                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-                                      @else
-                                      <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                      @endif
-                                        <img src="{{asset('storage/' . $bajus->gambar1)}}" class="img-fluid mx-auto d-block" alt="img{{$a+1}}">
-                                        <p class="text-center">{{$bajus->nama_baju}}</p>
-                                            <div class="price text-center">
-                                              @if($bajus->diskon>0)  
-                                              {{"Rp " . number_format(($bajus->harga-$bajus->diskon),0,',','.')}}
-                                                  <del>{{"Rp " . number_format($bajus->harga,0,',','.')}}</del>
-                                              @else
-                                                  {{"Rp " . number_format($bajus->harga,0,',','.')}}
-                                              @endif
-                                            </div>
-                                      </div>
-                                      @php $a=$a+1; @endphp
-                                    @endif
-                                  @endforeach
-                              @endif
-                            @endforeach
+
+      @if(Auth::guard('pembeli')->user())
+        <div class="top-content mt-5 mb-5">
+            <div class="container">
+                <div><h3>Rekomendasi Produk</h3></div>
+                <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
+                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                      @php $a=0; @endphp
+                          @foreach($hasil as $hasil)
+                              @foreach($bajurekomendasi as $rekomendasi)
+                                @if($rekomendasi->id != $baju->id && $hasil['id']==$rekomendasi->id)
+                                        @if($a==0)
+                                        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                                        @else
+                                        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                        @endif
+                                          <img src="{{asset('storage/' . $rekomendasi->gambar1)}}" class="img-fluid mx-auto d-block" alt="img{{$a+1}}">
+                                          <p class="text-center">{{$rekomendasi->nama_baju}}</p>
+                                              <div class="price text-center">
+                                                @if($rekomendasi->diskon>0)  
+                                                {{"Rp " . number_format(($rekomendasi->harga-$rekomendasi->diskon),0,',','.')}}
+                                                    <del>{{"Rp " . number_format($rekomendasi->harga,0,',','.')}}</del>
+                                                @else
+                                                    {{"Rp " . number_format($rekomendasi->harga,0,',','.')}}
+                                                @endif
+                                              </div>
+                                        </div>
+                                        @php $a=$a+1; @endphp
+                                @endif
+                              @endforeach
                           @endforeach
-                      @endwhile
-                  </div>
+                    </div>
 
-                  <a class="carousel-control-prev prev" href="#carousel-example" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                  </a>
+                </div>
+            </div>
+        </div>
 
-                  <a class="carousel-control-next next" href="#carousel-example" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                  </a>
-              </div>
-          </div>
-      </div>
+      @else               
+        <div class="top-content mt-5 mb-5">
+            <div class="container">
+                <div><h3>Produk Serupa</h3></div>
+                <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
+                    <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                      @php $a=0; @endphp
+                          @foreach($kategoris as $kategori)
+                              @foreach($baju->kategori as $kategoribaju)
+                                @if($kategori->name == $kategoribaju->name)
+                                    @foreach($kategori->baju as $bajus)
+                                      @if($bajus->id != $baju->id)
+                                        @if($a==0)
+                                        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                                        @else
+                                        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                        @endif
+                                          <img src="{{asset('storage/' . $bajus->gambar1)}}" class="img-fluid mx-auto d-block" alt="img{{$a+1}}">
+                                          <p class="text-center">{{$bajus->nama_baju}}</p>
+                                              <div class="price text-center">
+                                                @if($bajus->diskon>0)  
+                                                {{"Rp " . number_format(($bajus->harga-$bajus->diskon),0,',','.')}}
+                                                    <del>{{"Rp " . number_format($bajus->harga,0,',','.')}}</del>
+                                                @else
+                                                    {{"Rp " . number_format($bajus->harga,0,',','.')}}
+                                                @endif
+                                              </div>
+                                        </div>
+                                        @php $a=$a+1; @endphp
+                                      @endif
+                                    @endforeach
+                                @endif
+                              @endforeach
+                            @endforeach
+                    </div>
+                                        
+                    <a class="carousel-control-prev prev" href="#carousel-example" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+
+                    <a class="carousel-control-next next" href="#carousel-example" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+      @endif
 
       <div class="modal fade" id="modalhabis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -27,9 +27,9 @@
 </script>
 @endsection
 
-@section("title") Edit Baju @endsection 
+@section("title") Ubah Pakaian @endsection 
 
-@section('pageTitle') Edit Baju @endsection
+@section('pageTitle') Ubah Pakaian @endsection
 
 @section("content")     
     <div class="card shadow mb-3">
@@ -39,21 +39,21 @@
                 <input type="hidden"  value="PUT"  name="_method">
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
-                        <label for="deskripsi">Nama Baju :</label>
+                        <label for="deskripsi">Nama Pakaian :</label>
                         <input type="text" class="form-control" id="nama_baju" name="nama_baju" placeholder="Nama Baju"  value="{{$baju->nama_baju}}"  required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
-                        <label for="deskripsi">Deskripsi Baju :</label>
+                        <label for="deskripsi">Deskripsi Pakaian :</label>
                         <textarea  name="deskripsi"  id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi Baju" required>{{$baju->deskripsi}}</textarea>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
-                        <label for="deskripsi">Kategori Baju :</label>
+                        <label for="deskripsi">Kategori Pakaian :</label>
                         <select  multiple="" name="categories[]" id="categories" class="form-control" required>
                         </select>
                     </div>
@@ -61,19 +61,19 @@
 
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="gambar">Harga Baju :</label>
+                        <label for="gambar">Harga Pakaian :</label>
                         <input type="number"  name="harga_baju"  id="harga_baju" class="form-control" placeholder="Harga Baju" value="{{$baju->harga}}" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="gambar">Diskon Baju :</label>
+                        <label for="gambar">Diskon Pakaian :</label>
                         <input type="number"  name="diskon_baju"  id="diskon_baju" class="form-control" placeholder="Diskon Baju" value="{{$baju->diskon}}" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-md-12">
-                        <label for="gambar">Jumlah Baju :</label>
+                        <label for="gambar">Jumlah Pakaian :</label>
                     </div>
                     @foreach($baju->jumlah as $jumlahs)
                     <div class="col-md-3 mb-3">
@@ -129,7 +129,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" type="submit" value="save">Simpan Perubahan</button>
+                <button class="btn btn-primary" type="submit" value="save">Simpan</button>
                 <a href="{{route('bajus.index')}}" class="btn btn-info"> Batal </a> 
             </form>
         </div>

@@ -190,9 +190,9 @@
                     <div class="row">
                         <div class="col-md-12">
                         @if($order->status=="Menunggu Konfirmasi")
-                            <button type="button" class="btn btn-outline-secondary"><a href="{{route('pembeli.konfirmasi',['id'=>$order->id])}}">Ubah</a></button>
+                            <button type="button" class="btn btn-outline-secondary"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Ubah</a></button>
                         @else
-                            <button type="button" class="btn btn-outline-secondary"><a href="{{route('pembeli.konfirmasi',['id'=>$order->id])}}">Konfirmasi</a></button>
+                            <button type="button" class="btn btn-outline-secondary"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Konfirmasi</a></button>
                         @endif
                         <button class="btn btn-outline-secondary" type="submit">Simpan PDF</button>
                         </div>

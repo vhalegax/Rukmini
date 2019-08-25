@@ -40,10 +40,10 @@
                     
                         <ul class="navbar-nav mr-auto">
                           <li class="nav-item">
-                            <a class="nav-link {{Request::path() == '/' ? 'nav-active' : ''}}" href="{{route('home')}}">Home</a>
+                            <a class="nav-link {{Request::path() == '/' ? 'nav-active' : ''}}" href="{{route('home')}}">Beranda</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link {{Request::path() == 'shop' ? 'nav-active' : ''}}" href="{{route('tampil')}}">Shop</a>
+                            <a class="nav-link {{Request::path() == 'shop' ? 'nav-active' : ''}}" href="{{route('tampil')}}">Produk</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" href="#">Ukuran</a>
@@ -58,7 +58,7 @@
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" 
                                 aria-haspopup="true" aria-expanded="false" href="{{route('pembeli.index')}}">
-                                Profile</a>
+                                {{Auth::guard('pembeli')->user()->nama_lengkap}}</a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                   <a class="dropdown-item" href="{{route('pembeli.index')}}">Profile Pembeli</a>
@@ -79,10 +79,10 @@
                             @elseif(\Auth::user())
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" 
-                                aria-haspopup="true" aria-expanded="false" href="{{route('karyawan.home')}}">
+                                aria-haspopup="true" aria-expanded="false" href="{{route('dashboard')}}">
                                 {{Auth::user()->name}}</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{route('karyawan.home')}}">Profile</a>
+                                  <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
                                   <form action="{{route('logout')}}" method="POST">
                                     @csrf
                                     <button class="dropdown-item">Logout</button>
