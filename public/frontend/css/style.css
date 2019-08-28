@@ -294,6 +294,7 @@ div.menu-pembayaran {
 }
 
 div.menu-pembayaran a {
+    font-size: 12px;
     color: #75757D;
     background-color: transparent;
     text-align: center;
@@ -307,20 +308,17 @@ div.menu-pembayaran a {
 div.menu-pembayaran a:hover {
     color: black;
     background-color: transparent;
-    border: #111 solid 2px;
+    border: #111 solid 1px;
     border-radius: 12px;
     font-weight: bold;
 }
 
 div.menu-pembayaran .active {
     color: black;
-    background-color: transparent;
-    border: #111 solid 2px;
+    border: #111 solid 1px;
     border-radius: 12px;
     font-weight: bold;
 }
-
-
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {

@@ -18,14 +18,7 @@
     <section class="mt-5">
         <div class="container">
 
-            <div class="profile-pembeli2">
-                <a  href="{{route('pembeli.index')}}">Profile</a>
-                <a  href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
-                <a  class="active"  href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
-                <a  href="{{route('checkout.index')}}">Pembayaran</a>
-                <a  href="{{route('pembeli.wishlist')}}">Wishlist</a>
-                <a href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
-            </div>
+            @include('layouts.menu-pembeli')
 
             <div class="row border bingkai">
                 <div class="col-12 col-md-12">
@@ -52,7 +45,6 @@
                             </div>
                     </div>
                     @endif 
-                    
                     
                     <div class="table-responsive">
                         <table class="table ">
@@ -192,7 +184,7 @@
                                         <label for=""><b>Kupon : &nbsp </b><b id="kupontampil">0</b></label><br>
                                         <label for=""><b>Ongkir : &nbsp </b><b id="ongkirtampil">0</b></label><br>
                                         <label for=""><b>Total :  &nbsp </b><b id="totaltampil">0</b></label><br><br>
-                                        <button class="btn btn-outline-secondary" type="submit" value="save"><a href="{{route('tampil')}}">Belanja Lagi</a></button>
+                                        <a class="btn btn-outline-secondary" href="{{route('tampil')}}">Belanja Lagi</a>
                                         @if(Auth::guard('pembeli')->user())
                                         <button class="btn btn-outline-secondary" type="submit" value="save">Check Out</button>
                                         @else

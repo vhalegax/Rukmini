@@ -71,8 +71,8 @@
                                 onsubmit="return confirm('Batalkan Pesanan?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Ubah</a></button>
-                                <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
+                                <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Ubah</a>
+                                <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
                                 <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
                             </form>
                        
@@ -83,8 +83,7 @@
                                         <input type="hidden"  value="PUT"  name="_method">
                                         <input type="hidden"  value="Selesai"  name="selesai">
                                         <button type="submit" class="btn btn-outline-secondary btn-sm" value="save">Selesai</button>
-                                        <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
-                                        <button class="btn btn-outline-secondary btn-sm" >Komplain</button>
+                                        <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
                             </form>
                        
                         @elseif($orders->status === 'Pengiriman')
@@ -94,8 +93,7 @@
                                         <input type="hidden"  value="PUT"  name="_method">
                                         <input type="hidden"  value="Selesai"  name="selesai">
                                         <button type="submit" class="btn btn-outline-secondary btn-sm" value="save">Selesai</button>
-                                        <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
-                                        <button class="btn btn-outline-secondary btn-sm" >Komplain</button>
+                                        <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
                             </form>
                        
                         @else
@@ -106,19 +104,17 @@
                                 onsubmit="return confirm('Batalkan Pesanan?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <button type="button" class="btn btn-outline-secondary btn-sm"><a href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
-                                <button class="btn btn-outline-secondary btn-sm" type="submit" value="save"><a href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a></button>
+                                <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a>
+                                <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
                                 <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
                             </form>
                         @endif
                             
-                           
                         </div>
                     </div>
                     <br>
                     @endif
                     <?php endforeach;?>
-
 
                     </div>
                 </div>
