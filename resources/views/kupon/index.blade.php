@@ -30,35 +30,33 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                    <th><b>#</b></th>
-                    <th><b>Nama Kupon</b></th>
-                    <th><b>Deskripsi</b></th>
-                    <th><b>Kode Kupon</b></th>
-                    <th><b>Potongan</b></th>
-                    <th><b>Minimal Pembelian</b></th>
-                    <th><b>Masa Berlaku</b></th>
-                    <th><b>Jumlah</b></th>
-                    <th><b>Aksi</b></th>
+                    <th width="15%"><b>Nama Kupon</b></th>
+                    <th width="22%"><b>Deskripsi</b></th>
+                    <th width="10%"><b>Kode Kupon</b></th>
+                    <th width="10%"><b>Potongan</b></th>
+                    <th width="15%"><b>Minimal Pembelian</b></th>
+                    <th width="10%"><b>Masa Berlaku</b></th>
+                    <th width="5%"><b>Jumlah</b></th>
+                    <th width="10%"><b>Aksi</b></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($kupon as $kupon)
                     <tr>
-                        <td>{{$kupon->id}}</td>
-                        <td>{{$kupon->nama_kupon}}</td>
-                        <td>{{$kupon->deskripsi}}</td>
-                        <td>{{$kupon->kode_kupon}}</td>
-                        <td>{{$kupon->potongan}}</td>
-                        <td>{{$kupon->minimalpembelian}}</td>
+                        <td>{{$kupon->nama}}</td>
+                        <td>{!!$kupon->deskripsi!!}</td>
+                        <td>{{$kupon->kode}}</td>
+                        <td>Rp {{number_format("$kupon->potongan",0,",",".")}}</td>
+                        <td>Rp {{number_format("$kupon->minimalpembelian",0,",",".")}}</td>
                         <td>{{$kupon->masa_berlaku}}</td>
                         <td>{{$kupon->jumlah}}</td>
                         <td>
+                            <a href="{{route('kupon.edit', ['id' => $kupon->id])}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
                             <form  class="d-inline" action="{{route('kupon.destroy', ['id' => $kupon->id])}}" 
                             method="POST" onsubmit="return confirm('Hapus Kupon?')">
                             @csrf 
                             <input type="hidden"  value="DELETE"  name="_method">
-                            <a href="{{route('kupon.edit', ['id' => $kupon->id])}}" class="btn btn-info btn-sm mt-1"> Edit </a>
-                            <input  type="submit"  class="btn btn-danger btn-sm mt-1"  value="Hapus">
+                            <button type="submit" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> </button>
                             </form>
                         </td>
                     </tr>

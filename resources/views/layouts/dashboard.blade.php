@@ -38,7 +38,7 @@
 
       <hr class="sidebar-divider my-0">
 
-      <li class="nav-item {{Request::path() == 'karyawan/home' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/home' ? 'active' : ''}}">
         <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -51,14 +51,14 @@
         </a>
       </li> -->
 
-       <li class="nav-item {{Request::path() == 'karyawan/orders' ? 'active' : ''}}">
+       <li class="nav-item {{Request::path() == 'dashboard/orders' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="{{route('orders.index')}}">
           <i class="fas fa-fw fa-cog"></i>
           <span>Transaksi</span>
         </a>
       </li>
 
-      <li class="nav-item {{Request::path() == 'karyawan/users' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/users' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#karyawan" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Karyawan</span>
@@ -71,7 +71,7 @@
         </div>
       </li>
 
-      <li class="nav-item {{Request::path() == 'karyawan/kategori' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/kategori' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kategori_baju" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Kategori Pakaian</span>
@@ -84,20 +84,20 @@
         </div>
       </li>
 
-      <li class="nav-item {{Request::path() == 'karyawan/bajus' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/pakaian' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#baju" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Pakaian</span>
         </a>
         <div id="baju" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('bajus.index')}}">Daftar Pakaian</a>
-            <a class="collapse-item" href="{{route('bajus.create')}}">Tambah Pakaian</a>
+            <a class="collapse-item" href="{{route('pakaian.index')}}">Daftar Pakaian</a>
+            <a class="collapse-item" href="{{route('pakaian.create')}}">Tambah Pakaian</a>
           </div>
         </div>
       </li>
 
-      <li class="nav-item {{Request::path() == 'karyawan/kupon' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/kupon' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#kupon" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Kupon</span>
@@ -110,15 +110,15 @@
         </div>
       </li>
 
-      <li class="nav-item {{Request::path() == 'karyawan/bank' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/rekening' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bank" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>No Rekening</span>
+          <span>Rekening</span>
         </a>
         <div id="bank" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('bank.index')}}">Daftar No Rekening</a>
-            <a class="collapse-item" href="{{route('bank.create')}}">Tambah No Rekening</a>
+            <a class="collapse-item" href="{{route('rekening.index')}}">Daftar Rekening</a>
+            <a class="collapse-item" href="{{route('rekening.create')}}">Tambah Rekening</a>
           </div>
         </div>
       </li>

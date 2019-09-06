@@ -8,16 +8,14 @@ Route::resource('dashboard/users','UserController');
 Route::get('dashboard/ajax/kategori/search', 'KategoriController@ajaxSearch');
 Route::resource('dashboard/kategori', 'KategoriController');
 
-Route::get('dashboard/bajus/{id}/restore', 'BajuController@restore')->name('bajus.restore');
-Route::get('dashboard/bajus/trash', 'BajuController@trash')->name('bajus.trash');
-Route::delete('dashboard/bajus/{id}/delete-permanent', 'BajuController@deletePermanent')->name('bajus.delete-permanent');
-Route::resource('dashboard/bajus', 'BajuController');
+Route::resource('dashboard/pakaian', 'BajuController');
 
 Route::resource('dashboard/orders', 'OrderController');
 
+Route::get('dashboard/kupon/nonaktif/{id}','KuponController@nonaktif')->name('kupon.nonaktif');
 Route::resource('dashboard/kupon', 'KuponController');
 
-Route::resource('dashboard/bank','BankController');
+Route::resource('dashboard/rekening','RekeningController');
 
 Route::resource('dashboard/kasir','KasirController');
 

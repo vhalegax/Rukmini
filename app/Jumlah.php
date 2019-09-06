@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jumlah extends Model
 {
-    protected $table= "jumlahs";
+    protected $table= "jumlah";
 
     public function baju()
     {

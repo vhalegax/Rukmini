@@ -28,15 +28,21 @@ class KuponController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+         \Validator::make($request->all(),[
+        "name" => "unique:kupon,nama",
+        "kodekupon" => "unique:kupon,kode",
+        ])->validate();
+
         $kupon = new \App\Kupon;
-        $kupon->nama_kupon = $request->get('name');
+        $kupon->nama = $request->get('name');
         $kupon->deskripsi = $request->get('deskripsi');
-        $kupon->kode_kupon = $request->get('kodekupon');
+        $kupon->kode = $request->get('kodekupon');
         $kupon->potongan = $request->get('potongan');
         $kupon->minimalpembelian = $request->get('minimalpembelian');
         $kupon->masa_berlaku = $request->get('masaberlaku');
         $kupon->jumlah = $request->get('jumlah');
+        $kupon->status = "Aktif";
         $kupon->created_by = \Auth::user()->id;
         $kupon->save();
 
@@ -56,10 +62,15 @@ class KuponController extends Controller
 
     public function update(Request $request, $id)
     {
+         \Validator::make($request->all(),[
+        "name" => "unique:kupon,nama,". $id,
+        "kodekupon" => "unique:kupon,kode,". $id,
+        ])->validate();
+
         $kupon = \App\Kupon::findOrFail($id);       
-        $kupon->nama_kupon = $request->get('name');
+        $kupon->nama = $request->get('name');
         $kupon->deskripsi = $request->get('deskripsi');
-        $kupon->kode_kupon = $request->get('kodekupon');
+        $kupon->kode = $request->get('kodekupon');
         $kupon->potongan = $request->get('potongan');
         $kupon->minimalpembelian = $request->get('minimalpembelian');
         $kupon->masa_berlaku = $request->get('masaberlaku');
@@ -75,6 +86,14 @@ class KuponController extends Controller
         $kupon = \App\Kupon::findOrFail($id);
         $kupon->delete();
         return redirect()->route('kupon.index')->with('status', 'Kupon Berhasil Dihapus');
+    }
+
+    public function nonaktif($id)
+    {
+        $kupon = \App\Kupon::findOrFail($id);
+        $kupon->status = "Nonaktif";
+        $kupon->save();
+        return redirect()->route('kupon.index')->with('status', 'Kupon Berhasil Di Nonaktifkan');
     }
 
 }

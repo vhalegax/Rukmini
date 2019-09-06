@@ -26,10 +26,12 @@
         <label>Gambar : </label><br>
         @if($kategori->gambar)
         <img src="{{asset('storage/'. $kategori->gambar)}}" width="300px"><br><br>
-        <input type="checkbox" name="hapus_gambar" value="1"> Centang Untuk Menghpapus Gambar<br><br>
+        <input type="checkbox" name="hapus_gambar" value="1"> Centang Untuk Menghapus Gambar<br><br>
         @endif
         <input  type="file" name="image"><br><br>
         <input type="submit" class="btn btn-primary" value="Simpan">
+        <a href="{{route('kategori.index')}}" class="btn btn-info"> Kembali </a> 
+
       </form> 
     </div>
   </div>

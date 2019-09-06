@@ -35,6 +35,6 @@ class Pembeli extends Authenticatable
 
     public function Rating2()
     {
-        return $this->belongsToMany('App\Rating','rating','pembeli_id','baju_id');
+        return $this->belongsToMany('App\Rating','rating','pembeli_id','pakaian_id');
     }
 }

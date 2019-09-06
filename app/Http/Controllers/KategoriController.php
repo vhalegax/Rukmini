@@ -102,10 +102,15 @@ class KategoriController extends Controller
         
         if(!$kategori_digunakan->isEmpty())
         {
-            return redirect()->route('kategori.index')->with('status','Kategori Yang Sedang Di Gunakan Oleh Baju, Tidak Dapat Dipindahkan Ke Tempat Sampah');
+            return redirect()->route('kategori.index')->with('status','Kategori Yang Sedang Di Gunakan Oleh Pakaian, Tidak Dapat Dipindahkan Ke Tempat Sampah');
         }
         else
         {   
+            if($category->gambar && file_exists(storage_path('app/public/' . $category->gambar)))
+            {
+                \Storage::delete('public/' . $category->gambar);
+                $kategori->gambar = NULL;
+            }
             $category->delete();
             return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Hapus');
         }
@@ -115,7 +120,7 @@ class KategoriController extends Controller
     {
         $keyword = $request->get('q');
 
-        $categories = \App\Kategori::where("name", "LIKE", "%$keyword%")->get();
+        $categories = \App\Kategori::where("nama", "LIKE", "%$keyword%")->get();
         return $categories;
     }
 }

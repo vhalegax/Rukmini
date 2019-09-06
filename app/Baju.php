@@ -2,21 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Baju extends Model
 {
-    use SoftDeletes;
+    protected $table = "pakaian";
     
     public function jumlah()
     {
-        return $this->hasMany('App\Jumlah','id_baju','id');
+        return $this->hasMany('App\Jumlah','pakaian_id','id');
     }
 
     public function kategori()
     {
-        return $this->belongsToMany('App\Kategori','kategori_baju','baju_id','kategori_id');
+        return $this->belongsToMany('App\Kategori','kategori_pakaian','pakaian_id','kategori_id');
     }
 
     public function Detail_tr_penjualan()
@@ -26,7 +25,7 @@ class Baju extends Model
 
     public function rating()
     {
-        return $this->hasMany('App\Rating','baju_id','id');
+        return $this->hasMany('App\Rating','pakaian_id','id');
     }
 
 }

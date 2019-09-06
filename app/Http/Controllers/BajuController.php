@@ -36,9 +36,13 @@ class BajuController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        \Validator::make($request->all(),[
+        "nama" => "unique:pakaian,nama",
+        ])->validate();
+
         $new_baju = new \App\Baju;
-        $new_baju->nama_baju = $request->get('nama_baju');
+        $new_baju->nama = $request->get('nama');
         $new_baju->deskripsi = $request->get('deskripsi');
         $new_baju->harga = $request->get('harga_baju');
         $new_baju->diskon = $request->get('diskon_baju');
@@ -71,6 +75,7 @@ class BajuController extends Controller
             $new_baju->gambar4 = $gambar4;
         }
 
+        $new_baju->status = "Aktif";
         $new_baju->created_by = \Auth::user()->id;
         $new_baju->save();
         $new_baju->kategori()->attach($request->get('categories'));
@@ -92,7 +97,7 @@ class BajuController extends Controller
             }
             $new_jumlah->jumlah=$xl;
             $new_jumlah->created_by = \Auth::user()->id;
-            $new_jumlah->id_baju =$id_baju;
+            $new_jumlah->pakaian_id =$id_baju;
             $new_jumlah->save();
         }
 
@@ -106,7 +111,7 @@ class BajuController extends Controller
             }
             $new_jumlah->jumlah=$l;
             $new_jumlah->created_by = \Auth::user()->id;
-            $new_jumlah->id_baju =$id_baju;
+            $new_jumlah->pakaian_id =$id_baju;
             $new_jumlah->save();
         }
 
@@ -120,7 +125,7 @@ class BajuController extends Controller
             }
             $new_jumlah->jumlah=$m;
             $new_jumlah->created_by = \Auth::user()->id;
-            $new_jumlah->id_baju =$id_baju;
+            $new_jumlah->pakaian_id =$id_baju;
             $new_jumlah->save();
         }
 
@@ -134,11 +139,11 @@ class BajuController extends Controller
             }
             $new_jumlah->jumlah=$s;
             $new_jumlah->created_by = \Auth::user()->id;
-            $new_jumlah->id_baju =$id_baju;
+            $new_jumlah->pakaian_id =$id_baju;
             $new_jumlah->save();
         }
 
-        return redirect()->route('bajus.index')->with('status','Berhasil Menambah Baju Baru');
+        return redirect()->route('pakaian.index')->with('status','Berhasil Menambah Data Pakaian Baru');
     }
 
     public function show($id)
@@ -160,9 +165,50 @@ class BajuController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+    {   
+         \Validator::make($request->all(),[
+        "nama" => "unique:pakaian,nama," . $id,
+        ])->validate();
+
         $baju = \App\Baju::findOrFail($id);
-        $baju->nama_baju = $request->get('nama_baju');
+
+        if($request->get('1') == 1)
+        {
+            if($baju->gambar1 && file_exists(storage_path('app/public/' . $baju->gambar1)))
+            {
+                \Storage::delete('public/' . $baju->gambar1);
+                $baju->gambar1 = NULL;
+            }
+        }
+
+        if($request->get('2') == 2)
+        {
+            if($baju->gambar2 && file_exists(storage_path('app/public/' . $baju->gambar2)))
+            {
+                \Storage::delete('public/' . $baju->gambar2);
+                $baju->gambar2 = NULL;
+            }
+        }
+
+        if($request->get('3') == 3)
+        {
+            if($baju->gambar3 && file_exists(storage_path('app/public/' . $baju->gambar3)))
+            {
+                \Storage::delete('public/' . $baju->gambar3);
+                $baju->gambar3 = NULL;
+            }
+        }
+
+        if($request->get('4') == 4)
+        {
+            if($baju->gambar4 && file_exists(storage_path('app/public/' . $baju->gambar4)))
+            {
+                \Storage::delete('public/' . $baju->gambar4);
+                $baju->gambar4 = NULL;
+            }
+        }
+
+        $baju->nama = $request->get('nama');
         $baju->deskripsi = $request->get('deskripsi');
         $baju->harga = $request->get('harga_baju');
         $baju->diskon = $request->get('diskon_baju');
@@ -214,54 +260,44 @@ class BajuController extends Controller
         $baju->jumlah()->where('size','l')->update(['jumlah' => $request->get('l') , 'updated_by' => \Auth::user()->id ]);
         $baju->jumlah()->where('size','m')->update(['jumlah' => $request->get('m') , 'updated_by' => \Auth::user()->id ]);
         $baju->jumlah()->where('size','s')->update(['jumlah' => $request->get('s') , 'updated_by' => \Auth::user()->id ]);
-        return redirect()->route('bajus.index')->with('status','Berhasil Rubah Baju');
+        return redirect()->route('pakaian.index')->with('status','Berhasil Rubah Baju');
     }
 
     public function destroy($id)
     {
         $baju = \App\Baju::findOrFail($id);
-        $baju->delete();
-        return redirect()->route('bajus.index')->with('status', 'Book moved to trash');
-    }
-
-    public function trash()
-    {
-        $bajus = \App\Baju::onlyTrashed()->paginate(10);
-        return view('bajus.trash', ['bajus' => $bajus]);
-    }
-
-    public function restore($id)
-    {
-        $bajus = \App\Baju::withTrashed()->findOrFail($id);
-        if($bajus->trashed())
+        $tr_penjualan = \App\Detail_tr_penjualan::where('pakaian_id','=',$id)->get();
+        if(!$tr_penjualan->isEmpty())
         {
-            $bajus->restore();
-            return redirect()->route('bajus.index')->with('status', 'Bajus successfully restored');
+            return redirect()->route('pakaian.index')->with('status','Pakaian Yang Pernah Dibeli Pembeli, Tidak Dapat Di Hapus Permanen');
         }
         else 
-        {
-            return redirect()->route('bajus.trash')->with('status', 'Baju is not in trash');
-        }
-    }
-
-    public function deletePermanent($id)
-    {
-        $baju = \App\Baju::withTrashed()->findOrFail($id);
-        $tr_penjualan = \App\Detail_tr_penjualan::where('baju_id','=',$id)->get();
-        if(!$baju->trashed())
-        {
-            return redirect()->route('bajus.trash')->with('status', 'Baju is not in trash!')->with('status_type', 'alert');
-        }
-        elseif(!$tr_penjualan->isEmpty())
-        {
-            return redirect()->route('bajus.trash')->with('status','Baju Yang Pernah Dibeli Pembeli, Tidak Dapat Di Hapus Permanen');
-        }
-        else 
-        {
+        {   
+            if($baju->gambar1 && file_exists(storage_path('app/public/' . $baju->gambar1)))
+            {
+                \Storage::delete('public/' . $baju->gambar1);
+                $baju->gambar1 = NULL;
+            }
+            if($baju->gambar2 && file_exists(storage_path('app/public/' . $baju->gambar2)))
+            {
+                \Storage::delete('public/' . $baju->gambar2);
+                $baju->gambar2 = NULL;
+            }
+            if($baju->gambar3 && file_exists(storage_path('app/public/' . $baju->gambar3)))
+            {
+                \Storage::delete('public/' . $baju->gambar3);
+                $baju->gambar3 = NULL;
+            }
+            if($baju->gambar4 && file_exists(storage_path('app/public/' . $baju->gambar4)))
+            {
+                \Storage::delete('public/' . $baju->gambar4);
+                $baju->gambar4 = NULL;
+            }
             $baju->jumlah()->forceDelete();
-            $baju->forceDelete();
-            return redirect()->route('bajus.index')->with('status', 'Baju permanently deleted!');
+            $baju->Delete();
+            return redirect()->route('pakaian.index')->with('status', 'Pakaian Berhasil Dihapus Permanen!');
         }
     }
+
 
 }

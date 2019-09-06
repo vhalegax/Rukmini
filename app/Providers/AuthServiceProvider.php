@@ -57,7 +57,7 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-        Gate::define('manage-bank', function($user)
+        Gate::define('manage-rekening', function($user)
         {
             if($user)
             {

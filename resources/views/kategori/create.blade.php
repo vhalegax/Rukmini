@@ -11,7 +11,7 @@
       <form enctype="multipart/form-data"  action="{{route('kategori.store')}}"  method="POST">
         @csrf
         <label>Nama Kategori : </label><br>
-        <input  type="text"  class="form-control col-12  {{$errors->first('nama') ? "is-invalid" : ""}}"  name="nama" value="{{old('name')}}" required>
+        <input  type="text"  class="form-control col-12  {{$errors->first('nama') ? "is-invalid" : ""}}"  name="nama" value="{{old('nama')}}" required>
         <div class="invalid-feedback">
           {{$errors->first('nama')}}
         </div>
@@ -24,6 +24,8 @@
         <label>Gambar : </label><br>
         <input  type="file" name="image" value="{{old('image')}}"><br><br>
         <input type="submit" class="btn btn-primary" value="Tambah">
+        <a href="{{route('kategori.index')}}" class="btn btn-info"> Kembali </a> 
+
       </form> 
     </div>
   </div>

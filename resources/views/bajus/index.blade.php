@@ -1,6 +1,5 @@
 @extends("layouts.dashboard")
 
-
 @section("title") Daftar Pakaian @endsection 
 
 @section('pageTitle') Daftar Pakaian @endsection
@@ -22,17 +21,17 @@
 
     <div class="card shadow mb-2 ">
         <div class="submenu">
-            <a class="nav-link {{Request::get('status') == NULL && Request::path() == 'karyawan/bajus' ? 'aktif' : ''}}" href="{{route('bajus.index')}}">All</a>
-            <a class="nav-link {{Request::get('status') == 'diskon' ? 'aktif' : ''}}" href="{{route('bajus.index',['status' => 'diskon'])}}">Diskon</a>
-            <a class="nav-link" href="#">Out Stock</a>
-            <a class="nav-link {{Request::path() == 'bajus/trash' ? 'aktif' : ''}}" href="{{route('bajus.trash')}}">Tidak Dipakai</a>
+            <a class="nav-link aktif" href="{{route('pakaian.index')}}">Aktif (1)</a>
+            <a class="nav-link" href="#">Diskon (0)</a>
+            <a class="nav-link" href="#">Stok Habis (0)</a>
+            <a class="nav-link" href="#">Tidak Aktif (0)</a>
         </div>
     </div>
             
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">
-                <a href="{{route('bajus.create')}}" class="btn btn-primary">Tambah Pakaian</a>
+                <a href="{{route('pakaian.create')}}" class="btn btn-primary">Tambah Pakaian</a>
             </div>
         </div>
         <div class="card-body">
@@ -40,22 +39,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                        <th><b>Name</b></th>
-                        <th><b>Harga</b></th>
-                        <th><b>Potongan</b></th>
-                        <th><b>Gambar</b></th>
-                        <th><b>Kategori</b></th>
-                        <th><b>XL</b></th>
-                        <th><b>L</b></th>
-                        <th><b>M</b></th>
-                        <th><b>S</b></th>
-                        <th><b>Action</b></th>
+                        <th width="25%"><b>Nama</b></th>
+                        <th width="10%"><b>Harga</b></th>
+                        <th width="10%"><b>Diskon</b></th>
+                        <th width="10%"><b>Gambar</b></th>
+                        <th width="15%"><b>Kategori</b></th>
+                        <th width="5%"><b>XL</b></th>
+                        <th width="5%"><b>L</b></th>
+                        <th width="5%"><b>M</b></th>
+                        <th width="5%"><b>S</b></th>
+                        <th width="15%"><b>Aksi</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($bajus as $baju)
                         <tr>
-                        <td>{{$baju->nama_baju}}</td>
+                        <td>{{$baju->nama}}</td>
                         <td>{{"Rp " . number_format($baju->harga,0,',','.')}}</td>
                         <td>{{"Rp " . number_format($baju->diskon,0,',','.')}}</td>
                         <td>
@@ -63,8 +62,8 @@
                         </td>
                         <td>
                             <ul class="pl-3">
-                            @foreach($baju->kategori as $category)
-                            <li>{{$category->name}}</li>  
+                            @foreach($baju->kategori as $kategori)
+                            <li>{{$kategori->nama}}</li>  
                             @endforeach
                             </ul>
                         </td>
@@ -72,14 +71,9 @@
                                 <td>{{$jumlahs->jumlah}}</td>
                             @endforeach
                         <td>
-                        <form  class="d-inline" action="{{route('bajus.destroy', ['id' => $baju->id])}}"  method="POST"
-                        onsubmit="return confirm('Move category to trash?')">
-                        @csrf 
-                        <input  type="hidden"  value="DELETE"  name="_method">
-                        <a href="{{route('bajus.show', ['id' => $baju->id])}}" class="btn btn-primary btn-sm mt-1">D</a>
-                        <a href="{{route('bajus.edit', ['id' => $baju->id])}}" class="btn btn-info btn-sm mt-1"> E </a>
-                        <input  type="submit"  class="btn btn-danger btn-sm mt-1"   value="T">
-                        </form>
+                        <a href="{{route('pakaian.show', ['id' => $baju->id])}}" class="btn btn-primary btn-sm mt-1"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('pakaian.edit', ['id' => $baju->id])}}" class="btn btn-info btn-sm mt-1"><i class="fas fa-edit"></i></a>
+                        <a href="" class="btn btn-danger btn-sm mt-1"><i class="fas fa-ban"></i></a>
                         </td>
                         </tr>
                         @endforeach 
@@ -90,3 +84,10 @@
     </div>
 @endsection
 
+
+                         <!-- <form  class="d-inline" action="{{route('pakaian.destroy', ['id' => $baju->id])}}" 
+                            method="POST"  onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Kategori?')" >
+                            @csrf 
+                            <input type="hidden"name="_method" value="DELETE"/>
+                            <button type="submit" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> </button>
+                            </form> -->
