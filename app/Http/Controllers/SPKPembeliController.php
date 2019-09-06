@@ -69,7 +69,6 @@ class SPKPembeliController extends Controller
         }
 
         $baju_not_rating = array_diff($baju_all,$baju_rating);
-
        
         foreach($baju_not_rating as $baju_not_rating)
         {   
@@ -86,7 +85,10 @@ class SPKPembeliController extends Controller
                     $sum_bawah = $sum_bawah + $sim;
                 }
             }
-            $rekomendasi[] = array($baju_not_rating,$nama_baju->nama_baju,($sum_atas/$sum_bawah));
+            if($sum_atas!=0 && $sum_bawah!=0)
+            {
+                $rekomendasi[] = array($baju_not_rating,$nama_baju->nama_baju,($sum_atas/$sum_bawah));
+            }
         }
 
         return view('spk_pembeli.rekomendasi',['id'=>$id])->with(['rekomendasi'=>$rekomendasi]);
@@ -101,7 +103,7 @@ class SPKPembeliController extends Controller
                 $j = $this->jumlahsama($person_1,$person_2);
                     $i=0;
                     foreach($person_1->rating as $rating1)
-                    {       
+                    {    
                         foreach($person_2->rating as $rating2)
                         {   
                             if($rating1->baju_id==$rating2->baju_id)
@@ -117,8 +119,6 @@ class SPKPembeliController extends Controller
                         $similarity=1/(1+sqrt($sum));
                         $data[] = array($person_1->id,$person_2->id,$similarity);
                     }
-            
-
         return $similarity;
     }
 

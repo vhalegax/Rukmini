@@ -15,11 +15,6 @@ class KategoriController extends Controller
         });
     }
 
-    public function kategori()
-    {
-        return view('index');
-    }
-
     public function index()
     {
         $kategori = \App\Kategori::paginate(10);
@@ -33,21 +28,23 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-        $name = $request->get('name');
-        
-        $kategori_baru = new \App\Kategori;
-        $kategori_baru->name = $name;
+        \Validator::make($request->all(),[
+        "nama" => "unique:kategori|min:5|max:100",
+        ])->validate();
+
+        $kategori = new \App\Kategori;
+        $kategori->nama = $request->get('nama');
+        $kategori->deskripsi = $request->get('deskripsi');
 
         if($request->file('image'))
         {
             $gambar_kategori = $request->file('image')->store('gambar_kategori', 'public');
             
-            $kategori_baru->image = $gambar_kategori;
+            $kategori->gambar = $gambar_kategori;
         }
 
-        $kategori_baru->created_by = \Auth::user()->id;
-        $kategori_baru->slug = str_slug($name, '-');
-        $kategori_baru->save();
+        $kategori->created_by = \Auth::user()->id;
+        $kategori->save();
 
         return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Buat');
     }
@@ -64,27 +61,38 @@ class KategoriController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-            $name = $request->get('name');
-            $slug = $request->get('slug');
-            $category = \App\Kategori::findOrFail($id);       
-            $category->name = $name;
-            $category->slug = $slug;
-        
-            if($request->file('image'))
+    {   
+         \Validator::make($request->all(),[
+        'nama' => 'min:5|max:100|unique:kategori,nama,' . $id,
+        ])->validate();
+           
+        $kategori = \App\Kategori::findOrFail($id);  
+
+        if($request->get('hapus_gambar') == 1)
+        {
+            if($kategori->gambar && file_exists(storage_path('app/public/' . $kategori->gambar)))
             {
-                if($category->image && file_exists(storage_path('app/public/' . $category->image)))
-                {
-                    \Storage::delete('public/' . $category->name);
-                }
-                $new_image = $request->file('image')->store('kategori_image', 'public');
-                $category->image = $new_image;
+                \Storage::delete('public/' . $kategori->gambar);
+                $kategori->gambar = NULL;
             }
-        
-            $category->updated_by = \Auth::user()->id;
-            $category->slug = str_slug($name);
-            $category->save();
-            return redirect()->route('kategori.index', ['id' => $id])->with('status', 'Kategori Berhasil Di Update');
+        }
+
+        $kategori->nama = $request->get('nama');
+        $kategori->deskripsi = $request->get('deskripsi');
+
+        if($request->file('image'))
+        {   
+            if($kategori->gambar && file_exists(storage_path('app/public/' . $kategori->gambar)))
+            {
+                \Storage::delete('public/' . $kategori->gambar);
+            }
+            $gambar_kategori = $request->file('image')->store('gambar_kategori', 'public');
+            $kategori->gambar = $gambar_kategori;
+        }
+
+        $kategori->updated_by = \Auth::user()->id;
+        $kategori->save();
+        return redirect()->route('kategori.index', ['id' => $id])->with('status', 'Kategori Berhasil Di Ubah');
     }
 
     public function destroy($id)
@@ -99,45 +107,7 @@ class KategoriController extends Controller
         else
         {   
             $category->delete();
-            return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Pindahkan Ketempat Sampah');
-        }
-    }
-
-    public function trash()
-    {
-        $deleted_category = \App\Kategori::onlyTrashed()->paginate(10);
-        return view('kategori.trash', ['kategori' => $deleted_category]);
-    }
-
-    public function restore($id)
-    {
-        $category = \App\Kategori::withTrashed()->findOrFail($id);
-
-        if($category->trashed())
-        {
-            $category->restore();
-        } 
-        else 
-        {
-            return redirect()->route('kategori.index')->with('status', 'Kategori Tidak Berada Ditempat Sampah');
-        }
-        
-        return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Dikembalikan');
-    }
-
-    public function deletePermanent($id)
-    {
-        $category = \App\Kategori::withTrashed()->findOrFail($id);
-        $kategori_digunakan = \App\Kategori::find($id);
-
-        if(!$category->trashed())
-        {
-            return redirect()->route('kategori.trash')->with('status', 'Tidak Dapat Menghapus Kategori Yang Digunakan');
-        }
-        else 
-        {
-            $category->forceDelete();
-            return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Dihapus Permanen');
+            return redirect()->route('kategori.index')->with('status', 'Kategori Berhasil Di Hapus');
         }
     }
 

@@ -14,62 +14,55 @@
             <form  enctype="multipart/form-data" action="{{route('users.store')}}"   method="POST">
             @csrf
 
-            <input   type="hidden"  name="status" value="ACTIVE"/>
-
-            <label for="name">Name</label>
-            <input   class="form-control" placeholder="Full Name" type="text"   name="name"  id="name"/>
+            <input type="hidden" name="status" value="ACTIVE"/>
+        
+            <label for="name"><b>Nama Lengkap : </b></label>
+            <input class="form-control col-6" placeholder="Masukkan Nama Lengkap" type="text"   name="name"  id="name"/>
             <br>
 
-            <label for="username">Username</label>
-            <input class="form-control" placeholder="username" type="text" name="username" id="username"/>
+            <label for="email"><b>Email : </b></label>
+            <input class="form-control col-6" placeholder="Masukkan Email" type="text" name="email" id="email"/>
             <br>
 
-            <label for="password">Password</label>
-            <input  class="form-control"  placeholder="password" type="password" name="password"  id="password"/>
+            <label for="password"><b>Password : </b></label>
+            <input  class="form-control col-6"  placeholder="Masukkan Password" type="password" name="password"  id="password"/>
             <br>
 
-            <label for="password_confirmation">Password Confirmation</label>
-            <input class="form-control" placeholder="password confirmation" type="password"  name="password_confirmation" id="password_confirmation"/>
+            <label for="password_confirmation"><b>Konfirmasi Password :</b></label>
+            <input class="form-control col-6" placeholder="Masukkan Konfirmasi Password" type="password"  name="password_confirmation"/>
             <br>
 
-            <label for="email">Email</label>
-            <input class="form-control" placeholder="user@mail.com" type="text" name="email" id="email"/>
+            <label for="role"><b>Role : </b></label>
+              <select class="form-control col-6">
+                  <option value="volvo">Pilih Role</option>
+              </select>
             <br>
 
-            
-            <label for="role">Role</label>
-            <input class="form-control" value="2" type="text" name="roles" id="roles" />
+            <label for=""><b>Status : </b></label>
             <br>
+            <input type="radio" name="roles" id="2" value="2"> 
+            <label for="2">Aktif</label><br>
 
-            <!-- <label for="">Roles</label>
+            <input type="radio" name="roles" id="3" value="3"> 
+            <label for="3">Tidak Aktif</label>
+            <br><br>
+
+            <label for="telp"><b>Nomor Telepon : </b></label> 
             <br>
-            <input type="checkbox" name="roles" id="2" value="2"> 
-              <label for="2">Admin</label>
-
-            <input type="checkbox" name="roles" id="3" value="3"> 
-              <label for="3">Staff</label>
-
-            <input  type="checkbox" name="roles" id="4" value="4"> 
-              <label for="4">Kasir</label>
-            <br> -->
+            <input type="text" name="telp" class="form-control col-6" placeholder="Masukkan Nomor Telepon">
 
             <br>
-            <label for="telp">No Telp</label> 
-            <br>
-            <input type="text" name="telp" class="form-control">
+            <label for="alamat"><b>Alamat : </b></label>
+            <textarea  name="alamat"  id="alamat" class="form-control col-6" placeholder="Masukkan Alamat"></textarea>
 
             <br>
-            <label for="alamat">Alamat</label>
-            <textarea  name="alamat"  id="alamat" class="form-control"></textarea>
-
+            <label for="avatar"><b>Avatar : </b></label>
             <br>
-            <label for="avatar">Avatar image</label>
-            <br>
-            <input  id="avatar" name="avatar" type="file" class="form-control">
+            <input  id="avatar" name="avatar" type="file" class="form-control col-6">
 
             <hr class="my-3">
 
-            <input class="btn btn-primary" type="submit"  value="Save"/>
+            <input class="btn btn-primary" type="submit"  value="Tambah Karyawan"/>
             </form>
             </div>
     </div>

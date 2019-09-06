@@ -17,15 +17,6 @@
             </div>
     </div>
     @endif 
-
-    <div class="card shadow mb-2 ">
-        <div class="submenu">
-            <a class="nav-link {{Request::path() == 'karyawan/kategori' ? 'aktif' : ''}}" href="{{route('kategori.index')}}">Terpakai</a>
-            <a class="nav-link {{Request::path() == 'karyawan/kategori/trash' ? 'aktif' : ''}}" href="{{route('kategori.trash')}}">Tempat Sampah</a>
-        </div>
-    </div>
-
-    
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">
@@ -38,30 +29,32 @@
                     <thead>
                         <tr>
                         <th><b>Nama</b></th>
-                        <th><b>Gambar</b></th>
-                        <th><b>Aksi</b></th>
+                        <th><b>Deskripsi</b></th>
+                        <th width="80"><b>Gambar</b></th>
+                        <th width="80"><b>Aksi</b></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($kategori as $kategori)
                         <tr>
-                            <td>{{$kategori->name}}</td>
+                            <td>{{$kategori->nama}}</td>
+                            <td>{!!$kategori->deskripsi!!}
                             <td>
-                            @if($kategori->image)
+                            @if($kategori->gambar)
                                 <img 
-                                src="{{asset('storage/' . $kategori->image)}}" 
+                                src="{{asset('storage/' . $kategori->gambar)}}" 
                                 width="48px"/>
                             @else 
                                 No image
                             @endif
                             </td>
                             <td>
-                            <a href="{{route('kategori.edit', ['id' => $kategori->id])}}" class="btn btn-info btn-sm"> Edit </a>
+                            <a href="{{route('kategori.edit', ['id' => $kategori->id])}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
                             <form  class="d-inline" action="{{route('kategori.destroy', ['id' => $kategori->id])}}" 
-                            method="POST" onsubmit="return confirm('Move category to trash?')">
+                            method="POST"  onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Kategori?')" >
                             @csrf 
-                            <input type="hidden"  value="DELETE"  name="_method">
-                            <input  type="submit"  class="btn btn-danger btn-sm"  value="Trash">
+                            <input type="hidden"name="_method" value="DELETE"/>
+                            <button type="submit" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> </button>
                             </form>
                             </td>
                         </tr>
@@ -72,4 +65,5 @@
         </div>
     </div>
 @endsection
+
 

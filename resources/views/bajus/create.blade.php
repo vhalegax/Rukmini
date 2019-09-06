@@ -8,8 +8,8 @@
 <script>
 $('#categories').select2({
   ajax: {
-   // url: 'http://www.wisnusetyawann.xyz/karyawan/ajax/kategori/search', 
-   url: 'http://localhost:8000/karyawan/ajax/kategori/search',
+   // url: 'http://www.wisnusetyawann.xyz/dashboard/ajax/kategori/search', 
+   url: 'http://localhost:8000/dashboard/ajax/kategori/search',
     processResults: function(data){
       return {
         results: data.map(function(item){return {id: item.id, text: item.name} })

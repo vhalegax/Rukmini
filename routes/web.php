@@ -5,9 +5,6 @@ Auth::routes();
 Route::get('dashboard/beranda','UserController@home')->name('dashboard');
 Route::resource('dashboard/users','UserController');
 
-Route::get('dashboard/kategori/{id}/restore', 'KategoriController@restore')->name('kategori.restore');
-Route::get('dashboard/kategori/trash', 'KategoriController@trash')->name('kategori.trash');
-Route::delete('dashboard/kategori/{id}/delete-permanent', 'KategoriController@deletePermanent')->name('kategori.delete-permanent');
 Route::get('dashboard/ajax/kategori/search', 'KategoriController@ajaxSearch');
 Route::resource('dashboard/kategori', 'KategoriController');
 

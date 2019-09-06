@@ -1,79 +1,42 @@
 @extends("layouts.dashboard")
 
-@section("title") Edit Baju @endsection 
+@section("title") Transaksi @endsection 
 
-@section('pageTitle') Edit Baju @endsection
+@section('pageTitle') Transaksi @endsection
 
 @section("content")            
                   
     <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="input-group-append">
+                <h3>Invoice Pembelian : {{$order->invoice_number}}</h3>
+            </div>
+        </div>
         <div class="card-body">
             <form enctype="multipart/form-data" action="{{route('orders.update', ['id' => $order->id])}}" method="POST">
                 @csrf
 
                 <input type="hidden"  value="PUT"  name="_method">
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Petugas :</label>
-                        <input type="text" class="form-control"  value="{{$order->User->name}}"  readonly>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                    Petugas <br><br>
+                    Nama Pembeli <br><br>
+                    Transfer ke <br><br>
+                    A/N Transfer <br><br>
+                    No Rek Pembeli <br><br>
+                    Jam Transfer <br><br>
+                    Status Pembelian <br><br>
+                    Masukkan No Resi <br><br>
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Nama Pembeli :</label>
-                        <input type="text" class="form-control" value="{{$order->Pembeli->nama_lengkap}}"  readonly>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Invoice Number :</label>
-                        <input type="text" class="form-control" value="{{$order->invoice_number}}"  readonly>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Transfer ke :</label>
-                        <input type="text" readOnly class="form-control" value="{{$order->Bank}}">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">A/N Transfer :</label>
-                        <input type="text" readOnly class="form-control" value="{{$order->AN}}">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">No Rek Pembeli :</label>
-                        <input type="text" readOnly class="form-control" value="{{$order->Rek}}">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Jam Transfer :</label>
-                        <input type="text" readOnly class="form-control" value="{{$order->jam_bayar}}">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Status Pembelian : </label> 
-                        <input type="text" readOnly class="form-control" value="{{$order->status}}">
-                    </div>
-                </div>
-
-
-                <div class="form-row">
-                    <div class="col-md-12 mb-4">
-                        <label for="deskripsi">Masukkan No Resi :</label>
-                        <input type="text" class="form-control" name="resi" value="{{$order->no_resi}}">
+                    <div class="col-6">
+                    : {{$order->User->name}} <br><br>
+                    : {{$order->Pembeli->nama_lengkap}} <br><br>
+                    : {{$order->Bank}} <br><br>
+                    : {{$order->AN}} <br><br>
+                    : {{$order->Rek}} <br><br>
+                    : {{$order->jam_bayar}} <br><br>
+                    : {{$order->status}} <br><br>
+                    : <input type="text" name="resi" class="form col-6" value="{{$order->no_resi}}">
                     </div>
                 </div>
 

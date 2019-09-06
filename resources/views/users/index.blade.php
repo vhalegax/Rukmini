@@ -36,7 +36,7 @@
                         <th><b>Email</b></th>
                         <th><b>Telp</b></th>
                         <th><b>Status</b></th>
-                        <th><b>Action</b></th>
+                        <th><b>Aksi</b></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,9 +62,9 @@
                             <form onsubmit="return confirm('Delete this user permanently?')" class="d-inline"  action="{{route('users.destroy', ['id' => $user->id ])}}"  method="POST">
                                 @csrf
                                 <input  type="hidden" name="_method" value="DELETE">
-                                <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-primary btn-sm mt-1">D</a>
-                                <a class="btn btn-info text-white btn-sm mt-1" href="{{route('users.edit', ['id'=>$user->id])}}">E</i></a>
-                                <button type="submit" class="btn btn-danger btn-sm mt-1"><i class="fas fa-trash"></i></button>
+                                <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-primary btn-sm mt-1">Detail</a>
+                                <a class="btn btn-info text-white btn-sm mt-1" href="{{route('users.edit', ['id'=>$user->id])}}">Ubah</a>
+                                <button type="submit" class="btn btn-danger btn-sm mt-1">Hapus</button>
                             </form>
                             </td>
                         </tr>

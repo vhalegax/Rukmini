@@ -37,7 +37,7 @@ class ShopController extends Controller
 
     public function detail($id)
     {   
-        $user = Auth::guard('pembeli')->user()->id;
+        $user = 17;
         $baju = \App\Baju::findOrFail($id);
         $baju_all = \App\Baju::all();
         $kategori = \App\Kategori::all();
@@ -77,8 +77,6 @@ class ShopController extends Controller
         }
 
         $baju_not_rating = array_diff($baju_all,$baju_rating);
-
-       
         foreach($baju_not_rating as $baju_not_rating)
         {   
             $sim = 0;
@@ -94,8 +92,11 @@ class ShopController extends Controller
                     $sum_bawah = $sum_bawah + $sim;
                 }
             }
-            $rekomendasi[] = array('id'=>$baju_not_rating,'nama'=>$nama_baju->nama_baju,'sim'=>($sum_atas/$sum_bawah));
-            // $rekomendasi[$baju_not_rating] = ($sum_atas/$sum_bawah);
+
+            if($sum_atas!=0 && $sum_bawah!=0)
+            {
+                $rekomendasi[] = array('id'=>$baju_not_rating,'nama'=>$nama_baju->nama_baju,'sim'=>($sum_atas/$sum_bawah));
+            }
         }
 
         return $rekomendasi;
