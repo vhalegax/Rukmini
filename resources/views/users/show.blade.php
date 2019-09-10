@@ -16,7 +16,8 @@
                     <b>Email</b><br><br>
                     <b>No Telp</b><br><br>
                     <b>Alamat</b><br><br>
-                    <b>Roles</b><br><br>
+                    <b>Role</b><br><br>
+                    <b>Status</b><br><br>
                     <b>Gambar </b><br><br>
                 </div>
                 <div class="col-4 text-left">
@@ -24,7 +25,8 @@
                     <b> : {{$user->email}}</b><br><br>
                     <b> : {{$user->telp}}</b><br><br>
                     <b> : {{$user->alamat}}</b><br><br>
-                    <b> : {{$user->roles}}</b><br><br>
+                    <b> : Admin</b><br><br>
+                    <b> : Aktif</b><br><br>
                     <b> : @if($user->avatar)
                         <img src="{{asset('storage/'. $user->avatar)}}" width="128px"/>
                         @else 

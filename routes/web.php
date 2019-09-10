@@ -40,6 +40,7 @@ Route::post('/pembeli/login', 'Auth\PembeliLoginController@login')->name('pembel
 Route::post('/pembeli/logout','Auth\PembeliLoginController@logout')->name('pembeli.logout');
 Route::get('/pembeli/login','Auth\PembeliLoginController@showLoginForm')->name('pembeli.login');
 
+Route::get('/pembeli/lupapassword','PembeliController@lupapass')->name('pembeli.lupapass');
 Route::get('/pembeli/alamat','PembeliController@alamat')->name('pembeli.alamat');
 Route::get('/pembeli/wishlist','PembeliController@wishlist')->name('pembeli.wishlist');
 Route::get('/pembeli/history','PembeliController@history')->name('pembeli.history');

@@ -31,7 +31,7 @@
       <header>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top navutama pt-0 pb-0">
                 <div class="container">
-                  <a class="navbar-brand" href="{{route('home')}}">Rukmini</a>
+                  <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('frontend/img/rukmini.jpg')}}" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
@@ -109,7 +109,9 @@
               </nav>
       </header>
 
-      @yield('content')
+      <div class="konten" style="min-height: 650px;">
+          @yield('content')
+      </div>
 
       <footer>
           <div class="container pt-5">
@@ -117,19 +119,17 @@
               <div class="row">
 
                 <div class="col-sm-4 col-md-4 mb-3">
-                  <h6>Rukmini</h6>
+                  <h6>Beranda</h6>
                 </div>
 
                 <div class="col-sm-4 col-md-4 mb-3">
-                    <h6>Belanja</h6>
+                    <h6>Produk</h6>
                     <h6 class="mt-3">Kontak</h6>
-                    <h6 class="mt-3">Alamat</h6>
                 </div>
 
                 <div class="col-sm-4 col-md-4 mb-3">  
                   <h6>Cara Belanja</h6>
-                  <h6 class="mt-3">Cara Tukar</h6>
-                  <h6 class="mt-3">Pertanyaan</h6>
+                  <h6 class="mt-3">Panduan Ukuran</h6>
                 </div>
 
               </div>

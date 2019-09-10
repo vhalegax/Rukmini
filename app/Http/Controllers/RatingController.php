@@ -12,7 +12,7 @@ class RatingController extends Controller
         $new_rating->rating = $rating;
         $new_rating->komentar = $komentar;
         $new_rating->pembeli_id = $userid;
-        $new_rating->baju_id = $bajuid;
+        $new_rating->pakaian_id = $bajuid;
         $new_rating->save();
 
         $avg_rating = \App\Rating::avg('rating');

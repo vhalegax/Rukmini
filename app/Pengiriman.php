@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pengiriman extends Model
 {
-    protected $table='pengirimans';
+    protected $table='pengiriman';
 
     public function Tr_penjualan()
     {

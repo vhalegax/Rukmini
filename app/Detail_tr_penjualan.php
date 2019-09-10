@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Detail_tr_penjualan extends Model
 {
-    protected $table='detail_tr_penjuals';
-
-    protected $fillable = ['size','jumlah','harga','subtotal','baju_id','tr_penjualan_id'];
+    protected $table='detail_tr_penjual';
 
     public function Baju()
     {
-        return $this->belongsTo('App\Baju');
+        return $this->belongsTo('App\Baju','pakaian_id');
     }
 
     public function Tr_penjualan()

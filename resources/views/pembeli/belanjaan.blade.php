@@ -5,13 +5,8 @@
 @section('title') Belanjaan @endsection
 @section('content')
 
-    <div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
+    <div style="height:60px;">
         <div class="container">
-            <div class="col-12">
-                <div class="text-center center">
-                <h2>Belanjaan</h2>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -184,11 +179,11 @@
                                         <label for=""><b>Kupon : &nbsp </b><b id="kupontampil">0</b></label><br>
                                         <label for=""><b>Ongkir : &nbsp </b><b id="ongkirtampil">0</b></label><br>
                                         <label for=""><b>Total :  &nbsp </b><b id="totaltampil">0</b></label><br><br>
-                                        <a class="btn btn-outline-secondary" href="{{route('tampil')}}">Belanja Lagi</a>
+                                        <a class="btn btn-outline-dark" href="{{route('tampil')}}">Belanja Lagi</a>
                                         @if(Auth::guard('pembeli')->user())
-                                        <button class="btn btn-outline-secondary" type="submit" value="save">Check Out</button>
+                                        <button class="btn btn-outline-dark" type="submit">Bayar</button>
                                         @else
-                                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#Login">Check Out</button>
+                                        <button class="btn btn-outline-dark" data-toggle="modal" data-target="#Login">Check Out</button>
                                         @endif
                                     </div>
                             </form>

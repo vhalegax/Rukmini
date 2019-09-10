@@ -70,7 +70,12 @@ class PembeliController extends Controller
 
     public function history(Request $request)
     {
-        $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','LIKE','Selesai')->paginate(10)->sortByDesc('id');;
+        $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','LIKE','menunggu_pembayaran')->paginate(10)->sortByDesc('id');;
         return view('pembeli.historytransaksi',['order' => $order]);
+    }
+
+    public function lupapass()
+    {
+        return view('pembeli.lupapass');
     }
 }

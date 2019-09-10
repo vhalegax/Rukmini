@@ -10,19 +10,19 @@ a:hover {
 }
 
 .bg-login-image {
-    background: url(https://sourcea.unsplash.com/K4mSJ7kc0As/600x800a);
+    background: url(http://localhost:8000/frontend/img/1.jpg);
     background-position: center;
     background-size: cover
 }
 
 .bg-register-image {
-    background: url(https://sourcea.unsplash.com/Mv9hjnEUHR4/600x800a);
+    background: url(http://localhost:8000/frontend/img/2.jpg);
     background-position: center;
     background-size: cover
 }
 
 .bg-password-image {
-    background: url(https://sourcea.unsplash.com/oWTW-jNGl9I/600x800a);
+    background: url(http://localhost:8000/frontend/img/3.jpg);
     background-position: center;
     background-size: cover
 }

@@ -2,21 +2,16 @@
 @section('title') Belanjaan @endsection
 @section('content')
 
-    <div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
+    <div style="height:60px;">
         <div class="container">
-                <div class="col-12">
-                    <div class="text-center center">
-                    <h2>Profile</h2>
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
 
-    <section class="mt-5">
+    <section class="mt-5" style="min-height:600px;">
         <div class="container">
 
             <div class="profile-pembeli2">
-                <a class="active" href="{{route('pembeli.index')}}">Profile</a>
+                <a class="active" href="{{route('pembeli.index')}}">Profil</a>
                 <a  href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
                 <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
                 <a  href="{{route('checkout.index')}}">Pembayaran</a>
@@ -29,7 +24,7 @@
                 <div class="col-12 col-md-12">
                 
                     <div class="mb-3">
-                        <h5>Profile Pembeli</h5>
+                        <h5><b>Profil Pembeli</b></h5>
                         <hr>
                     </div>
 
@@ -57,20 +52,16 @@
 
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <label for="first_name">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ $pembeli->nama_lengkap }}" required>
+                                <label for="first_name">Nama Lengkap : {{ $pembeli->nama_lengkap }}</label>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="phone_number">Phone No</label>
-                                <input type="number" class="form-control" id="telp" name="telp" min="0" value="{{ $pembeli->telp }}">
+                                <label for="phone_number">Nomor Telepon : -{{ $pembeli->telp }}</label>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="email_address">Email Address</label>
-                                <input disabled type="email" class="form-control" id="email" name="email" value="{{ $pembeli->email }}">
+                                <label for="email_address">Email Address : {{ $pembeli->email }}</label>
                             </div>
                         </div>
-                                <br>
-                            <button class="btn btn-outline-secondary"  type="submit" value="save">Simpan</button>
+                            <button class="btn btn-dark"  type="submit" value="save">Ubah Profil</button>
                     </form>
                     </div>
                 </div>

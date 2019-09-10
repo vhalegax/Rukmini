@@ -10,6 +10,6 @@ class Kategori extends Model
 
     public function baju()
       {
-        return $this->belongsToMany('App\Baju','kategori_baju','kategori_id','baju_id');
+        return $this->belongsToMany('App\Baju','kategori_pakaian','kategori_id','pakaian_id');
       }
 }

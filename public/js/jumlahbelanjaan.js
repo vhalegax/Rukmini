@@ -14,16 +14,25 @@ function tambah(id) {
                 if (data["stokkurang"] != '1') {
                     $('select[name="ongkirservice"]').empty();
                     document.getElementById("jasa").selectedIndex = "0";
+
                     $('#ongkir').val("");
                     $('#ongkirtampil').html('0');
+
+                    $('#kupon').val("");
+                    $('#potongankupon').val("0");
+                    $('#kupontampil').html('');
+
                     $('input[name="' + id + 'tempqty"]').val(data["jumlah"]);
                     $('#jumlahbelanjaan').html("Barang Belanjaan : " + data["jumlahbelanjaan"]);
                     $('#beratbelanjaan').html("Berat Belanjaan : " + (data["jumlahbelanjaan"] * 300) / 1000 + " Kg");
+
                     $('b[id="' + id + 'qty"]').html(data["jumlah"]);
                     $('b[id="' + id + 'tprice"]').html("Rp " + thousands_separators(data["subtotal"]));
+
                     $('#barang').val(data["total"]);
                     $('#berat').val(data["jumlahbelanjaan"] * 300)
                     $('#barangtampil').html("Rp " + thousands_separators(data["total"]));
+
                     var barang = data["total"].replace(/[^0-9]/g, ''); //subtotal barang
                     var ongkir = $('#ongkir').val().replace(/[^0-9]/g, ''); //ongkir
                     var barangnumber = +(barang.replace(/,/, '')); //convert ke number
@@ -66,16 +75,25 @@ function kurang(id) {
                 success: function (data) {
                     $('select[name="ongkirservice"]').empty();
                     document.getElementById("jasa").selectedIndex = "0";
+
                     $('#ongkir').val("");
                     $('#ongkirtampil').html('0');
+
+                    $('#kupon').val("");
+                    $('#potongankupon').val("0");
+                    $('#kupontampil').html('');
+
                     $('input[name="' + id + 'tempqty"]').val(data["jumlah"]);
                     $('#jumlahbelanjaan').html("Barang Belanjaan : " + data["jumlahbelanjaan"]);
                     $('#beratbelanjaan').html("Berat Belanjaan : " + (data["jumlahbelanjaan"] * 300) / 1000 + " Kg");
+
                     $('b[id="' + id + 'qty"]').html(data["jumlah"]);
                     $('b[id="' + id + 'tprice"]').html("Rp " + thousands_separators(data["subtotal"]));
+
                     $('#berat').val(data["jumlahbelanjaan"] * 300)
                     $('#barang').val(data["total"]);
                     $('#barangtampil').html("Rp " + thousands_separators(data["total"]));
+
                     var barang = data["total"].replace(/[^0-9]/g, ''); //subtotal barang
                     var ongkir = $('#ongkir').val().replace(/[^0-9]/g, ''); //ongkir
                     var barangnumber = +(barang.replace(/,/, '')); //convert ke number
@@ -147,7 +165,7 @@ $('#kupon').change(function () {
                     $('#totaltampil').html('Rp ' + thousands_separators(total));
                     $('#kupon').val("");
                     $('#kupontampil').html("0");
-                    $('#kuponwarning').html("tidak ada" + data['1']);
+                    $('#kuponwarning').html("Kode Kupon Tidak Ditemukan" + data['1']);
                 }
             },
             complete: function () {

@@ -2,17 +2,12 @@
 @section('title') Belanjaan @endsection
 @section('content')
 
-    <div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
-            <div class="container">
-                <div class="col-12">
-                    <div class="text-center center">
-                    <h2>Alamat</h2>
-                    </div>
-                </div>
-            </div>
+    <div style="height:60px;">
+        <div class="container">
         </div>
+    </div>
 
-    <section class="mt-5">
+    <section class="mt-5" style="min-height:600px;">
         <div class="container">
 
             <div class="profile-pembeli2">
@@ -40,11 +35,11 @@
                         </div>
                     @endif 
 
-                    <h5 class="mb-3">Daftar Alamat Pembeli</h5>
+                    <h5 class="mb-3"><b>Daftar Alamat Pembeli</b></h5>
                     <hr>
                     <div class="row">
                         <div class="col-md-12 mb-3">
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#Tambah">Tambah Alamat</button>
+                            <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#Tambah">Tambah Alamat</button>
                         </div>
                     </div>
 
@@ -100,7 +95,7 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <button type="submit" class="btn btn-success" value="save">Konfirmasi</button>
+                                            <button type="submit" class="btn btn-dark" value="save">Konfirmasi</button>
                                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Batal</button>
                                         </div>
 
@@ -124,14 +119,14 @@
                             <small><p class="card-text">{{$alamats->jalan}}</p></small>
                             <small><p class="card-text">{{$alamats->kode_pos}} , {{$alamats->Kota->name}} , {{$alamats->Provinsi->name}}</p></small>
                             <br>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#{{$alamats->id}}">Ubah</button>
+                            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#{{$alamats->id}}">Ubah</button>
                             <form  class="d-inline"
                                 action="{{route('alamat.destroy', ['id' => $alamats->id])}}"
                                 method="POST"
                                 onsubmit="return confirm('Hapus Alamat?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Hapus">
+                                <input  type="submit"  class="btn btn-outline-dark btn-sm" value="Hapus">
                             </form>
                         </div>
                     </div>
@@ -191,8 +186,8 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <button type="submit" class="btn btn-success" value="save">Konfirmasi</button>
-                                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Batal</button>
+                                            <button type="submit" class="btn btn-dark" value="save">Konfirmasi</button>
+                                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Batal</button>
                                         </div>
 
                                     </div>

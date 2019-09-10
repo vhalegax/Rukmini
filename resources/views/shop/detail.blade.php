@@ -16,7 +16,7 @@
         <ul class="breadcrumb2">
           <li><a href="{{route('home')}}">Home</a></li>
           <li><a href="{{route('tampil')}}">Shop</a></li>
-          <li><a  class="breacrumb-active">{{$baju->nama_baju}}</a></li>
+          <li><a class="breacrumb-active">{{$baju->nama}}</a></li>
         </ul>
     </div>
   </div>
@@ -43,9 +43,9 @@
               <div class="col-sm-12 col-md-5 col-lg-4">
                   <div class="detail-produk">
                     @foreach($baju->kategori as $kategoribaju)
-                      <span>{{$kategoribaju->name}}</span>
+                      <span>{{$kategoribaju->nama}}</span>
                     @endforeach
-                          <h1><b>{{$baju->nama_baju}} </b></h1>
+                          <h1><b>{{$baju->nama}} </b></h1>
                           <div class="price mb-4">
                             @if($baju->diskon>0)  
                             <b style="color: black">{{"Rp " . number_format(($baju->harga-$baju->diskon),0,',','.')}}</b>
@@ -75,7 +75,7 @@
                                 </div>
                               <input type="hidden" name="jumlah" value="1" class="form-control">
                               <input type="hidden" value="{{$baju->id}}" name="id">
-                              <input type="hidden" value="{{$baju->nama_baju}}" name="nama">
+                              <input type="hidden" value="{{$baju->nama}}" name="nama">
                               <input type="hidden" value="{{$baju->harga-$baju->diskon}}" name="harga">
                               <button type="submit" value='submit' id="beli" name="addtocart" class="btn btn-dark btn-block mb-4">Tambah Ke Keranjang</button>
                           </form>
@@ -87,90 +87,18 @@
                                   <li class="nav-item">
                                       <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Ukuran</a>
                                   </li>
-                                  <li class="nav-item">
-                                      <a class="nav-item nav-link" id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review" aria-selected="false">Review</a>
-                                  </li>
                               </ul>
 
                               <div class="tab-content mt-3 mb-5" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                    {{$baju->deskripsi}}
+                                    {!!$baju->deskripsi!!}
                                 </div>
 
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                     <img src="{{asset('frontend/img/size.png')}}" alt="" height="100%" width="100%">
                                 </div>
                                 
-                                <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
-                                    <div class="text-center">
-                                    @if($baju->rating->count()==0)
-                                          Pakaian ini Belum Memiliki Rating
-                                    @else
-                                        <h3 id="avg_rating">{{round($baju->rating->avg('rating'),2)}}/5</h3>
-                                        @if(round($baju->rating->avg('rating'),2)<=1.5)
-                                          <h3>★</h3>
-                                        @elseif((round($baju->rating->avg('rating'),2)<=2.5))
-                                          <h3>★★</h3>
-                                        @elseif((round($baju->rating->avg('rating'),2)<=3.5))
-                                          <h3>★★★</h3>
-                                        @elseif((round($baju->rating->avg('rating'),2)<=4.5))
-                                          <h3>★★★★</h3>
-                                        @else
-                                          <h3>★★★★★</h3>
-                                        @endif
-                                        <span>Rating {{round($baju->rating->avg('rating'),2)}} dari {{$baju->rating->count()}} User</span>
-                                    @endif
-                                    </div>
-                                    <hr>
-                                    @foreach($baju->rating->reverse() as $rating)
-                                    <div class="media-body border-2">
-                                      <span class="mt-0">
-                                      @for($i=0;$i<$rating->rating;$i++)
-                                        ★
-                                      @endfor
-                                      <br>
-                                      <p style="font-size:14px;">Oleh <b>{{$rating->nama_pembeli->nama_lengkap}}</b>
-                                      {{date('d M Y', strtotime($rating->created_at))}}</p>
-                                      {{$rating->komentar}}</span>
-                                      @if(Auth::guard('pembeli')->user())
-                                        @if(Auth::guard('pembeli')->user()->id==$rating->pembeli_id)
-                                          @php $pernahkomentar = 1; @endphp
-                                        @endif
-                                      @endif
-                                    </div>
-                                    <hr>
-                                    @endforeach
-                                    @if(Auth::guard('pembeli')->user() && $pernahkomentar != 1)
-                                    <div class="kolom-komentar">
-                                      <div class="rate">
-                                        <input class="bintang" type="radio" id="star5" name="rate" value="5"/>
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input class="bintang" type="radio" id="star4" name="rate" value="4"/>
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input class="bintang" type="radio" id="star3" name="rate" value="3"/>
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input class="bintang" type="radio" id="star2" name="rate" value="2"/>
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input class="bintang" type="radio" id="star1" name="rate" value="1"/>
-                                        <label for="star1" title="text">1 star</label>
-                                      </div>
-                                      <div>
-                                        <textarea class="form-control" id="komentar" rows="2" placeholder="Tulis Komentar"></textarea>
-                                      </div>
-                                      <input type="hidden" id="userid" value="{{Auth::guard('pembeli')->user()->id}}">
-                                      <input type="hidden" id="bajuid" value="{{$baju->id}}">
-                                      <button class="btn btn-dark btn-sm mt-2" id="postkomentar">Post</button>
-                                    </div>
-                                    @elseif($pernahkomentar == 1)
-                                    <div>
-                                        <h6 class="text-center">Terima Kasih Telah Memberi Komentar</h6>
-                                    </div>
-                                    @else
-                                    <div>
-                                        <h6 class="text-center">Silahkan <a href="{{route('pembeli.login')}}"><u>Login</u></a> Untuk Memberi Komentar</h6>
-                                    </div>
-                                    @endif
-                                </div>
+                                
                               </div>
                         </div>
                   </div>
@@ -195,7 +123,7 @@
                                         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
                                         @endif
                                           <img src="{{asset('storage/' . $rekomendasi->gambar1)}}" class="img-fluid mx-auto d-block" alt="img{{$a+1}}">
-                                          <p class="text-center">{{$rekomendasi->nama_baju}}</p>
+                                          <h3 class="text-center"><b>{{$rekomendasi->nama}}</b></h3>
                                               <div class="price text-center">
                                                 @if($rekomendasi->diskon>0)  
                                                 {{"Rp " . number_format(($rekomendasi->harga-$rekomendasi->diskon),0,',','.')}}
@@ -210,21 +138,21 @@
                               @endforeach
                           @endforeach
                     </div>
-
                 </div>
             </div>
         </div>
 
       @else               
-        <div class="top-content mt-5 mb-5">
+        <div class="top-content mt-3 mb-3">
             <div class="container">
-                <div><h3>Produk Serupa</h3></div>
-                <div id="carousel-example" class="carousel slide mt-5" data-ride="carousel">
+                <hr>
+                <div><h3><B>Produk Serupa</B></h3></div>
+                <div id="carousel-example" class="carousel slide mt-3" data-ride="carousel">
                     <div class="carousel-inner row w-100 mx-auto" role="listbox">
                       @php $a=0; @endphp
                           @foreach($kategoris as $kategori)
                               @foreach($baju->kategori as $kategoribaju)
-                                @if($kategori->name == $kategoribaju->name)
+                                @if($kategori->nama == $kategoribaju->nama)
                                     @foreach($kategori->baju as $bajus)
                                       @if($bajus->id != $baju->id)
                                         @if($a==0)
@@ -232,14 +160,14 @@
                                         @else
                                         <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
                                         @endif
-                                          <img src="{{asset('storage/' . $bajus->gambar1)}}" class="img-fluid mx-auto d-block" alt="img{{$a+1}}">
-                                          <p class="text-center">{{$bajus->nama_baju}}</p>
+                                              <img src="{{asset('storage/' . $bajus->gambar1)}}" class="img-fluid mx-auto d-block" alt="img{{$a+1}}">
+                                              <h4 class="text-center mt-2"><b>{{$bajus->nama}}</b></h4>
                                               <div class="price text-center">
                                                 @if($bajus->diskon>0)  
-                                                {{"Rp " . number_format(($bajus->harga-$bajus->diskon),0,',','.')}}
+                                                <b>{{"Rp " . number_format(($bajus->harga-$bajus->diskon),0,',','.')}}</b>
                                                     <del>{{"Rp " . number_format($bajus->harga,0,',','.')}}</del>
                                                 @else
-                                                    {{"Rp " . number_format($bajus->harga,0,',','.')}}
+                                                   <b> {{"Rp " . number_format($bajus->harga,0,',','.')}}</b>
                                                 @endif
                                               </div>
                                         </div>
@@ -264,6 +192,79 @@
             </div>
         </div>
       @endif
+
+        <div class="container mt-5 mb-5">
+            <hr>
+            <div><h3>Review Produk</h3></div>
+            <div class="">
+            @if($baju->rating->count()==0)
+                  Pakaian ini Belum Memiliki Rating
+            @else
+                @if(round($baju->rating->avg('rating'),2)<=1.5)
+                  <h4>★
+                @elseif((round($baju->rating->avg('rating'),2)<=2.5))
+                  <h4>★★
+                @elseif((round($baju->rating->avg('rating'),2)<=3.5))
+                  <h4>★★★
+                @elseif((round($baju->rating->avg('rating'),2)<=4.5))
+                  <h4>★★★★
+                @else
+                  <h4>★★★★★
+                @endif <span class="small">{{$baju->rating->count()}} Ulasan </span></h4>
+            @endif
+            </div>
+            <hr>
+            @foreach($baju->rating->reverse() as $rating)
+            <div class="media-body border-2">
+              <span class="mt-0">
+              @for($i=0;$i<$rating->rating;$i++)
+                ★
+              @endfor
+              <br>
+              <p style="font-size:14px;">Oleh <b>{{$rating->nama_pembeli->nama_lengkap}}</b>
+              {{date('d M Y', strtotime($rating->created_at))}}</p>
+              {{$rating->komentar}}</span>
+              @if(Auth::guard('pembeli')->user())
+                @if(Auth::guard('pembeli')->user()->id==$rating->pembeli_id)
+                  @php $pernahkomentar = 1; @endphp
+                @endif
+              @endif
+            </div>
+            <hr>
+            @endforeach
+            @if(Auth::guard('pembeli')->user() && $pernahkomentar != 1)
+            <div class="kolom-komentar">
+              <div class="rate">
+                <input class="bintang" type="radio" id="star5" name="rate" value="5"/>
+                <label for="star5" title="text">5 stars</label>
+                <input class="bintang" type="radio" id="star4" name="rate" value="4"/>
+                <label for="star4" title="text">4 stars</label>
+                <input class="bintang" type="radio" id="star3" name="rate" value="3"/>
+                <label for="star3" title="text">3 stars</label>
+                <input class="bintang" type="radio" id="star2" name="rate" value="2"/>
+                <label for="star2" title="text">2 stars</label>
+                <input class="bintang" type="radio" id="star1" name="rate" value="1"/>
+                <label for="star1" title="text">1 star</label>
+              </div>
+              <div>
+                <textarea class="form-control" id="komentar" rows="2" placeholder="Tulis Komentar"></textarea>
+              </div>
+              <input type="hidden" id="userid" value="{{Auth::guard('pembeli')->user()->id}}">
+              <input type="hidden" id="bajuid" value="{{$baju->id}}">
+              <button class="btn btn-dark btn-sm mt-2" id="postkomentar">Post</button>
+            </div>
+            @elseif($pernahkomentar == 1)
+            <div>
+                <h6 class="">Terima Kasih Telah Memberi Komentar</h6>
+            </div>
+            @else
+            <div>
+                <h6 class="">Silahkan <a href="{{route('pembeli.login')}}"><u>Login</u></a> Untuk Memberi Komentar</h6>
+            </div>
+            @endif
+        </div>
+
+
 
       <div class="modal fade" id="modalhabis" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

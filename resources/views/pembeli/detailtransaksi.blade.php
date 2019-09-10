@@ -2,15 +2,10 @@
 @section('title') Detail Pembelian @endsection
 @section('content')
 
-<div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
+    <div style="height:60px;">
         <div class="container">
-                <div class="col-12">
-                    <div class="text-center center">
-                    <h2>Detail Pembelian</h2>
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
 
     <section class="mt-5">
         <div class="container">
@@ -42,7 +37,7 @@
                     @endif 
 
                     <div class="row" >
-                        <div class="col-md-12"><h1>Logo</h1></div>
+                        <div class="col-md-12"><img src="{{asset('frontend/img/rukmini.jpg')}}" alt=""></div>
                     </div>
                     <br>
 
@@ -70,10 +65,10 @@
                                 <table class="table ">
                                     <thead>
                                         <tr>
-                                            <th>Nama Baju</th>
+                                            <th>Nama Pakaian</th>
                                             <th>Size</th>
                                             <th>Jumlah</th>
-                                            <th>Price</th>
+                                            <th>Harga</th>
                                             <th>Subtotal</th>
                                         </tr>
                                     </thead>
@@ -81,7 +76,7 @@
                                     <tbody>
                                         <?php $temp=0; foreach($order->Detail_tr_penjualan as $row) :?>
                                             <tr>
-                                                <td> {{$row->Baju->nama_baju}}</td>
+                                                <td> {{$row->Baju->nama}}</td>
                                                 <td class="text-uppercase">{{$row->size}}</td>
                                                 <td>{{$row->jumlah}}</td>
                                                 <td>{{"Rp " . number_format($row->harga,2,',','.')}}</td>
@@ -109,7 +104,7 @@
                                         <tr>
                                             <th>Berat</th>
                                             <th>Pegiriman</th>
-                                            <th>Serivce</th>
+                                            <th>Servis</th>
                                             <th>Harga</th>
                                         </tr>
                                     </thead>
@@ -190,11 +185,12 @@
                     <div class="row">
                         <div class="col-md-12">
                         @if($order->status=="Menunggu Konfirmasi")
-                            <button type="button" class="btn btn-outline-secondary"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Ubah</a></button>
+                            <button type="button" class="btn btn-dark mt-1"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Ubah</a></button>
                         @else
-                            <button type="button" class="btn btn-outline-secondary"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Konfirmasi</a></button>
+                            <button type="button" class="btn btn-dark mt-1"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Konfirmasi Pembayaran</a></button>
                         @endif
-                        <button class="btn btn-outline-secondary" type="submit">Simpan PDF</button>
+                            <button class="btn btn-outline-dark mt-1" type="submit">Simpan PDF</button>
+                            <button class="btn btn-outline-dark mt-1" type="submit"><a href="href={{route('checkout.index')}}">Kembali</a></button>
                         </div>
                     </div>
 

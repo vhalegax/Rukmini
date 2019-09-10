@@ -3,24 +3,24 @@
 @section('title') 
     @if(Request::get('status') == 'diskon' ? 'active' : '')
         Semua Barang Diskon
-    @elseif($nama_kategori == 'All Product')
+    @elseif($nama_kategori == 'Semua Produk')
         Semua Produk
     @else
-        {{$nama_kategori->name}}
+        {{$nama_kategori->nama}}
     @endif
 @endsection
 
 @section('content')
 
-        <section class="shop-index" style="margin-top:20px; margin-bottom:20px;">
+        <section class="shop-index" style="margin-top:20px;">
             
             <div class="container" style="margin-top:85px;">
                     @if(Request::get('status') == 'diskon' ? 'active' : '')
-                        <h5><b>Semua Barang Diskon</b></h5>
-                    @elseif($nama_kategori == 'All Product')
+                        <h5><b>Produk Diskon</b></h5>
+                    @elseif($nama_kategori == 'Semua Produk')
                         <h5><b>Semua Produk</b></h5>
                     @else
-                        <h5><b>{{$nama_kategori->name}}</b></h5>
+                        <h5><b>{{$nama_kategori->nama}}</b></h5>
                     @endif
                     <hr>
             </div>
@@ -38,7 +38,7 @@
                                         <option selected value="{{route('tampil')}}">Semua Produk</option>
                                         <option {{Request::get('status') == 'diskon' ? 'selected' : ''}} value="{{route('tampil',['status' => 'diskon'])}}">Diskon</option>
                                         @foreach($kategori as $kategoris)
-                                        <option {{Request::get('status') == $kategoris->id ? 'selected' : ''}} value="{{route('tampil',['status' => $kategoris->id])}}">{{$kategoris->name}}</option>
+                                        <option {{Request::get('status') == $kategoris->id ? 'selected' : ''}} value="{{route('tampil',['status' => $kategoris->id])}}">{{$kategoris->nama}}</option>
                                         @endforeach
                                     </select>
                                     <input type="submit" class="d-none" value="">
@@ -47,7 +47,7 @@
                                 <div class="col-6 col-sm-6 col-md-3 col-lg-3">
                                     <form action="#" method="get">
                                         <select name="select" id="sortByselect" class="form-control">
-                                            <option selected>Sort By : </option>
+                                            <option selected>Urutkan </option>
                                             <option value="value">Highest Rated</option>
                                             <option value="value">Newest</option>
                                             <option value="value">Price: $$ - $</option>
@@ -82,7 +82,7 @@
                                                     @endif
                                                 </div>
 
-                                                <p class="text-left mt-3 title"><a href="{{route('shop.detail', ['id' => $baju->id])}}">{{$baju->nama_baju}} </a></p>
+                                                <p class="text-left mt-3 title"><a href="{{route('shop.detail', ['id' => $baju->id])}}">{{$baju->nama}} </a></p>
                                                 <div class="text-left mt-2 price">
                                                     @if($baju->diskon>0)
                                                             {{"Rp " . number_format(($baju->harga-$baju->diskon),0,',','.')}}

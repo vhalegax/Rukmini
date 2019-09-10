@@ -7,15 +7,11 @@
 
 @section('content')
 
-<div class="breadcumb_area bg-img" style="background-image: url({{asset('frontend/img/breadcumb.jpg')}});">
+
+    <div style="height:60px;">
         <div class="container">
-                <div class="col-12">
-                    <div class="text-center center">
-                    <h2>Pembayaran</h2>
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
 
     <section class="mt-5">
         <div class="container">
@@ -33,11 +29,11 @@
                 <div class="col-12 col-md-12">
 
                     <div class="menu-pembayaran mb-1">
-                        <a class="active" href="">Semua</a>
-                        <a href="#home">Belum Dibayar</a>
-                        <a href="#news">Menunggu Konfirmasi</a>
-                        <a href="#contact">Sedang Diproses</a>
-                        <a href="#about">Pengiriman</a>
+                        <a class="active" href="">Semua (4)</a>
+                        <a href="#home">Menunggu Pembayaran (4)</a>
+                        <a href="#news">Menunggu Konfirmasi (0)</a>
+                        <a href="#contact">Sedang Diproses (0)</a>
+                        <a href="#about">Pengiriman (0)</a>
                     </div>
 
                     <hr>
@@ -104,9 +100,9 @@
                                 onsubmit="return confirm('Batalkan Pesanan?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a>
-                                <a class="btn btn-outline-secondary btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
-                                <input  type="submit"  class="btn btn-outline-secondary btn-sm" value="Batalkan">
+                                <button type="button" class="btn btn-dark  btn-sm" ><a href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
+                                <a class="btn btn-outline-dark  btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
+                                <input  type="submit"  class="btn btn-outline-dark  btn-sm" value="Batalkan">
                             </form>
                         @endif
                             

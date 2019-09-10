@@ -157,22 +157,22 @@ class CartController extends Controller
 
     public function cekkupon($kupon,$subtotal)
     {
-        $kupon1= \App\Kupon::where('kode_kupon',$kupon)->get();
+        $kupon1= \App\Kupon::where('kode',$kupon)->get();
         if(!$kupon1->isEmpty())
         {
             foreach($kupon1 as $kupon1)
             {
                 if($subtotal<$kupon1->minimalpembelian)
                 {   
-                    $data = array("info"=>"ada","status"=>"minimal pembelian kurang");
+                    $data = array("info"=>"ada","status"=>"Minimal Pembelian Kurang");
                 }
                 elseif(($kupon1->jumlah) <= 0)
                 {
-                    $data = array("info"=>"ada","status"=>"kupon sudah melebihi kouta");
+                    $data = array("info"=>"ada","status"=>"Kupon Sudah Melebihi Kouta");
                 }
                 elseif(strtotime($kupon1->masa_berlaku) < strtotime('now'))
                 {
-                    $data = array("info"=>"ada","status"=>"masa berlaku kupon sudah habis");
+                    $data = array("info"=>"ada","status"=>"Masa Berlaku Kupon Sudah Habis");
                 }
                 else
                 {

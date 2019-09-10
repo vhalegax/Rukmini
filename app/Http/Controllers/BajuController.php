@@ -260,7 +260,7 @@ class BajuController extends Controller
         $baju->jumlah()->where('size','l')->update(['jumlah' => $request->get('l') , 'updated_by' => \Auth::user()->id ]);
         $baju->jumlah()->where('size','m')->update(['jumlah' => $request->get('m') , 'updated_by' => \Auth::user()->id ]);
         $baju->jumlah()->where('size','s')->update(['jumlah' => $request->get('s') , 'updated_by' => \Auth::user()->id ]);
-        return redirect()->route('pakaian.index')->with('status','Berhasil Rubah Baju');
+        return redirect()->route('pakaian.index')->with('status','Berhasil Ubah Pakaian');
     }
 
     public function destroy($id)

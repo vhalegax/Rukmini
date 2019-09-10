@@ -90,10 +90,6 @@ nav {
     padding: 40px;
 }
 
-.form-login {
-    margin-top: 130px;
-}
-
 /* Home Page */
 .gambargerak {
     width: 100%;
@@ -154,7 +150,7 @@ nav {
 footer {
     text-align: justify;
     color: white;
-    height: 255px;
+    height: 215px;
     background-color: #212529;
 }
 
@@ -288,34 +284,37 @@ div.profile-pembeli2 .active {
 }
 
 div.menu-pembayaran {
+
     background-color: transparent;
     overflow: auto;
     white-space: nowrap;
 }
 
 div.menu-pembayaran a {
-    font-size: 12px;
-    color: #75757D;
+    font-size: 14px;
+    color: #808080;
     background-color: transparent;
     text-align: center;
     padding: 7px;
-    text-decoration: none;
+    text-decoration: bold;
     display: inline-block;
-    border: #75757D solid 1px;
+    color: #808080;
+    border: solid 3px;
     border-radius: 12px;
 }
 
 div.menu-pembayaran a:hover {
-    color: black;
+    color: #212529;
     background-color: transparent;
-    border: #111 solid 1px;
+    border: #212529 solid 3px;
     border-radius: 12px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 div.menu-pembayaran .active {
-    color: black;
-    border: #111 solid 1px;
+    color: #212529;
+    border: #212529 solid 3px;
     border-radius: 12px;
     font-weight: bold;
 }

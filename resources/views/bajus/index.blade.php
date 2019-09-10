@@ -39,7 +39,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                        <th width="25%"><b>Nama</b></th>
+                        <th width="20%"><b>Nama</b></th>
                         <th width="10%"><b>Harga</b></th>
                         <th width="10%"><b>Diskon</b></th>
                         <th width="10%"><b>Gambar</b></th>

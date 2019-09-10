@@ -92,7 +92,7 @@ class CheckoutController extends Controller
                         {
                             Detail_tr_penjualan::create([
                                 'tr_penjualan_id'=> $new_order->id,
-                                'baju_id' => $item->id,
+                                'pakaian_id' => $item->id,
                                 'jumlah' => $item->qty,
                                 'harga' => $item->price,
                                 'size' => $item->options->size,
@@ -111,7 +111,7 @@ class CheckoutController extends Controller
                         }
                 
                         Cart::destroy();
-                        return redirect()->route('checkout.index');
+                        return redirect()->route('checkout.konfirmasi',['id' => $new_order->id]);
                     }
                     else
                     {
@@ -152,12 +152,11 @@ class CheckoutController extends Controller
         else
         {
             $user = \App\Tr_penjualan::findOrFail($id);
-            $user->email = $request->get('email');
             $user->tanggal_bayar = $request->get('tanggal_bayar');
             $user->jam_bayar = $request->get('jam');
             $user->jumlah_bayar = $request->get('jumlah');
-            $user->bank = $request->get('bank');
-            $user->AN = $request->get('AN');
+            $user->ke_rekening = $request->get('bank');
+            $user->AN_pengirim = $request->get('AN');
     
             if($request->file('gambar1') != NULL)
             {
@@ -180,6 +179,15 @@ class CheckoutController extends Controller
     public function destroy(Request $request,$id)
     {   
         $order = \App\Tr_penjualan::findOrFail($id);
+        
+        foreach($order->Detail_tr_penjualan as $detail)
+        {   
+            $temp = $detail->jumlah;
+            $jumlahs = \App\Jumlah::where('pakaian_id', '=', $detail->pakaian_id)->where('size','=',$detail->size)->first();
+            $jumlahs->jumlah = $jumlahs->jumlah + $temp;
+            $jumlahs->save();
+        }   
+
         $order->delete();
         return redirect()->route('checkout.index');
     }
@@ -187,7 +195,8 @@ class CheckoutController extends Controller
     public function konfirmasipembayaran($id)
     {
         $order = \App\Tr_penjualan::findOrFail($id);
-        $bank = \App\Bank::all();
+
+        $bank = \App\Rekening::all();
         return view('pembeli.konfirmasi',['orders' => $order])->with(['bank'=>$bank]);
     }
  
