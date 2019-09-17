@@ -143,7 +143,7 @@
         </div>
 
       @else               
-        <div class="top-content mt-3 mb-3">
+        <div class="top-content mt-5 mb-5">
             <div class="container">
                 <hr>
                 <div><h3><B>Produk Serupa</B></h3></div>
@@ -194,7 +194,7 @@
       @endif
 
         <div class="container mt-5 mb-5">
-            <hr>
+            <hr style="margin-top:50px;">
             <div><h3>Review Produk</h3></div>
             <div class="">
             @if($baju->rating->count()==0)

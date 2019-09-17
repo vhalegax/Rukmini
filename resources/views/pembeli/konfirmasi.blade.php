@@ -94,8 +94,8 @@
                         </div>
                         <div class="form-group">
                             <div class="mt-4">
-                                <button type="submit" class="btn btn-primary" value="save">Konfirmasi</button>
-                                <button type="submit" class="btn btn-dark" data-dismiss="modal" >Detail Pembelian</button>
+                                <button type="submit" class="btn btn-dark" value="save">Konfirmasi</button>
+                                <a class="btn btn-outline-dark" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail Pembelian</a>
                             </div>
                         </div>
                     </form>

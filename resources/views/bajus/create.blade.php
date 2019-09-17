@@ -23,7 +23,7 @@
                 <div class="form-row">
                     <div class="col-12 mb-3">
                         <label>Deskripsi Pakaian : </label><br>
-                        <textarea  name="deskripsi"  id="deskripsi" name="deskripsi" class="form-control">{{old('deskripsi')}}</textarea>
+                        <textarea  name="deskripsi"  id="deskripsi" name="deskripsi" class="form-control" required>{{old('deskripsi')}}</textarea>
                     </div>
                 </div>
 
@@ -41,7 +41,10 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Potongan Harga : </label><br>
-                        <input type="number"  name="diskon_baju" class="form-control" value="{{old('diskon_baju')}}" min="0">
+                        <input type="number"  name="diskon_baju" class="form-control {{$errors->first('diskon_baju') ? "is-invalid" : ""}}" value="{{old('diskon_baju') ? old('diskon_baju') : 0}}" min="0">
+                        <div class="invalid-feedback">
+                            {{$errors->first('diskon_baju')}}
+                        </div>
                     </div>
                 </div>
 
@@ -66,7 +69,7 @@
                  <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label>Gambar 1 : </label><br>
-                        <input type="file" id="gmbr1" name="gmbr1">
+                        <input type="file" id="gmbr1" name="gmbr1" required>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Gambar 2 : </label><br>
@@ -83,7 +86,7 @@
                 </div>
 
                 <button class="btn btn-primary" type="submit" value="save">Tambah</button>
-                <a href="{{route('pakaian.index')}}" class="btn btn-info"> Kembali </a> 
+                <a href="{{route('pakaian.tampil',['status' =>'aktif'])}}" class="btn btn-info"> Kembali </a> 
             </form>
         </div>
     </div>

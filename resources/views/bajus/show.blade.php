@@ -59,7 +59,7 @@
         <br><br>
         
         <a href="{{route('pakaian.edit', ['id' => $baju->id])}}" class="btn btn-info"> Ubah </a>
-        <a href="{{route('pakaian.index')}}" class="btn btn-primary">Kembali</a>
+        <a href="{{route('pakaian.tampil',['status' =>'aktif'])}}" class="btn btn-primary">Kembali</a>
 
       </div>
     </div>

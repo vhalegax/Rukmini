@@ -22,18 +22,18 @@
                 <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
                 <a class="active" href="{{route('checkout.index')}}">Pembayaran</a>
                 <a href="{{route('pembeli.wishlist')}}">Wishlist</a>
-                <a href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
+                <a href="{{route('pembeli.history')}}">Riwayat Transaksi</a>
             </div>
 
             <div class="row border bingkai">
                 <div class="col-12 col-md-12">
 
                     <div class="menu-pembayaran mb-1">
-                        <a class="active" href="">Semua (4)</a>
-                        <a href="#home">Menunggu Pembayaran (4)</a>
-                        <a href="#news">Menunggu Konfirmasi (0)</a>
-                        <a href="#contact">Sedang Diproses (0)</a>
-                        <a href="#about">Pengiriman (0)</a>
+                        <a class="active" href="">Semua ({{$semua}})</a>
+                        <a href="#home">Menunggu Pembayaran ({{$pembayaran}})</a>
+                        <a href="#news">Menunggu Konfirmasi ({{$konfirmasi}})</a>
+                        <a href="#contact">Sedang Diproses ({{$proses}})</a>
+                        <a href="#about">Pengiriman ({{$pengiriman}})</a>
                     </div>
 
                     <hr>
@@ -52,7 +52,7 @@
                     @endif 
                     
                     <?php foreach($order as $orders) :?>
-                    @if($orders->status !== 'Selesai')
+                    @if($orders->status != 'Selesai')
                     <div class="card pembayaran">
                         <h5 class="card-header">#{{$orders->invoice_number}}</h5>
                         <div class="card-body">
@@ -100,7 +100,7 @@
                                 onsubmit="return confirm('Batalkan Pesanan?')">
                                 @csrf 
                                 <input  type="hidden"  value="DELETE"  name="_method">
-                                <button type="button" class="btn btn-dark  btn-sm" ><a href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a></button>
+                                <a class="btn btn-dark  btn-sm" style="text-decoration: none;" href="{{route('checkout.konfirmasi',['id'=>$orders->id])}}">Konfirmasi</a>
                                 <a class="btn btn-outline-dark  btn-sm" href="{{route('checkout.show', ['id' => $orders->id])}}">Detail</a>
                                 <input  type="submit"  class="btn btn-outline-dark  btn-sm" value="Batalkan">
                             </form>

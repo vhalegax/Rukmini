@@ -34,7 +34,10 @@
 
                 <div>
                 <label>Potongan Harga</label>
-                    <input type="number" min="0" name="potongan" class="form-control" value="{{old('potongan') ? old('potongan') : $kupon->potongan}}" required>
+                    <input type="number" min="0" name="potongan" class="form-control {{$errors->first('potongan') ? "is-invalid" : ""}}"  value="{{old('potongan') ? old('potongan') : $kupon->potongan}}" required>
+                     <div class="invalid-feedback">
+                        {{$errors->first('potongan')}}
+                    </div>
                 </div><br>
 
                 <div>
@@ -54,7 +57,7 @@
 
 
                 <input type="submit" class="btn btn-primary" value="Simpan">
-                <a href="{{route('kupon.index')}}" class="btn btn-info"> Kembali </a> 
+                <a href="{{route('kupon.tampil',['status' =>'aktif'])}}" class="btn btn-info"> Kembali </a> 
 
             </form> 
         </div>

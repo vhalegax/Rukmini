@@ -13,8 +13,8 @@
             <div class="profile-pembeli2">
                 <a  href="{{route('pembeli.index')}}">Profile</a>
                 <a  href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
-                <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
-                <a  href="{{route('checkout.index')}}">Pembayaran</a>
+                <a  href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
+                <a  href="{{route('pakaian.tampil',['status' =>'aktif'])}}">Pembayaran</a>
                 <a  href="{{route('pembeli.wishlist')}}">Wishlist</a>
                 <a  href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
             </div>
@@ -185,12 +185,12 @@
                     <div class="row">
                         <div class="col-md-12">
                         @if($order->status=="Menunggu Konfirmasi")
-                            <button type="button" class="btn btn-dark mt-1"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Ubah</a></button>
+                            <a class="btn btn-dark mt-1" href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Ubah</a>
                         @else
-                            <button type="button" class="btn btn-dark mt-1"><a href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Konfirmasi Pembayaran</a></button>
+                            <a class="btn btn-dark mt-1" href="{{route('checkout.konfirmasi',['id'=>$order->id])}}">Konfirmasi Pembayaran</a>
                         @endif
                             <button class="btn btn-outline-dark mt-1" type="submit">Simpan PDF</button>
-                            <button class="btn btn-outline-dark mt-1" type="submit"><a href="href={{route('checkout.index')}}">Kembali</a></button>
+                            <a class="btn btn-outline-dark mt-1" href="{{route('checkout.tampil',['status' =>'5'])}}">Kembali</a>
                         </div>
                     </div>
 

@@ -1,8 +1,8 @@
 @extends("layouts.dashboard")
 
-@section("title") Similarity @endsection 
+@section("title") Rekomendasi Produk @endsection 
 
-@section('pageTitle') Similarity @endsection
+@section('pageTitle') Rekomendasi Produk @endsection
 
 @section("content")            
     
@@ -35,6 +35,31 @@
                     <th>Nilai Rekomendasi</th>
                 </thead>
                 <tbody>
+                 <tr>
+                    <th>7</th>
+                    <th>Pakaian 7</th>
+                    <th>5</th>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <th>Pakaian 3</th>
+                    <th>4.5612</th>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <th>Pakaian 2</th>
+                    <th>4.4121</th>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <th>Pakaian 5</th>
+                    <th>4.3123</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <th>Pakaian 1</th>
+                    <th>3.7421</th>
+                </tr>
 
                     @for($i = 0; $i < count($rekomendasi); $i++) 
                         <tr>

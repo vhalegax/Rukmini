@@ -12,10 +12,47 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
+
+    public function tampil($status)
+    {   
+        if($status=='1')
+        {
+            $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Menunggu Pembayaran')->get()->sortByDesc('id');
+        }
+        else if($status=='2')
+        {
+           $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Menunggu Konfirmasi')->get()->sortByDesc('id');
+        }
+        else if($status=='3')
+        {
+           $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Proses')->get()->sortByDesc('id');
+        }
+        else if($status=='4')
+        {
+           $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Pengiriman')->get()->sortByDesc('id');
+        }
+        else
+        {
+            $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->get()->sortByDesc('id');
+        }
+        
+        $semua =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->count();
+        $pembayaran = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Menunggu Pembayaran')->count();
+        $konfirmasi =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Menunggu Konfirmasi')->count();
+        $proses =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Proses')->count();
+        $pengiriman =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Pengiriman')->count();
+        return view('pembeli.semuatransaksi',['order' => $order])->with(['semua'=>$semua])->with(['pembayaran'=>$pembayaran])->with(['konfirmasi'=>$konfirmasi])->with(['proses'=>$proses])->with(['pengiriman'=>$pengiriman]);
+    }
+
     public function index(Request $request)
     {
         $order = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->paginate(10)->sortByDesc('id');;
-        return view('pembeli.semuatransaksi',['order' => $order]);
+        $semua =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->count();
+        $pembayaran = \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Menunggu Pembayaran')->count();
+        $konfirmasi =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Menunggu Konfirmasi')->count();
+        $proses =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Proses')->count();
+        $pengiriman =  \App\Tr_penjualan::where('pembeli_id','LIKE', Auth::guard('pembeli')->user()->id)->where('status','Pengiriman')->count();
+        return view('pembeli.semuatransaksi',['order' => $order])->with(['semua'=>$semua])->with(['pembayaran'=>$pembayaran])->with(['konfirmasi'=>$konfirmasi])->with(['proses'=>$proses])->with(['pengiriman'=>$pengiriman]);
     }
 
     public function create()
@@ -43,6 +80,7 @@ class CheckoutController extends Controller
                         $new_order->total= $request->get('total');
                         $new_order->no_resi=0;
                         $new_order->status='Menunggu Pembayaran';
+                        $new_order->pembelian='online';
                         $new_order->karyawan_id=3;
 
                         if($request->get('kupon'))
@@ -60,6 +98,10 @@ class CheckoutController extends Controller
                         }
                         
                         $new_order->save();
+
+                        $invoice = \App\Tr_penjualan::findOrFail($new_order->id);
+                        $invoice->invoice_number = "OL" . sprintf('%04d',($new_order->id));
+                        $invoice->save();
                 
                         $pengiriman = new \App\Pengiriman;
                         $pengiriman->tr_penjual_id = $new_order->id;

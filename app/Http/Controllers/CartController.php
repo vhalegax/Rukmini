@@ -119,7 +119,7 @@ class CartController extends Controller
         $baju = \App\Baju::findOrFail($row->id);
         foreach($baju->jumlah as $jumlahs)
         {
-            if($jumlahs->size===$row->options->size)
+            if($jumlahs->size==$row->options->size)
             {
                 if($jumlahs->jumlah<($row->qty+1))
                 {
@@ -157,7 +157,7 @@ class CartController extends Controller
 
     public function cekkupon($kupon,$subtotal)
     {
-        $kupon1= \App\Kupon::where('kode',$kupon)->get();
+        $kupon1= \App\Kupon::where('kode',$kupon)->where('status','aktif')->get();
         if(!$kupon1->isEmpty())
         {
             foreach($kupon1 as $kupon1)

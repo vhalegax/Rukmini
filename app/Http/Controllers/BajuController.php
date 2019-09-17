@@ -16,16 +16,34 @@ class BajuController extends Controller
         });
     }
 
+    public function tampil($status)
+    {   
+        if($status=='diskon')
+        {
+            $pakaian = \App\Baju::where('status','aktif')->where('diskon','>',0)->get();
+        }
+        else
+        {
+             $pakaian = \App\Baju::where('status',$status)->get();
+        }
+
+        $aktif = \App\Baju::where('status','aktif')->count();
+        $nonaktif = \App\Baju::where('status','nonaktif')->count();
+        $diskon = \App\Baju::where('diskon','>',0)->count();
+
+        return view('bajus.index', ['bajus' => $pakaian])->with(['aktif'=>$aktif])->with(['nonaktif'=>$nonaktif])->with(['diskon'=>$diskon]);
+    }
+
     public function index(Request $request)
     {
         $status = $request->get('status');
         if(isset($status) && $status != NULL)
         {
-        $bajus = \App\Baju::where('diskon','>',0)->paginate(30);
+            $bajus = \App\Baju::where('diskon','>',0)->paginate(30);
         }
         else
         {
-        $bajus = \App\Baju::paginate(30);
+            $bajus = \App\Baju::paginate(30);
         }
         return view('bajus.index',['bajus' => $bajus]);
     }
@@ -39,6 +57,7 @@ class BajuController extends Controller
     {   
         \Validator::make($request->all(),[
         "nama" => "unique:pakaian,nama",
+        "diskon_baju" => "lt:harga_baju",
         ])->validate();
 
         $new_baju = new \App\Baju;
@@ -75,7 +94,7 @@ class BajuController extends Controller
             $new_baju->gambar4 = $gambar4;
         }
 
-        $new_baju->status = "Aktif";
+        $new_baju->status = "aktif";
         $new_baju->created_by = \Auth::user()->id;
         $new_baju->save();
         $new_baju->kategori()->attach($request->get('categories'));
@@ -143,7 +162,7 @@ class BajuController extends Controller
             $new_jumlah->save();
         }
 
-        return redirect()->route('pakaian.index')->with('status','Berhasil Menambah Data Pakaian Baru');
+        return redirect()->route('pakaian.tampil',['status' =>'aktif'])->with('status','Berhasil Menambah Data Pakaian Baru');
     }
 
     public function show($id)
@@ -168,6 +187,7 @@ class BajuController extends Controller
     {   
          \Validator::make($request->all(),[
         "nama" => "unique:pakaian,nama," . $id,
+        "diskon_baju" => "lt:harga_baju",
         ])->validate();
 
         $baju = \App\Baju::findOrFail($id);
@@ -260,7 +280,7 @@ class BajuController extends Controller
         $baju->jumlah()->where('size','l')->update(['jumlah' => $request->get('l') , 'updated_by' => \Auth::user()->id ]);
         $baju->jumlah()->where('size','m')->update(['jumlah' => $request->get('m') , 'updated_by' => \Auth::user()->id ]);
         $baju->jumlah()->where('size','s')->update(['jumlah' => $request->get('s') , 'updated_by' => \Auth::user()->id ]);
-        return redirect()->route('pakaian.index')->with('status','Berhasil Ubah Pakaian');
+        return redirect()->route('pakaian.tampil',['status' =>'aktif'])->with('status','Berhasil Ubah Pakaian');
     }
 
     public function destroy($id)
@@ -269,7 +289,7 @@ class BajuController extends Controller
         $tr_penjualan = \App\Detail_tr_penjualan::where('pakaian_id','=',$id)->get();
         if(!$tr_penjualan->isEmpty())
         {
-            return redirect()->route('pakaian.index')->with('status','Pakaian Yang Pernah Dibeli Pembeli, Tidak Dapat Di Hapus Permanen');
+            return redirect()->route('pakaian.tampil',['status' =>'nonaktif'])->with('status','Pakaian Yang Pernah Dibeli Pembeli, Tidak Dapat Di Hapus Permanen');
         }
         else 
         {   
@@ -295,8 +315,24 @@ class BajuController extends Controller
             }
             $baju->jumlah()->forceDelete();
             $baju->Delete();
-            return redirect()->route('pakaian.index')->with('status', 'Pakaian Berhasil Dihapus Permanen!');
+            return redirect()->route('pakaian.tampil',['status' =>'nonaktif'])->with('status', 'Pakaian Berhasil Dihapus Permanen!');
         }
+    }
+
+    public function nonaktif($id)
+    {
+        $baju = \App\Baju::findOrFail($id);
+        $baju->status = "nonaktif";
+        $baju->save();
+        return redirect()->route('pakaian.tampil',['status' =>'aktif'])->with('status', 'Pakaian Berhasil Di Nonaktifkan');
+    }
+
+    public function aktif($id)
+    {
+        $baju = \App\Baju::findOrFail($id);
+        $baju->status = "aktif";
+        $baju->save();
+        return redirect()->route('pakaian.tampil',['status' =>'nonaktif'])->with('status', 'Pakaian Berhasil Di Aktifkan Kembali');
     }
 
 

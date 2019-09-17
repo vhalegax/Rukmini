@@ -3,21 +3,31 @@
 Auth::routes();
 
 Route::get('dashboard/beranda','UserController@home')->name('dashboard');
+
+Route::resource('dashboard/orders', 'OrderController');
+
+Route::resource('dashboard/kasir','KasirController');
+
+
 Route::resource('dashboard/users','UserController');
 
 Route::get('dashboard/ajax/kategori/search', 'KategoriController@ajaxSearch');
 Route::resource('dashboard/kategori', 'KategoriController');
 
+Route::get('dashboard/pakaian/aktif/{id}','BajuController@aktif')->name('pakaian.aktif');
+Route::get('dashboard/pakaian/nonaktif/{id}','BajuController@nonaktif')->name('pakaian.nonaktif');
+Route::get('dashboard/pakaian/tampil/{status}','BajuController@tampil')->name('pakaian.tampil');
 Route::resource('dashboard/pakaian', 'BajuController');
 
-Route::resource('dashboard/orders', 'OrderController');
-
+Route::get('dashboard/kupon/aktif/{id}','KuponController@aktif')->name('kupon.aktif');
 Route::get('dashboard/kupon/nonaktif/{id}','KuponController@nonaktif')->name('kupon.nonaktif');
+Route::get('dashboard/kupon/tampil/{status}','KuponController@tampil')->name('kupon.tampil');
 Route::resource('dashboard/kupon', 'KuponController');
 
+Route::get('dashboard/rekening/aktif/{id}','RekeningController@aktif')->name('rekening.aktif');
+Route::get('dashboard/rekening/nonaktif/{id}','RekeningController@nonaktif')->name('rekening.nonaktif');
+Route::get('dashboard/rekening/tampil/{status}','RekeningController@tampil')->name('rekening.tampil');
 Route::resource('dashboard/rekening','RekeningController');
-
-Route::resource('dashboard/kasir','KasirController');
 
 Route::get('dashboard/spkpembeli/rekomendasi/{id}','SPKPembeliController@rekomendasi')->name('spkpembeli.rekomendasi');
 Route::get('dashboard/spkpembeli/similarity/{id}','SPKPembeliController@similarity')->name('spkpembeli.similarity');
@@ -49,7 +59,8 @@ Route::resource('/pembeli','PembeliController');
 Route::resource('/pembeli/alamat','AlamatController');
 
 Route::get('/pembeli/konfirmasi/{id}','CheckoutController@konfirmasipembayaran')->name('checkout.konfirmasi');
-Route::resource('checkout','CheckoutController');
+Route::get('/pembeli/checkout/tampil/{status}','CheckoutController@tampil')->name('checkout.tampil');
+Route::resource('/checkout','CheckoutController');
 
 Route::get('/cart/tambahbelanjaan/{id}','CartController@tambahbelanjaan');
 Route::get('/cart/kurangbelanjaan/{id}','CartController@kurangbelanjaan');

@@ -20,7 +20,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">
-                <a href="{{route('kategori.create')}}" class="btn btn-primary">Tambah Kategori</a>
+                <a href="{{route('kategori.create')}}" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Kategori</a>
             </div>
         </div>
         <div class="card-body">

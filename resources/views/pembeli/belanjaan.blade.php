@@ -13,7 +13,14 @@
     <section class="mt-5">
         <div class="container">
 
-            @include('layouts.menu-pembeli')
+            <div class="profile-pembeli2">
+                <a href="{{route('pembeli.index')}}">Profile</a>
+                <a href="{{route('alamat.index',['status'=>'daftar'])}}">Daftar Alamat</a>
+                <a href="{{route('cart.index')}}" class="active">Keranjang Belanjaan</a>
+                <a href="{{route('checkout.index')}}">Pembayaran</a>
+                <a href="{{route('pembeli.wishlist')}}">Wishlist</a>
+                <a href="{{route('pembeli.history')}}">Riwayat Transaksi</a>
+            </div>
 
             <div class="row border bingkai">
                 <div class="col-12 col-md-12">

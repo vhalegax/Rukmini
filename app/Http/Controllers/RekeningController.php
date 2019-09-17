@@ -15,6 +15,15 @@ class RekeningController extends Controller
         });
     }
 
+    public function tampil($status)
+    {
+       $rekening = \App\Rekening::where('status',$status)->get();
+       $aktif = \App\Rekening::where('status','aktif')->count();
+       $nonaktif = \App\Rekening::where('status','nonaktif')->count();
+       return view('rekening.index', ['rekening' => $rekening])->with(['aktif'=>$aktif])->with(['nonaktif'=>$nonaktif]);
+    }
+
+
     public function index()
     {
         $rekening = \App\Rekening::paginate(10);
@@ -36,6 +45,7 @@ class RekeningController extends Controller
         $rekening->nama = $request->get('nama');
         $rekening->AN = $request->get('AN');
         $rekening->nomor = $request->get('no_rek');
+        $rekening->status = 'aktif';
 
         if($request->file('image'))
         {
@@ -46,7 +56,7 @@ class RekeningController extends Controller
 
         $rekening->save();
 
-        return redirect()->route('rekening.index')->with('status', 'Rekening Baru Berhasil Di Buat');
+        return redirect()->route('rekening.tampil',['status' =>'aktif'])->with('status', 'Rekening Baru Berhasil Di Buat');
     }
 
     public function show($id)
@@ -92,17 +102,41 @@ class RekeningController extends Controller
         }
 
         $rekening->save();
-        return redirect()->route('rekening.index')->with('status', 'Rekening Berhasil Di Ubah');
+        return redirect()->route('rekening.tampil',['status' =>'aktif'])->with('status', 'Rekening Berhasil Di Ubah');
     }
 
     public function destroy($id)
     {   
         $rekening = \App\Rekening::findOrFail($id);
-        if($rekening->gambar && file_exists(storage_path('app/public/' . $rekening->gambar)))
+        $tr_penjualan = \App\Tr_penjualan::where('rekening_id','=',$id)->get();
+        if(!$tr_penjualan->isEmpty())
         {
-            \Storage::delete('public/' . $rekening->gambar);
+            return redirect()->route('rekening.tampil',['status' =>'nonaktif'])->with('status','Rekening Yang Pernah Digunakan Untuk Transaksi Pembelian, Tidak Dapat Di Hapus Permanen');
         }
-        $rekening->delete();
-        return redirect()->route('rekening.index')->with('status', 'Rekening Berhasil Dihapus');
+        else
+        {
+            if($rekening->gambar && file_exists(storage_path('app/public/' . $rekening->gambar)))
+            {
+                \Storage::delete('public/' . $rekening->gambar);
+            }
+            $rekening->delete();
+            return redirect()->route('rekening.tampil',['status' =>'nonaktif'])->with('status', 'Rekening Berhasil Dihapus');
+        }
+    }
+
+    public function nonaktif($id)
+    {
+        $kupon = \App\Rekening::findOrFail($id);
+        $kupon->status = "nonaktif";
+        $kupon->save();
+        return redirect()->route('rekening.tampil',['status' =>'aktif'])->with('status', 'Rekening Berhasil Di Nonaktifkan');
+    }
+
+    public function aktif($id)
+    {
+        $kupon = \App\Rekening::findOrFail($id);
+        $kupon->status = "aktif";
+        $kupon->save();
+        return redirect()->route('rekening.tampil',['status' =>'nonaktif'])->with('status', 'Rekening Berhasil Di Aktifkan Kembali');
     }
 }

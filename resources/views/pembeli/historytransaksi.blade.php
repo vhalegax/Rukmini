@@ -16,7 +16,7 @@
                 <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
                 <a  href="{{route('checkout.index')}}">Pembayaran</a>
                 <a  href="{{route('pembeli.wishlist')}}">Wishlist</a>
-                <a class="active" href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
+                <a class="active" href="{{route('pembeli.history')}}">Riwayat Transaksi</a>
             </div>
 
             <div class="row border bingkai">

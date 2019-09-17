@@ -60,7 +60,7 @@
                                 aria-haspopup="true" aria-expanded="false" href="{{route('pembeli.index')}}">
                                 {{Auth::guard('pembeli')->user()->nama_lengkap}}</a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="">
                                   <a class="dropdown-item" href="{{route('pembeli.index')}}">Profile Pembeli</a>
                                   <a class="dropdown-item" href="{{route('alamat.index',['status'=>'daftar'])}}">Daftar Alamat</a>
                                   <a class="dropdown-item" href="{{route('cart.index')}}">Belanjaan</a>

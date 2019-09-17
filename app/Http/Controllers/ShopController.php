@@ -14,8 +14,8 @@ class ShopController extends Controller
         $nama_kategori = 'Semua Produk';
         $group = $request->get('status');
         if(isset($group) && $group === 'diskon')
-        {
-            $bajus = \App\Baju::where('diskon','>',0)->paginate(25);
+        {   
+            $bajus = \App\Baju::where('diskon','>',0)->where('status','aktif')->paginate(25);
         }
         elseif(isset($group) && $group !== 'diskon')
         {  
@@ -23,15 +23,15 @@ class ShopController extends Controller
 
             $bajus = \App\Baju::whereHas('kategori', function ($query) use($group) 
             {
-               $query->where('kategori_id', '=', $group);
+               $query->where('kategori_id', '=', $group)->where('status','aktif');
             })->paginate(25);
         }
         else
         {
-            $bajus = \App\Baju::paginate(25);
+            $bajus = \App\Baju::where('status','aktif')->paginate(25);
         }
         
-        $jumlahbaju = \App\Baju::count();
+        $jumlahbaju = \App\Baju::where('status','aktif')->count();
         $kategori = \App\Kategori::all();
         return view('shop.shop',['bajus' => $bajus],['kategori' => $kategori])->with(['nama_kategori' => $nama_kategori])->with(['jumlahbaju' => $jumlahbaju]);
     }
@@ -40,7 +40,7 @@ class ShopController extends Controller
     {   
         $user = 17;
         $baju = \App\Baju::findOrFail($id);
-        $baju_all = \App\Baju::all();
+        $baju_all = \App\Baju::where('status','aktif')->get();
         $kategori = \App\Kategori::all();
 
         
@@ -60,7 +60,7 @@ class ShopController extends Controller
     public function rekomendasi($id)
     {
         $pembeli = \App\Pembeli::findOrFail($id);
-        $baju = \App\Baju::all();
+        $baju = \App\Baju::where('status','aktif')->get();
         $rating = \App\Rating::all();
         $baju_rating = array();
         $baju_all = array();

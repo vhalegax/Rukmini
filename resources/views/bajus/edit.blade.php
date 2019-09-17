@@ -43,7 +43,10 @@
 
                     <div class="col-md-6 mb-3">
                         <label for="gambar">Diskon Pakaian :</label>
-                        <input type="number"  name="diskon_baju"  id="diskon_baju" class="form-control" placeholder="Diskon Baju" value="{{old('diskon_baju') ? old('diskon_baju') : $baju->diskon}}" min="0">
+                        <input type="number"  name="diskon_baju"  id="diskon_baju" class="form-control {{$errors->first('diskon_baju') ? "is-invalid" : ""}}" placeholder="Diskon Baju" value="{{old('diskon_baju') ? old('diskon_baju') : $baju->diskon}}" min="0">
+                        <div class="invalid-feedback">
+                            {{$errors->first('diskon_baju')}}
+                        </div>
                     </div>
                 </div>
 
@@ -110,7 +113,7 @@
                 </div>
 
                 <button class="btn btn-primary" type="submit" value="save">Simpan</button>
-                <a href="{{route('pakaian.index')}}" class="btn btn-info"> Kembali </a> 
+                <a href="{{route('pakaian.tampil',['status' =>'aktif'])}}" class="btn btn-info"> Kembali </a> 
             </form>
         </div>
     </div>

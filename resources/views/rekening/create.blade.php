@@ -43,7 +43,7 @@
           </div>
 
           <button class="btn btn-primary" type="submit" value="save">Tambah</button>
-          <a href="{{route('rekening.index')}}" class="btn btn-info"> Kembali </a> 
+          <a href="{{route('rekening.tampil',['status' =>'aktif'])}}" class="btn btn-info"> Kembali </a> 
       </form>
     </div>
   </div>

@@ -91,7 +91,7 @@
         </a>
         <div id="baju" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('pakaian.index')}}">Daftar Pakaian</a>
+            <a class="collapse-item" href="{{route('pakaian.tampil',['status' =>'aktif'])}}">Daftar Pakaian</a>
             <a class="collapse-item" href="{{route('pakaian.create')}}">Tambah Pakaian</a>
           </div>
         </div>
@@ -104,20 +104,20 @@
         </a>
         <div id="kupon" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('kupon.index')}}">Daftar Kupon</a>
+            <a class="collapse-item" href="{{route('kupon.tampil',['status' =>'aktif'])}}">Daftar Kupon</a>
             <a class="collapse-item" href="{{route('kupon.create')}}">Tambah Kupon</a>
           </div>
         </div>
       </li>
 
-      <li class="nav-item {{Request::path() == 'dashboard/rekening' ? 'active' : ''}}">
+      <li class="nav-item {{Request::path() == 'dashboard/rekening/tampil/aktif' ? 'active' : ''}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bank" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Rekening</span>
         </a>
         <div id="bank" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{route('rekening.index')}}">Daftar Rekening</a>
+            <a class="collapse-item" href="{{route('rekening.tampil',['status' =>'aktif'])}}">Daftar Rekening</a>
             <a class="collapse-item" href="{{route('rekening.create')}}">Tambah Rekening</a>
           </div>
         </div>

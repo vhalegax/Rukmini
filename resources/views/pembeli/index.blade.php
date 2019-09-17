@@ -11,12 +11,12 @@
         <div class="container">
 
             <div class="profile-pembeli2">
-                <a class="active" href="{{route('pembeli.index')}}">Profil</a>
+                <a  class="active" href="{{route('pembeli.index')}}">Profil</a>
                 <a  href="{{route('alamat.index',['status'=>'daftar'])}}" >Daftar Alamat</a>
-                <a href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
+                <a  href="{{route('cart.index')}}"  >Keranjang Belanjaan</a>
                 <a  href="{{route('checkout.index')}}">Pembayaran</a>
                 <a  href="{{route('pembeli.wishlist')}}">Wishlist</a>
-                <a href="{{route('pembeli.wishlist')}}">Riwayat Transaksi</a>
+                <a  href="{{route('pembeli.history')}}">Riwayat Transaksi</a>
             </div>
 
 

@@ -60,6 +60,10 @@ a:active {
     color: #111111
 }
 
+.nostyle {
+    text-decoration: none;
+}
+
 nav {
     -moz-box-shadow: 1px 1px 2px 1px #ccc;
     -webkit-box-shadow: 1px 1px 1px 1px #ccc;
@@ -284,7 +288,6 @@ div.profile-pembeli2 .active {
 }
 
 div.menu-pembayaran {
-
     background-color: transparent;
     overflow: auto;
     white-space: nowrap;
@@ -317,6 +320,25 @@ div.menu-pembayaran .active {
     border: #212529 solid 3px;
     border-radius: 12px;
     font-weight: bold;
+}
+
+ul.nav-pills {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+ul.nav-pills li {
+    font-size: 14px;
+    color: #808080;
+    background-color: transparent;
+    text-align: center;
+    padding: 7px;
+    text-decoration: bold;
+    display: inline-block;
+    color: #808080;
+    border: solid 3px;
+    border-radius: 12px;
 }
 
 /* Extra small devices (portrait phones, less than 576px) */

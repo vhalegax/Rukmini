@@ -21,17 +21,16 @@
 
     <div class="card shadow mb-2 ">
         <div class="submenu">
-            <a class="nav-link aktif" href="{{route('pakaian.index')}}">Aktif (1)</a>
-            <a class="nav-link" href="#">Diskon (0)</a>
-            <a class="nav-link" href="#">Stok Habis (0)</a>
-            <a class="nav-link" href="#">Tidak Aktif (0)</a>
+            <a class="nav-link {{Request::path() == 'dashboard/pakaian/tampil/aktif' ? 'aktif' : ''}}" href="{{route('pakaian.tampil',['status' =>'aktif'])}}">Aktif ({{$aktif}})</a>
+            <a class="nav-link {{Request::path() == 'dashboard/pakaian/tampil/diskon' ? 'aktif' : ''}}" href="{{route('pakaian.tampil',['status' =>'diskon'])}}">Pakaian Diskon ({{$diskon}})</a>
+            <a class="nav-link {{Request::path() == 'dashboard/pakaian/tampil/nonaktif' ? 'aktif' : ''}}" href="{{route('pakaian.tampil',['status' =>'nonaktif'])}}">Tidak Aktif ({{$nonaktif}})</a>
         </div>
     </div>
             
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="input-group-append">
-                <a href="{{route('pakaian.create')}}" class="btn btn-primary">Tambah Pakaian</a>
+                <a href="{{route('pakaian.create')}}" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Tambah Pakaian</a>
             </div>
         </div>
         <div class="card-body">
@@ -39,6 +38,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                        <th width="3%"><b>#</b></th>
                         <th width="20%"><b>Nama</b></th>
                         <th width="10%"><b>Harga</b></th>
                         <th width="10%"><b>Diskon</b></th>
@@ -54,6 +54,7 @@
                     <tbody>
                         @foreach($bajus as $baju)
                         <tr>
+                        <td>{{$baju->id}}</td>
                         <td>{{$baju->nama}}</td>
                         <td>{{"Rp " . number_format($baju->harga,0,',','.')}}</td>
                         <td>{{"Rp " . number_format($baju->diskon,0,',','.')}}</td>
@@ -67,14 +68,28 @@
                             @endforeach
                             </ul>
                         </td>
-                            @foreach($baju->jumlah as $jumlahs)
-                                <td>{{$jumlahs->jumlah}}</td>
-                            @endforeach
-                        <td>
-                        <a href="{{route('pakaian.show', ['id' => $baju->id])}}" class="btn btn-primary btn-sm mt-1"><i class="fas fa-eye"></i></a>
-                        <a href="{{route('pakaian.edit', ['id' => $baju->id])}}" class="btn btn-info btn-sm mt-1"><i class="fas fa-edit"></i></a>
-                        <a href="" class="btn btn-danger btn-sm mt-1"><i class="fas fa-ban"></i></a>
-                        </td>
+                        @foreach($baju->jumlah as $jumlahs)
+                            <td>{{$jumlahs->jumlah}}</td>
+                        @endforeach
+                        
+                        @if($baju->status == 'aktif')
+                            <td>
+                                <a href="{{route('pakaian.show', ['id' => $baju->id])}}" class="btn btn-primary btn-sm mt-1"><i class="fas fa-eye"></i></a>
+                                <a href="{{route('pakaian.edit', ['id' => $baju->id])}}" class="btn btn-info btn-sm mt-1"><i class="fas fa-edit"></i></a>
+                                <a href="{{route('pakaian.nonaktif', ['id' => $baju->id])}}" class="btn btn-danger btn-sm mt-1" onclick="return confirm('Non Aktifkan Pakaian?')"><i class="fas fa-ban"></i></a>
+                            </td>
+                        @else
+                            <td>
+                                <a href="{{route('pakaian.aktif', ['id' => $baju->id])}}" class="btn btn-info btn-sm" onclick="return confirm('Aktifkan Pakaian Kembali?')"><i class="fas fa-power-off"></i></a>
+                                <form  class="d-inline" action="{{route('pakaian.destroy', ['id' => $baju->id])}}" 
+                                method="POST"  onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Pakaian Permanen?')" >
+                                @csrf 
+                                <input type="hidden"name="_method" value="DELETE"/>
+                                <button type="submit" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> </button>
+                                </form>    
+                            </td>
+
+                        @endif
                         </tr>
                         @endforeach 
                     </tbody>
@@ -83,11 +98,3 @@
         </div>
     </div>
 @endsection
-
-
-                         <!-- <form  class="d-inline" action="{{route('pakaian.destroy', ['id' => $baju->id])}}" 
-                            method="POST"  onsubmit="return confirm('Apakah Anda Yakin Akan Menghapus Kategori?')" >
-                            @csrf 
-                            <input type="hidden"name="_method" value="DELETE"/>
-                            <button type="submit" class="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> </button>
-                            </form> -->

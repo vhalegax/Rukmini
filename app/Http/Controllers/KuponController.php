@@ -16,6 +16,14 @@ class KuponController extends Controller
         });
     }
 
+    public function tampil($status)
+    {
+       $kupon = \App\Kupon::where('status',$status)->get();
+       $aktif = \App\Kupon::where('status','aktif')->count();
+       $nonaktif = \App\Kupon::where('status','nonaktif')->count();
+       return view('kupon.index', ['kupon' => $kupon])->with(['aktif'=>$aktif])->with(['nonaktif'=>$nonaktif]);
+    }
+
     public function index()
     {
         $kupon = \App\Kupon::paginate(10);
@@ -32,6 +40,7 @@ class KuponController extends Controller
          \Validator::make($request->all(),[
         "name" => "unique:kupon,nama",
         "kodekupon" => "unique:kupon,kode",
+        "potongan" => "lt:minimalpembelian",
         ])->validate();
 
         $kupon = new \App\Kupon;
@@ -42,11 +51,11 @@ class KuponController extends Controller
         $kupon->minimalpembelian = $request->get('minimalpembelian');
         $kupon->masa_berlaku = $request->get('masaberlaku');
         $kupon->jumlah = $request->get('jumlah');
-        $kupon->status = "Aktif";
+        $kupon->status = "aktif";
         $kupon->created_by = \Auth::user()->id;
         $kupon->save();
 
-        return redirect()->route('kupon.index')->with('status', 'Berhasil Menambah kupon');
+        return redirect()->route('kupon.tampil',['status' =>'aktif'])->with('status','Berhasill Menambah Kupon');
     }
 
     public function show($id)
@@ -65,6 +74,7 @@ class KuponController extends Controller
          \Validator::make($request->all(),[
         "name" => "unique:kupon,nama,". $id,
         "kodekupon" => "unique:kupon,kode,". $id,
+        "diskon_baju" => "gt:minimalpembelian",
         ])->validate();
 
         $kupon = \App\Kupon::findOrFail($id);       
@@ -78,22 +88,38 @@ class KuponController extends Controller
         $kupon->edited_by = \Auth::user()->id;
         $kupon->save();
 
-        return redirect()->route('kupon.index')->with('status', 'Berhasil Ubah kupon');
+        return redirect()->route('kupon.tampil',['status' =>'aktif'])->with('status','Berhasill Menambah Kupon');
     }
 
     public function destroy($id)
-    {
+    {   
         $kupon = \App\Kupon::findOrFail($id);
-        $kupon->delete();
-        return redirect()->route('kupon.index')->with('status', 'Kupon Berhasil Dihapus');
+        $tr_penjualan = \App\Tr_penjualan::where('kupon_id','=',$id)->get();
+        if(!$tr_penjualan->isEmpty())
+        {
+            return redirect()->route('kupon.tampil',['status' =>'nonaktif'])->with('status','Kupon Yang Pernah Digunakan Pembeli, Tidak Dapat Di Hapus Permanen');
+        }
+        else
+        {   
+            $kupon->delete();
+            return redirect()->route('kupon.tampil',['status' =>'nonaktif'])->with('status', 'Kupon Berhasil Dihapus');
+        }
     }
 
     public function nonaktif($id)
     {
         $kupon = \App\Kupon::findOrFail($id);
-        $kupon->status = "Nonaktif";
+        $kupon->status = "nonaktif";
         $kupon->save();
-        return redirect()->route('kupon.index')->with('status', 'Kupon Berhasil Di Nonaktifkan');
+        return redirect()->route('kupon.tampil',['status' =>'aktif'])->with('status', 'Kupon Berhasil Di Nonaktifkan');
+    }
+
+    public function aktif($id)
+    {
+        $kupon = \App\Kupon::findOrFail($id);
+        $kupon->status = "aktif";
+        $kupon->save();
+        return redirect()->route('kupon.tampil',['status' =>'nonaktif'])->with('status', 'Kupon Berhasil Di Aktifkan Kembali');
     }
 
 }
